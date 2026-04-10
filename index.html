@@ -521,13 +521,21 @@ pre{
     <div class="sidebar-sub">Class companion · 2025–2026</div>
   </div>
 
-  <div style="padding:10px 12px;border-bottom:2px solid var(--border-soft)">
+  <div style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;gap:6px">
     <button class="class-btn active" id="btn-dashboard" onclick="go('dashboard')"
-      style="width:100%;border-radius:10px;background:var(--text);padding:10px 14px;gap:10px;border:none">
+      style="width:100%;border-radius:10px;background:rgba(255,255,255,0.08);padding:10px 14px;gap:10px;border:none">
       <span style="font-size:16px">🏠</span>
       <div class="cb-info">
         <div class="cb-title" style="color:#fff;font-size:13px">Dashboard</div>
-        <div class="cb-sub" style="color:#aaa">overview · rubric · timeline</div>
+        <div class="cb-sub">overview · rubric · timeline</div>
+      </div>
+    </button>
+    <button class="class-btn" id="btn-survival" onclick="go('survival')"
+      style="width:100%;border-radius:10px;background:linear-gradient(135deg,rgba(224,62,62,0.25),rgba(245,158,11,0.2));padding:10px 14px;gap:10px;border:1px solid rgba(224,62,62,0.35)">
+      <span style="font-size:16px">🆘</span>
+      <div class="cb-info">
+        <div class="cb-title" style="color:#ffb3b3;font-size:13px">Survival guide</div>
+        <div class="cb-sub" style="color:rgba(255,180,100,0.7)">M4 in a nutshell</div>
       </div>
     </button>
   </div>
@@ -617,7 +625,7 @@ const classes = {
 w1c1: {
   week: 'Week 1 · Class 1',
   title: 'Making a research question',
-  desc: 'A good research question is the backbone of your entire report. This class introduces the 6W method and the Big 6 research framework to help you build a focused, answerable question.',
+  desc: 'A good research question is the compass for your entire report — it tells the reader exactly what they will know by the end. This class introduces the 6W method to help you build a focused question that covers culture, corporate culture, sustainability, and the market environment of your assigned country.',
   render: renderW1C1
 },
 w1c2: {
@@ -690,6 +698,13 @@ function go(id) {
     main.innerHTML = '<div id="class-body"></div>';
     renderDashboard(document.getElementById('class-body'));
     restoreChecks();
+    window.scrollTo(0,0);
+    return;
+  }
+
+  if(id === 'survival') {
+    main.innerHTML = '<div id="class-body"></div>';
+    renderSurvival(document.getElementById('class-body'));
     window.scrollTo(0,0);
     return;
   }
@@ -803,37 +818,37 @@ function renderW1C1(el) {
 
   <div class="section">
     <div class="section-title"><span class="section-icon icon-tool">6W</span>Build your research question — the 6W method</div>
-    <p style="font-size:13px;color:#666;margin-bottom:14px;line-height:1.6">Answer each W question for your specific hotel and destination. Your answers will combine into a draft research question at the bottom.</p>
+    <p style="font-size:13px;color:#666;margin-bottom:14px;line-height:1.6">Answer each W question for your country and internship context. Your answers will combine into a draft research question below — one that an intern can actually use to prepare.</p>
     <div class="w6-grid">
       <div class="w-field">
-        <label>Who — who is this report for?</label>
-        <div class="w-hint">Think about your reader. Who will use this information?</div>
-        <input type="text" id="w6-who" placeholder="e.g. future HMSM students considering an internship at…" oninput="buildRQ()">
+        <label>Who — who is this for?</label>
+        <div class="w-hint">Future interns going to your assigned country.</div>
+        <input type="text" id="w6-who" placeholder="e.g. future interns preparing for a hospitality placement in…" oninput="buildRQ()">
       </div>
       <div class="w-field">
-        <label>What — what is the subject?</label>
-        <div class="w-hint">What specific aspect of the hotel/destination are you researching?</div>
-        <input type="text" id="w6-what" placeholder="e.g. the cultural characteristics, market position, and SDG practices of…" oninput="buildRQ()">
+        <label>What — what will they need to know?</label>
+        <div class="w-hint">Cover culture, corporate culture, sustainability trends, and the market environment.</div>
+        <input type="text" id="w6-what" placeholder="e.g. the cultural norms, corporate culture, sustainability trends, and market environment of…" oninput="buildRQ()">
       </div>
       <div class="w-field">
-        <label>Where — where is the focus?</label>
-        <div class="w-hint">Name the destination and/or hotel.</div>
-        <input type="text" id="w6-where" placeholder="e.g. [Hotel name] in [City, Country]" oninput="buildRQ()">
+        <label>Where — which country?</label>
+        <div class="w-hint">Your assigned internship country.</div>
+        <input type="text" id="w6-where" placeholder="e.g. South Korea" oninput="buildRQ()">
       </div>
       <div class="w-field">
-        <label>When — what time period?</label>
-        <div class="w-hint">Are you looking at current data? Recent years?</div>
-        <input type="text" id="w6-when" placeholder="e.g. in the period 2022–2025" oninput="buildRQ()">
+        <label>When — what time frame?</label>
+        <div class="w-hint">Current context — use recent data (2022–present).</div>
+        <input type="text" id="w6-when" placeholder="e.g. in the current period (2022–2025)" oninput="buildRQ()">
       </div>
       <div class="w-field">
-        <label>Why — why is this relevant?</label>
-        <div class="w-hint">Why does this information matter to your reader?</div>
-        <input type="text" id="w6-why" placeholder="e.g. to prepare for an international hospitality internship" oninput="buildRQ()">
+        <label>Why — why does this matter?</label>
+        <div class="w-hint">To help interns avoid culture shock and hit the ground running.</div>
+        <input type="text" id="w6-why" placeholder="e.g. to help future interns prepare and avoid culture shock" oninput="buildRQ()">
       </div>
       <div class="w-field">
-        <label>How — how will you research it?</label>
-        <div class="w-hint">What methods will you use? Literature, interviews, statistics?</div>
-        <input type="text" id="w6-how" placeholder="e.g. through literature review, expert interviews, and market data" oninput="buildRQ()">
+        <label>How — how will you find this out?</label>
+        <div class="w-hint">Literature + interviews with people who lived/worked there + market data.</div>
+        <input type="text" id="w6-how" placeholder="e.g. through cultural theory, interviews with people who lived there, and market data" oninput="buildRQ()">
       </div>
     </div>
 
@@ -841,7 +856,7 @@ function renderW1C1(el) {
     <div class="rq-output" id="rq-preview"><span class="rq-placeholder">Fill in the fields above and your research question will appear here…</span></div>
 
     <div class="ib-label" style="margin-top:14px">Refine and finalise your research question</div>
-    <p style="font-size:12px;color:#888;margin-bottom:8px">Edit the draft above into one clean, focused research question. A good research question is specific, researchable, and relevant to your reader.</p>
+    <p style="font-size:12px;color:#888;margin-bottom:8px">Edit the draft into one clean question. Model it on: <em>"How can an intern best prepare for a placement in [Country], taking into account cultural norms, corporate culture, sustainability trends, and the market environment?"</em></p>
     <textarea id="rq-final" placeholder="Type your final research question here…" rows="3" oninput="saveRQ()"></textarea>
     <div class="saved-rq" id="rq-saved"></div>
     <div class="btn-row" style="margin-top:8px">
@@ -856,7 +871,7 @@ function renderW1C1(el) {
       <div class="concept-card">
         <div class="concept-term" style="color:#085041">Good research question</div>
         <div class="concept-def">Specific, focused, answerable with your chosen methods, relevant to the assignment.</div>
-        <div class="concept-example">"What are the main cultural characteristics of [country] that a future intern at [hotel] should be aware of, and how are these reflected in the hotel's corporate culture?"</div>
+        <div class="concept-example">"How can an intern best prepare to avoid culture shock in South Korea, taking into account current sustainability trends, the market environment, and corporate culture?"</div>
       </div>
       <div class="concept-card">
         <div class="concept-term" style="color:#791F1F">Too broad</div>
@@ -930,7 +945,7 @@ function buildRQ() {
   const wy = why ? ', ' + why : '';
   const hw = how ? ' — explored ' + how : '';
   const forWho = who ? `For ${who}: ` : '';
-  preview.innerHTML = `${forWho}What are ${w} at ${wh}${wn}${wy}?${hw}`;
+  preview.innerHTML = `${forWho}How can ${who ? 'they' : 'an intern'} best prepare for a placement in ${wh}${wn}, taking into account ${w}${wy}?${hw}`;
 }
 
 function saveRQ() {
@@ -1736,16 +1751,13 @@ function renderW2C2(el) {
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-title"><span class="section-icon icon-tool">✎</span>Build your interview questions</div>
-    <p style="font-size:13px;color:#666;margin-bottom:6px;line-height:1.6">Draft your interview questions here. Each question must relate to a cultural model dimension (e.g. Hofstede's power distance, uncertainty avoidance) or a corporate culture topic. Aim for 5–8 open-ended questions across your topics.</p>
-    <div class="alert alert-warn" style="margin-bottom:12px">Questions must be grounded in cultural theory — not just general curiosity. Tutors check this in the defence. Write the Hofstede dimension or cultural concept next to each question as you draft it.</div>
-    <div class="interview-builder" id="iq-builder"></div>
-    <div class="btn-row" style="margin-top:10px">
-      <button class="btn" onclick="addIQ()">+ Add question</button>
-      <button class="btn btn-green" onclick="saveIQs()">Save questions</button>
-      <span class="save-note" id="iq-note"></span>
+  <div class="section" style="padding:0;overflow:hidden">
+    <div style="padding:20px 24px 16px;border-bottom:1px solid var(--border-soft)">
+      <div class="section-title" style="margin-bottom:6px"><span class="section-icon icon-tool">✎</span>Build your interview questions</div>
+      <p style="font-size:13px;color:var(--text-soft);line-height:1.6">Organise your questions by topic. Each topic needs 2–3 open questions and a reflection explaining why this can't be answered by secondary research alone.</p>
+      <div class="alert alert-warn" style="margin-top:10px;margin-bottom:0">Questions must be grounded in cultural theory. Tutors check this in the defence. Link each topic to a Hofstede dimension or corporate culture concept.</div>
     </div>
+    <div id="iqb-app" style="padding:16px 24px 8px"></div>
   </div>
 
   <div class="section">
@@ -1761,52 +1773,179 @@ function renderW2C2(el) {
   </div>
   `;
 
-  renderIQBuilder();
+  renderIQBApp();
 }
 
-function renderIQBuilder() {
-  const container = document.getElementById('iq-builder');
-  if(!container) return;
-  const saved = state['w2c2-questions'] || [''];
-  container.innerHTML = '';
-  saved.forEach((q, i) => {
-    addIQRow(container, i, q);
+// ─── INTERVIEW QUESTION BUILDER ───────────────────────────────────
+const IQB_CATS = [
+  {key:'culture',      label:'Culture',               pillBg:'#E0FAF8', pillColor:'var(--teal)'},
+  {key:'corporate',    label:'Corporate culture',      pillBg:'#EEF2FF', pillColor:'var(--blue)'},
+  {key:'sustainability',label:'Sustainability / SDGs', pillBg:'#FFFBEB', pillColor:'var(--amber)'},
+];
+const IQB_REFLECTION_Q = 'Why does this topic need to be explored through an interview? Could you not find this through secondary research alone?';
+
+function iqbLoad() {
+  return state['iqb_topics'] || [
+    {id:'iq_t1', cat:'culture',       name:'', questions:['',''], reflection:''},
+    {id:'iq_t2', cat:'corporate',     name:'', questions:['',''], reflection:''},
+    {id:'iq_t3', cat:'sustainability',name:'', questions:['',''], reflection:''},
+  ];
+}
+function iqbSave(topics) {
+  state['iqb_topics'] = topics;
+  saveCookie(state);
+}
+function iqbUID() { return 'iq_'+Date.now().toString(36)+Math.random().toString(36).slice(2,5); }
+
+function renderIQBApp() {
+  const el = document.getElementById('iqb-app');
+  if(!el) return;
+  const topics = iqbLoad();
+  const expanded = state['iqb_expanded'] || {};
+
+  let html = '';
+
+  // Add buttons
+  html += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">';
+  IQB_CATS.forEach(c => {
+    html += `<button onclick="iqbAddTopic('${c.key}')"
+      style="font-family:'Lexend',sans-serif;font-size:12px;font-weight:600;padding:7px 14px;border-radius:20px;border:1.5px dashed var(--border);background:var(--warm-white);color:var(--text-soft);cursor:pointer;transition:all 0.15s"
+      onmouseover="this.style.background='var(--cream)'" onmouseout="this.style.background='var(--warm-white)'">
+      + ${c.label} topic</button>`;
   });
+  html += '</div>';
+
+  // Stats
+  const total = topics.reduce((s,t) => s + t.questions.filter(q=>q.trim()).length, 0);
+  const named = topics.filter(t=>t.name.trim()).length;
+  html += `<div style="font-size:12px;color:var(--text-muted);margin-bottom:14px">${topics.length} topic${topics.length!==1?'s':''} · ${named} named · ${total} question${total!==1?'s':''} written</div>`;
+
+  // Topics grouped by category
+  IQB_CATS.forEach(cat => {
+    const catTopics = topics.filter(t => t.cat === cat.key);
+    if(!catTopics.length) return;
+    html += `<div style="margin-bottom:16px">
+      <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px">${cat.label}</div>`;
+    catTopics.forEach(t => {
+      const isOpen = expanded[t.id];
+      html += `<div style="background:var(--warm-white);border:1.5px solid var(--border);border-radius:14px;margin-bottom:8px;overflow:hidden">
+        <div onclick="iqbToggle('${t.id}')" style="display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;user-select:none;transition:background 0.15s"
+          onmouseover="this.style.background='var(--cream)'" onmouseout="this.style.background='transparent'">
+          <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:${cat.pillBg};color:${cat.pillColor};flex-shrink:0">${cat.label}</span>
+          <input type="text" placeholder="Topic name — e.g. Hierarchy and power distance"
+            value="${esc(t.name)}"
+            onclick="event.stopPropagation()"
+            oninput="iqbUpdate('${t.id}','name',this.value)"
+            style="flex:1;background:transparent;border:none;outline:none;font-family:'Lexend',sans-serif;font-size:13px;font-weight:600;color:var(--text);min-width:0">
+          <span style="font-size:11px;color:var(--text-muted);transition:transform 0.2s;transform:rotate(${isOpen?'90':'0'}deg);flex-shrink:0">▶</span>
+        </div>`;
+
+      if(isOpen) {
+        html += `<div style="padding:0 16px 16px;border-top:1px solid var(--border-soft)">
+          <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin:12px 0 8px">Interview questions (2–3 max)</div>`;
+        t.questions.forEach((q, qi) => {
+          html += `<div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:8px">
+            <span style="font-size:12px;color:var(--text-muted);width:20px;flex-shrink:0;padding-top:10px;font-weight:700;font-family:'Lexend',sans-serif">Q${qi+1}</span>
+            <textarea placeholder="Write an open question… (start with: How, What, Tell me about, Can you describe…)"
+              oninput="iqbUpdate('${t.id}','question',this.value,${qi})"
+              style="flex:1;border:1.5px solid var(--border);border-radius:10px;padding:8px 10px;font-size:13px;color:var(--text);font-family:inherit;background:var(--cream);resize:vertical;min-height:38px;transition:border-color 0.15s;line-height:1.5"
+              onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border)'">${esc(q)}</textarea>
+            ${t.questions.length > 1 ? `<button onclick="iqbDelQ('${t.id}',${qi})"
+              style="border:none;background:none;color:var(--text-muted);cursor:pointer;font-size:18px;padding:4px 6px;line-height:1;margin-top:4px;border-radius:6px;transition:color 0.15s"
+              onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text-muted)'">×</button>` : ''}
+          </div>`;
+        });
+        if(t.questions.length < 3) {
+          html += `<button onclick="iqbAddQ('${t.id}')"
+            style="font-size:12px;color:var(--blue);background:none;border:1.5px dashed var(--blue-mid);border-radius:8px;padding:5px 12px;cursor:pointer;font-family:inherit;margin-top:2px;transition:background 0.15s"
+            onmouseover="this.style.background='var(--blue-light)'" onmouseout="this.style.background='none'">+ Add question</button>`;
+        }
+        html += `<div style="margin-top:12px;background:var(--cream);border-radius:10px;padding:12px 14px;border-left:3px solid var(--blue-mid)">
+          <div style="font-size:12px;color:var(--text-soft);margin-bottom:6px;line-height:1.5"><strong style="color:var(--text)">Reflection:</strong> ${IQB_REFLECTION_Q}</div>
+          <textarea placeholder="Explain why this topic needs an interview rather than just reading about it…"
+            oninput="iqbUpdate('${t.id}','reflection',this.value)"
+            style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:8px 10px;font-size:13px;color:var(--text);font-family:inherit;background:var(--warm-white);resize:vertical;min-height:56px;transition:border-color 0.15s"
+            onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border)'">${esc(t.reflection)}</textarea>
+        </div>
+        <div style="display:flex;justify-content:flex-end;margin-top:10px;padding-top:10px;border-top:1px solid var(--border-soft)">
+          <button onclick="iqbDelTopic('${t.id}')"
+            style="font-size:12px;color:var(--red);background:none;border:1.5px solid var(--red-mid);border-radius:8px;padding:5px 12px;cursor:pointer;font-family:'Lexend',sans-serif;font-weight:600;transition:background 0.15s"
+            onmouseover="this.style.background='var(--red-light)'" onmouseout="this.style.background='none'">Remove topic</button>
+        </div></div>`;
+      }
+      html += '</div>';
+    });
+    html += '</div>';
+  });
+
+  html += `<div style="display:flex;gap:10px;align-items:center;margin-top:4px;padding-top:12px;border-top:1px solid var(--border-soft)">
+    <button onclick="iqbSaveAll()"
+      style="font-family:'Lexend',sans-serif;font-size:13px;font-weight:600;padding:8px 20px;border-radius:8px;border:1.5px solid var(--teal);background:var(--teal);color:#fff;cursor:pointer;transition:all 0.15s"
+      onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">Save all</button>
+    <span id="iqb-note" style="font-size:13px;color:var(--teal);font-weight:600"></span>
+  </div>`;
+
+  el.innerHTML = html;
 }
 
-function addIQRow(container, i, val) {
-  const row = document.createElement('div');
-  row.className = 'iq-row';
-  row.id = 'iq-row-'+i;
-  row.innerHTML = `<span class="iq-num">${i+1}</span><input type="text" class="iq-input" id="iq-${i}" value="${val||''}" placeholder="e.g. How would you describe the communication style between staff and management at the hotel?" oninput="saveIQs()"><button class="iq-del" onclick="delIQ(${i})">×</button>`;
-  container.appendChild(row);
-}
-
-function addIQ() {
-  const saved = state['w2c2-questions'] || [];
-  saved.push('');
-  state['w2c2-questions'] = saved;
+function iqbToggle(id) {
+  const exp = state['iqb_expanded'] || {};
+  exp[id] = !exp[id];
+  state['iqb_expanded'] = exp;
   saveCookie(state);
-  renderIQBuilder();
+  renderIQBApp();
 }
 
-function delIQ(i) {
-  const saved = state['w2c2-questions'] || [];
-  saved.splice(i,1);
-  state['w2c2-questions'] = saved;
-  saveCookie(state);
-  renderIQBuilder();
+function iqbUpdate(id, field, val, qi) {
+  const topics = iqbLoad();
+  const t = topics.find(t => t.id === id);
+  if(!t) return;
+  if(field === 'name') t.name = val;
+  else if(field === 'question') t.questions[qi] = val;
+  else if(field === 'reflection') t.reflection = val;
+  iqbSave(topics);
 }
 
-function saveIQs() {
-  const container = document.getElementById('iq-builder');
-  if(!container) return;
-  const inputs = container.querySelectorAll('.iq-input');
-  const qs = Array.from(inputs).map(i => i.value);
-  state['w2c2-questions'] = qs;
+function iqbAddTopic(cat) {
+  const topics = iqbLoad();
+  const t = {id: iqbUID(), cat, name:'', questions:['',''], reflection:''};
+  topics.push(t);
+  const exp = state['iqb_expanded'] || {};
+  exp[t.id] = true;
+  state['iqb_expanded'] = exp;
+  iqbSave(topics);
+  renderIQBApp();
+}
+
+function iqbDelTopic(id) {
+  if(!confirm('Remove this topic?')) return;
+  const topics = iqbLoad().filter(t => t.id !== id);
+  iqbSave(topics);
+  renderIQBApp();
+}
+
+function iqbAddQ(id) {
+  const topics = iqbLoad();
+  const t = topics.find(t => t.id === id);
+  if(!t || t.questions.length >= 3) return;
+  t.questions.push('');
+  iqbSave(topics);
+  renderIQBApp();
+}
+
+function iqbDelQ(id, qi) {
+  const topics = iqbLoad();
+  const t = topics.find(t => t.id === id);
+  if(!t || t.questions.length <= 1) return;
+  t.questions.splice(qi, 1);
+  iqbSave(topics);
+  renderIQBApp();
+}
+
+function iqbSaveAll() {
   saveCookie(state);
-  const note = document.getElementById('iq-note');
-  if(note) { note.textContent = 'Saved'; setTimeout(()=>note.textContent='',1500); }
+  const note = document.getElementById('iqb-note');
+  if(note) { note.textContent = 'Saved ✓'; setTimeout(()=>note.textContent='', 2000); }
 }
 
 // ─── W3C1 ────────────────────────────────────────────────────────
@@ -3054,6 +3193,316 @@ function renderDashboard(el) {
     const line = document.getElementById('timeline-progress-line');
     if(line) line.style.width = Math.min(pct, 80) + '%';
   }, 100);
+}
+
+
+// ─── SURVIVAL GUIDE ──────────────────────────────────────────────
+function renderSurvival(el) {
+
+  // Deadline countdown
+  const deadlines = [
+    { label: 'Pitch 1 — culture findings', emoji: '🎤', date: new Date('2026-02-13') },
+    { label: 'Pitch 2 — market findings',  emoji: '📊', date: new Date('2026-02-27') },
+    { label: 'Final pitch',                emoji: '🎯', date: new Date('2026-03-13') },
+    { label: 'Report submitted',           emoji: '📄', date: new Date('2026-03-20') },
+    { label: 'Oral defence',               emoji: '😬', date: new Date('2026-03-27') },
+  ];
+  const now = new Date();
+  function daysUntil(d){ return Math.ceil((d - now) / 86400000); }
+  function panicLevel(days){
+    if(days < 0)  return { color:'var(--text-muted)', label:'Done ✅', bar:100 };
+    if(days <= 3) return { color:'var(--red)',    label:'🔥 OH NO',      bar:95 };
+    if(days <= 7) return { color:'var(--red)',    label:'😬 Get moving',  bar:80 };
+    if(days <= 14)return { color:'var(--amber)',  label:'👀 Coming up',   bar:50 };
+    return          { color:'var(--teal)',   label:'😌 You\'re fine',  bar:15 };
+  }
+
+  const jargon = [
+    { word:'APA7', plain:'A strict formatting recipe for your reference list. Doesn\'t matter if you think it\'s pointless — your markers do care, and getting it wrong costs you marks for zero intellectual reason. Use the APA tool in Week 1. It takes 5 minutes.' },
+    { word:'Research question', plain:'The one question your entire report answers. Not "what is culture?" (too big). Not "does South Korea have culture?" (yes, obviously). Something like: "How can an intern best prepare for a placement in South Korea, taking into account its corporate culture, sustainability trends, and market environment?" Specific. Answerable. Useful to an actual human going there.' },
+    { word:'Coding matrix', plain:'A table you make AFTER your interviews. You read what people said, label interesting bits (open coding), group the labels into themes (axial coding), and put it all in a table. It shows your teacher you actually analysed your interviews instead of just summarising them. There\'s a template in Week 4.' },
+    { word:'Semi-structured interview', plain:'You go in with 5–7 prepared questions, but you can follow up if something interesting comes up. Not a rigid survey. Not a random chat. Think: a relaxed but purposeful conversation. The interview builder in Week 2 sets this up in 20 minutes.' },
+    { word:'Qualitative data', plain:'Words, stories, opinions. Everything your interviewees say is qualitative. "Three people mentioned feeling ignored by management" = qualitative finding.' },
+    { word:'Quantitative data', plain:'Numbers. Statistics. Graphs. "Tourist arrivals grew 12% in 2023" = quantitative. You need at least 10 sources total, with at least 3 graphs of different types in your market section.' },
+    { word:'Helicopter view', plain:'Can you zoom out and explain what an intern should actually take away from your findings? In the oral, they\'ll ask something like "what\'s the most important thing a future intern should know before going to this country?" If you can answer that clearly and specifically, you have a helicopter view. If you can only describe your data, you don\'t.' },
+    { word:'SDGs', plain:'17 global goals set by the UN — things like Clean Energy, Decent Work, Reduced Inequalities. You need to pick 2–3 that are relevant to your chosen country and explain WHY. Just Google "SDG progress [your country]" and you\'ll find everything you need in 10 minutes.' },
+    { word:'Open coding', plain:'Step 1 of interview analysis. Read a transcript. Every time someone says something interesting, give it a short label. "My boss never listens to our ideas" → label: top-down communication. You\'re basically tagging the text with sticky notes.' },
+    { word:'Axial coding', plain:'Step 2. Take all your sticky notes (open codes) and group the similar ones into bigger themes. "top-down communication" + "fear of disagreeing" + "ideas get ignored" → theme: suppressed employee voice. That theme is now a finding you can use in your report.' },
+    { word:'Triangulation', plain:'Using two different sources to back up the same point. "My interviewee said X, and Hofstede\'s data also shows X." That\'s triangulation. It makes your argument much stronger because you\'re not just relying on one person\'s opinion.' },
+  ];
+
+  const passtFail = [
+    {
+      criterion: 'Research question',
+      emoji: '❓',
+      fail: '"What is culture in Japan?" — You could write a library on this. Too broad, doesn\'t answer what an intern actually needs to know, and misses half the assignment topics.',
+      pass: '"How can an intern best prepare for a placement in Japan, taking into account its hierarchical corporate culture, current sustainability trends, and hospitality market environment?" — Specific country, covers the full assignment scope, directly useful to someone about to go there. Answerable in 3,000 words.'
+    },
+    {
+      criterion: 'Sources',
+      emoji: '📚',
+      fail: 'Wikipedia. A random blog. A news article from 2009. No page numbers on anything.',
+      pass: 'Hofstede (2011) from the course reading. A peer-reviewed journal article from 2021. Three Statista graphs from this year. All in APA7. All cited in the text where you actually use them.'
+    },
+    {
+      criterion: 'Interview analysis',
+      emoji: '🎙️',
+      fail: '"My interviewee said that culture is very important in the workplace and it affects how people communicate."',
+      pass: '"All four interviewees described avoiding direct disagreement with senior colleagues (personal communication, A. Smith, June 2024), which aligns with Japan\'s high power distance score (Hofstede, 2011). Interns should expect feedback to flow top-down — silence in meetings is not agreement. (Personal communication, A. Smith, June 2024; personal communication, B. Tanaka, June 2024)"'
+    },
+    {
+      criterion: 'Conclusion',
+      emoji: '🏁',
+      fail: '"In conclusion, this research was very interesting and we learned a lot about culture and how it affects companies in different ways."',
+      pass: '"This report set out to answer how hierarchical culture shapes the daily experience of interns at [Company] in [Country]. The interview evidence and Hofstede\'s framework both confirm that feedback flows top-down, silence signals deference, and interns who push back publicly risk damaging relationships. Future interns should know this before day one."'
+    },
+    {
+      criterion: 'Oral — helicopter view',
+      emoji: '🚁',
+      fail: 'Examiner: "What\'s the most important thing an intern should know before arriving in your country?" You: "Um... that culture is different there?"',
+      pass: '"I\'d tell them to build explicit, anonymous feedback channels — because the cultural default will suppress honest input from junior staff, and you won\'t know what\'s going wrong until it\'s too late. That\'s backed by both our interviews and Hofstede."'
+    },
+  ];
+
+
+  // Risk calculator questions
+  const riskQuestions = [
+    { id:'rq1',  q:'Do you have a research question?',                            weight:15, hint:'Even a rough one counts.' },
+    { id:'rq2',  q:'Have you done at least 4 interviews?',                        weight:20, hint:'Appendix B needs ≥4 transcripts. This is a hard fail if missing.' },
+    { id:'rq3',  q:'Do you have a coding matrix?',                               weight:15, hint:'Even a rough table counts. Appendix C.' },
+    { id:'rq4',  q:'Do you have 10+ properly cited sources?',                    weight:10, hint:'Course literature + recent sources, APA7 format.' },
+    { id:'rq5',  q:'Have you written any body chapters?',                         weight:15, hint:'Culture, corporate culture, SDGs, market, or competitors.' },
+    { id:'rq6',  q:'Do you have at least 3 different graph types with data?',    weight:10, hint:'Bar chart, line graph, pie chart — from real, cited sources.' },
+    { id:'rq7',  q:'Have you written an introduction and conclusion?',            weight:10, hint:'Intro ends with research question. Conclusion answers it.' },
+    { id:'rq8',  q:'Is your APA reference list in order?',                       weight:5,  hint:'Alphabetical. Every in-text citation has a reference.' },
+  ];
+
+  el.innerHTML = `
+    <div style="margin-bottom:8px">
+      <button onclick="go('dashboard')" style="font-family:'Lexend',sans-serif;font-size:12px;font-weight:600;color:var(--text-muted);background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;gap:5px">← Dashboard</button>
+    </div>
+
+    <!-- WHAT YOU ARE MAKING — THE PRODUCT BANNER -->
+    <div style="background:linear-gradient(135deg,#0D0F2B 0%,#1a1060 50%,#0d2040 100%);border-radius:20px;padding:28px 32px;margin-bottom:20px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:-30px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(59,98,247,0.15);pointer-events:none"></div>
+      <div style="position:absolute;bottom:-20px;left:60px;width:100px;height:100px;border-radius:50%;background:rgba(0,184,169,0.1);pointer-events:none"></div>
+      <div style="position:relative">
+        <div style="font-family:'Lexend',sans-serif;font-size:10px;font-weight:700;color:rgba(100,180,255,0.7);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px">What you are making</div>
+        <div style="font-family:'Lexend',sans-serif;font-size:26px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:14px">A briefing report for future interns.<br><span style="color:#6DDDD6">Written by you. Based on real research.</span></div>
+        <div style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.75;max-width:600px;margin-bottom:20px">
+          Someone is about to go on internship in a country they've never worked in. They don't know the culture, the business norms, the market, or what to expect day-to-day. <strong style="color:rgba(255,255,255,0.9)">Your report changes that.</strong> You research the country, interview people who have actually lived or worked there for at least 3 months (you need 4+), and write a briefing that prepares future interns for what they'll find — culturally, professionally, and practically.
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+          ${[
+            { n:'3,000', label:'words of intern briefing', emoji:'📝' },
+            { n:'4+', label:'interviews with people who lived there', emoji:'🎙️' },
+            { n:'3+ graphs', label:'10+ sources total', emoji:'📊' },
+            { n:'1', label:'oral defence', emoji:'🎤' },
+          ].map(s => `
+            <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:14px;text-align:center">
+              <div style="font-size:20px;margin-bottom:4px">${s.emoji}</div>
+              <div style="font-family:'Lexend',sans-serif;font-size:20px;font-weight:700;color:#fff">${s.n}</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px">${s.label}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <div class="class-header">
+      <div class="class-title">🆘 Survival Guide</div>
+      <div class="class-desc" style="border-left-color:var(--red)">
+        A quick overview of the key things to passing this course.
+      </div>
+    </div>
+
+    <!-- DEADLINE PANIC-O-METER -->
+    <div class="section" style="margin-bottom:20px">
+      <div class="section-title">
+        <div class="section-icon icon-warn">⏰</div>
+        How long do you have?
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        ${deadlines.map(d => {
+          const days = daysUntil(d.date);
+          const p = panicLevel(days);
+          const label = days < 0 ? 'Passed' : days === 0 ? 'TODAY' : `${days} day${days===1?'':'s'}`;
+          return `
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="font-size:18px;width:26px;text-align:center;flex-shrink:0">${d.emoji}</span>
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+                <span style="font-family:'Lexend',sans-serif;font-size:13px;font-weight:600;color:var(--text)">${d.label}</span>
+                <span style="font-family:'Lexend',sans-serif;font-size:12px;font-weight:700;color:${p.color}">${label} · ${p.label}</span>
+              </div>
+              <div style="height:7px;background:var(--border);border-radius:4px;overflow:hidden">
+                <div style="height:100%;width:${days<0?100:Math.max(4,100-p.bar)}%;background:${p.color};border-radius:4px;transition:width 0.6s"></div>
+              </div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+
+    <!-- GRADE RISK CALCULATOR -->
+    <div class="section" style="margin-bottom:20px;border-color:var(--purple)">
+      <div class="section-title">
+        <div class="section-icon" style="background:var(--purple-light);color:var(--purple)">🎲</div>
+        How bad is it, really? — Grade risk calculator
+      </div>
+      <p style="font-size:14px;color:var(--text-soft);margin-bottom:18px;line-height:1.7">Answer honestly. This isn't judging you — it's helping you figure out where to spend the next few hours.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px" id="risk-questions">
+        ${riskQuestions.map(q => `
+          <div style="background:var(--cream);border-radius:12px;padding:14px 16px;border:1px solid var(--border-soft)">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+              <div style="flex:1">
+                <div style="font-size:14px;color:var(--text);font-weight:600;margin-bottom:3px">${q.q}</div>
+                <div style="font-size:12px;color:var(--text-muted)">${q.hint}</div>
+              </div>
+              <div style="display:flex;gap:6px;flex-shrink:0">
+                <button onclick="setRisk('${q.id}',true,this)" data-id="${q.id}" data-val="true"
+                  style="font-family:'Lexend',sans-serif;font-size:12px;font-weight:700;padding:6px 14px;border-radius:8px;border:2px solid var(--border);background:var(--warm-white);color:var(--text-soft);cursor:pointer;transition:all 0.15s">Yes</button>
+                <button onclick="setRisk('${q.id}',false,this)" data-id="${q.id}" data-val="false"
+                  style="font-family:'Lexend',sans-serif;font-size:12px;font-weight:700;padding:6px 14px;border-radius:8px;border:2px solid var(--border);background:var(--warm-white);color:var(--text-soft);cursor:pointer;transition:all 0.15s">No</button>
+              </div>
+            </div>
+          </div>`).join('')}
+      </div>
+      <div id="risk-result" style="display:none"></div>
+    </div>
+
+    <!-- PASS vs FAIL -->
+    <div class="section" style="margin-bottom:20px">
+      <div class="section-title">
+        <div class="section-icon icon-do">✅</div>
+        What "good enough" actually looks like
+      </div>
+      <p style="font-size:14px;color:var(--text-soft);margin-bottom:16px;line-height:1.7">The difference between pass and fail is usually specific detail vs vague waffle. Read these once and you'll see the pattern immediately.</p>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        ${passtFail.map(p => `
+          <div style="border:1px solid var(--border);border-radius:14px;overflow:hidden">
+            <div style="background:var(--cream);padding:10px 16px;font-family:'Lexend',sans-serif;font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)">
+              <span>${p.emoji}</span>${p.criterion}
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr">
+              <div style="padding:14px 16px;background:var(--red-light);border-right:1px solid var(--border)">
+                <div style="font-family:'Lexend',sans-serif;font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">❌ Fail</div>
+                <div style="font-size:13px;color:var(--text-soft);line-height:1.6;font-style:italic">"${p.fail}"</div>
+              </div>
+              <div style="padding:14px 16px;background:var(--teal-light)">
+                <div style="font-family:'Lexend',sans-serif;font-size:10px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">✅ Pass</div>
+                <div style="font-size:13px;color:var(--text-soft);line-height:1.6;font-style:italic">"${p.pass}"</div>
+              </div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <!-- JARGON BUSTER -->
+    <div class="section" style="margin-bottom:20px">
+      <div class="section-title">
+        <div class="section-icon icon-learn">📖</div>
+        Jargon buster — what do they actually mean?
+      </div>
+      <p style="font-size:14px;color:var(--text-soft);margin-bottom:16px;line-height:1.7">Your teachers say these words like everyone already knows them. You don't have to pretend.</p>
+      <div style="display:flex;flex-direction:column;gap:0">
+        ${jargon.map((j,i) => `
+          <div onclick="this.querySelector('.jargon-body').style.display=this.querySelector('.jargon-body').style.display==='block'?'none':'block'"
+               style="padding:14px 0;border-bottom:1px solid var(--border-soft);cursor:pointer">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:'Lexend',sans-serif;font-size:14px;font-weight:700;color:var(--blue)">${j.word}</span>
+              <span style="font-size:11px;color:var(--text-muted);background:var(--blue-light);padding:2px 8px;border-radius:10px;font-family:'Lexend',sans-serif;font-weight:600">tap to explain</span>
+            </div>
+            <div class="jargon-body" style="display:none;margin-top:10px;font-size:14px;color:var(--text-soft);line-height:1.7;background:var(--blue-light);border-radius:10px;padding:12px 14px;border-left:3px solid var(--blue)">${j.plain}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <!-- ORAL DEFENCE -->
+    <div class="section" style="border-color:var(--amber);margin-bottom:20px">
+      <div class="section-title">
+        <div class="section-icon" style="background:var(--amber-light);color:var(--amber)">🎤</div>
+        Oral defence — what are they actually checking?
+      </div>
+      <p style="font-size:14px;color:var(--text-soft);margin-bottom:16px;line-height:1.7">Six criteria. One bad answer doesn't sink you — but going in blind will. These are the real questions behind the official criteria.</p>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        ${[
+          { c:'Problem & goal', q:'Explain your research in one sentence. Why does it matter to a future intern?', tip:'Prepare a 30-second answer. Anything longer means you don\'t understand your own report.' },
+          { c:'Information literacy', q:'Why did you choose these sources? How did you know they were reliable?', tip:'"I Googled it" is not an answer. Know whether your sources are peer-reviewed, recent, and relevant.' },
+          { c:'Research methods', q:'Why interviews? What are the limitations of your method?', tip:'Limitation = small sample, so you can\'t generalise. That\'s fine and expected — just say it confidently.' },
+          { c:'Qual & quant', q:'How do your interview findings connect to your data and graphs?', tip:'The numbers and the interviews should tell the same story. If they contradict, that\'s also interesting — explain why.' },
+          { c:'Communication', q:'Can you explain your report without reading from notes?', tip:'Practice your opening explanation out loud. Once. That\'s all it takes to not go blank.' },
+          { c:'Helicopter view', q:'What\'s the single most important thing a future intern should know before arriving in your country?', tip:'Have one concrete, specific answer ready. Not a list — one clear thing backed by your research.' },
+        ].map(o => `
+          <div style="background:var(--warm-white);border-radius:12px;padding:14px 16px;border:1px solid var(--border)">
+            <div style="font-family:'Lexend',sans-serif;font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px">${o.c}</div>
+            <div style="font-size:13px;color:var(--text-soft);margin-bottom:8px;line-height:1.6">They'll ask: <em>"${o.q}"</em></div>
+            <div style="font-size:12px;color:var(--amber);font-weight:600;background:var(--amber-light);padding:7px 10px;border-radius:8px">💡 ${o.tip}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+  `;
+
+  // Risk calculator logic
+  window._riskAnswers = {};
+  window.setRisk = function(id, val, btn) {
+    window._riskAnswers[id] = val;
+    const row = btn.closest('div[style*="background:var(--cream)"]');
+    if(row) {
+      row.querySelectorAll('button').forEach(b => {
+        const isYes = b.textContent === 'Yes';
+        const selected = (val === true && isYes) || (val === false && !isYes);
+        b.style.background = selected ? (val ? 'var(--teal)' : 'var(--red)') : 'var(--warm-white)';
+        b.style.color = selected ? '#fff' : 'var(--text-soft)';
+        b.style.borderColor = selected ? (val ? 'var(--teal)' : 'var(--red)') : 'var(--border)';
+      });
+    }
+
+    const questions = [{id:'rq1',weight:15},{id:'rq2',weight:20},{id:'rq3',weight:15},{id:'rq4',weight:10},{id:'rq5',weight:15},{id:'rq6',weight:10},{id:'rq7',weight:10},{id:'rq8',weight:5}];
+    const answered = Object.keys(window._riskAnswers).length;
+    if(answered < 3) return;
+
+    let score = 0;
+    let maxAnswered = 0;
+    questions.forEach(q => {
+      if(window._riskAnswers[q.id] !== undefined) {
+        maxAnswered += q.weight;
+        if(window._riskAnswers[q.id]) score += q.weight;
+      }
+    });
+    const pct = maxAnswered > 0 ? Math.round(score / 100 * 100) : 0;
+    const allAnswered = answered === questions.length;
+
+    let verdict, color, borderColor, advice;
+    if(!allAnswered) {
+      verdict = '...'; color = 'var(--blue-light)'; borderColor = 'var(--blue)';
+      advice = 'Keep answering to see your full risk picture.';
+    } else if(pct >= 80) {
+      verdict = '✅ You\'re in good shape'; color = 'var(--teal-light)'; borderColor = 'var(--teal)';
+      advice = 'Focus on polishing your APA references and practising your oral explanation. You\'re not in danger — don\'t waste time on things you\'ve already done.';
+    } else if(pct >= 55) {
+      verdict = '⚠️ At risk — fixable'; color = 'var(--amber-light)'; borderColor = 'var(--amber)';
+      advice = 'You\'ve made a start but there are gaps that will cost you. Look at what you answered No to — those are your priorities right now. Missing interviews and the coding matrix are the most dangerous gaps.';
+    } else if(pct >= 30) {
+      verdict = '🚨 Serious risk of failing'; color = 'var(--red-light)'; borderColor = 'var(--red)';
+      advice = 'You need to move fast. The interviews are the biggest blocker — message people today. Everything else can be fixed in a few hours. The interviews cannot be faked.';
+    } else {
+      verdict = '🔴 Stop reading this. Start working.'; color = 'var(--red-light)'; borderColor = 'var(--red)';
+      advice = 'You are in genuine fail territory. Close this guide. Open WhatsApp and message people about interviews. Every hour you spend reading instead of doing is a mark you\'re losing.';
+    }
+
+    const resultEl = document.getElementById('risk-result');
+    resultEl.style.display = 'block';
+    resultEl.innerHTML = `
+      <div style="background:${color};border:2px solid ${borderColor};border-radius:14px;padding:18px 20px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+          <div style="font-family:'Lexend',sans-serif;font-size:16px;font-weight:700;color:var(--text)">${verdict}</div>
+          ${allAnswered ? `<div style="font-family:'Lexend',sans-serif;font-size:13px;font-weight:700;color:var(--text-soft)">Readiness: ${pct}%</div>` : ''}
+        </div>
+        ${allAnswered ? `<div style="height:8px;background:rgba(0,0,0,0.1);border-radius:4px;margin-bottom:12px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${borderColor};border-radius:4px;transition:width 0.6s"></div></div>` : ''}
+        <div style="font-size:14px;color:var(--text-soft);line-height:1.7">${advice}</div>
+      </div>`;
+  };
 }
 
 // ─── INIT ────────────────────────────────────────────────────────
