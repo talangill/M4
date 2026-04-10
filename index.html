@@ -10,43 +10,59 @@
 *{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --cream:#FDFAF5;
-  --warm-white:#FFFEF9;
-  --border:#E8E4DC;
-  --border-soft:#F0EDE6;
-  --text:#1C1A17;
-  --text-soft:#5C5650;
-  --text-muted:#9C9590;
-  --teal:#1D9E75;
-  --teal-light:#E3F5EE;
-  --teal-mid:#A8DFC8;
-  --amber:#D4780A;
-  --amber-light:#FEF3E2;
-  --amber-mid:#F8C97A;
-  --red:#C0392B;
-  --red-light:#FDECEA;
-  --red-mid:#F0A8A2;
-  --blue:#1A6BB5;
-  --blue-light:#EAF2FB;
-  --blue-mid:#9FC4E8;
-  --purple:#5B3FA6;
-  --purple-light:#F0ECFB;
-  --purple-mid:#C4B3EE;
-  --coral:#C0432B;
-  --coral-light:#FDE8E4;
+  /* — Base: crisp white canvas, deep ink text — */
+  --cream:#F0F4FF;
+  --warm-white:#FFFFFF;
+  --border:#D0D8F0;
+  --border-soft:#E2E8F8;
+  --text:#0D0F2B;
+  --text-soft:#3A3D6B;
+  --text-muted:#7A7FA8;
 
-  /* Week colours — each week has its own identity */
-  --w1:#1A6BB5; --w1-light:#EAF2FB;
-  --w2:#1D9E75; --w2-light:#E3F5EE;
-  --w3:#D4780A; --w3-light:#FEF3E2;
-  --w4:#5B3FA6; --w4-light:#F0ECFB;
-  --w5:#C0392B; --w5-light:#FDECEA;
+  /* Electric teal — discovery, action */
+  --teal:#00B8A9;
+  --teal-light:#E0FAF8;
+  --teal-mid:#6DDDD6;
+
+  /* Solar amber — curiosity, warmth */
+  --amber:#F59E0B;
+  --amber-light:#FFFBEB;
+  --amber-mid:#FCD34D;
+
+  /* Alert red */
+  --red:#E03E3E;
+  --red-light:#FEF0F0;
+  --red-mid:#F9A8A8;
+
+  /* Vivid cobalt — depth, intellect */
+  --blue:#3B62F7;
+  --blue-light:#EEF2FF;
+  --blue-mid:#93AFFE;
+
+  /* Electric violet — imagination */
+  --purple:#8B3DFF;
+  --purple-light:#F3EEFF;
+  --purple-mid:#C9A8FF;
+
+  --coral:#F0522B;
+  --coral-light:#FEF0EC;
+
+  /* Week colours — each a distinct vivid world */
+  --w1:#3B62F7; --w1-light:#EEF2FF;
+  --w2:#00B8A9; --w2-light:#E0FAF8;
+  --w3:#F59E0B; --w3-light:#FFFBEB;
+  --w4:#8B3DFF; --w4-light:#F3EEFF;
+  --w5:#E03E3E; --w5-light:#FEF0F0;
 }
 
 body{
   font-family:'Atkinson Hyperlegible',system-ui,sans-serif;
   color:var(--text);
-  background:var(--cream);
+  background:#F0F4FF;
+  background-image:
+    radial-gradient(ellipse at 10% 0%, rgba(59,98,247,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 100%, rgba(139,61,255,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 50%, rgba(0,184,169,0.05) 0%, transparent 70%);
   min-height:100vh;
   font-size:16px;
   line-height:1.8;
@@ -61,14 +77,14 @@ h1,h2,h3,.section-title,.class-title,.cb-title,.concept-term,.week-label,.sk-tit
 
 /* ── SIDEBAR ──────────────────────────────── */
 .sidebar{
-  background:var(--warm-white);
-  border-right:2px solid var(--border);
+  background:linear-gradient(180deg, #0D0F2B 0%, #141840 100%);
+  border-right:2px solid rgba(59,98,247,0.2);
   position:sticky;top:0;height:100vh;overflow-y:auto;
 }
 .sidebar-header{
   padding:24px 18px 16px;
-  border-bottom:2px solid var(--border);
-  background:var(--text);
+  border-bottom:1px solid rgba(59,98,247,0.25);
+  background:transparent;
 }
 .sidebar-title{
   font-family:'Lexend',sans-serif;
@@ -76,13 +92,13 @@ h1,h2,h3,.section-title,.class-title,.cb-title,.concept-term,.week-label,.sk-tit
   color:#fff;
   letter-spacing:-0.3px;
 }
-.sidebar-sub{font-size:12px;color:#aaa;margin-top:3px}
+.sidebar-sub{font-size:12px;color:#A090D0;margin-top:3px}
 
-.week-group{border-bottom:2px solid var(--border-soft)}
+.week-group{border-bottom:1px solid rgba(255,255,255,0.07)}
 .week-label{
   padding:14px 18px 6px;
   font-size:10px;font-weight:700;
-  color:var(--text-muted);
+  color:rgba(255,255,255,0.35);
   text-transform:uppercase;letter-spacing:1.2px;
 }
 
@@ -94,27 +110,27 @@ h1,h2,h3,.section-title,.class-title,.cb-title,.concept-term,.week-label,.sk-tit
   transition:all 0.18s;
   border-left:3px solid transparent;
 }
-.class-btn:hover{background:var(--cream);border-left-color:var(--border)}
-.class-btn.active{background:var(--cream);border-left-color:var(--text)}
+.class-btn:hover{background:rgba(255,255,255,0.06);border-left-color:rgba(255,255,255,0.2)}
+.class-btn.active{background:rgba(59,98,247,0.2);border-left-color:var(--blue)}
 
 .cb-dot{
   width:10px;height:10px;border-radius:50%;
-  background:var(--border);flex-shrink:0;
+  background:rgba(255,255,255,0.2);flex-shrink:0;
   transition:all 0.25s;border:2px solid transparent;
 }
 .cb-dot.done{background:var(--teal);border-color:var(--teal)}
-.class-btn.active .cb-dot{border-color:var(--text)}
+.class-btn.active .cb-dot{border-color:var(--blue)}
 
 .cb-info{flex:1;min-width:0}
-.cb-title{font-family:'Lexend',sans-serif;font-size:12px;font-weight:600;color:var(--text);line-height:1.35}
-.cb-sub{font-size:11px;color:var(--text-muted);margin-top:2px}
+.cb-title{font-family:'Lexend',sans-serif;font-size:12px;font-weight:600;color:rgba(255,255,255,0.85);line-height:1.35}
+.cb-sub{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px}
 
 /* Week colour accent on active buttons */
-.wk1.active{border-left-color:var(--w1);background:var(--w1-light)}
-.wk2.active{border-left-color:var(--w2);background:var(--w2-light)}
-.wk3.active{border-left-color:var(--w3);background:var(--w3-light)}
-.wk4.active{border-left-color:var(--w4);background:var(--w4-light)}
-.wk5.active{border-left-color:var(--w5);background:var(--w5-light)}
+.wk1.active{border-left-color:var(--w1);background:rgba(59,98,247,0.18)}
+.wk2.active{border-left-color:var(--w2);background:rgba(0,184,169,0.18)}
+.wk3.active{border-left-color:var(--w3);background:rgba(245,158,11,0.18)}
+.wk4.active{border-left-color:var(--w4);background:rgba(139,61,255,0.18)}
+.wk5.active{border-left-color:var(--w5);background:rgba(224,62,62,0.18)}
 
 /* ── MAIN CONTENT ─────────────────────────── */
 .main{padding:36px 40px 60px;max-width:900px}
@@ -147,7 +163,7 @@ h1,h2,h3,.section-title,.class-title,.cb-title,.concept-term,.week-label,.sk-tit
   padding:14px 18px;
   background:var(--warm-white);
   border-radius:12px;
-  border-left:4px solid var(--border);
+  border-left:4px solid var(--blue-mid);
 }
 
 /* ── SECTIONS ─────────────────────────────── */
@@ -159,7 +175,7 @@ h1,h2,h3,.section-title,.class-title,.cb-title,.concept-term,.week-label,.sk-tit
   margin-bottom:20px;
   transition:border-color 0.2s;
 }
-.section:hover{border-color:#ccc}
+.section:hover{border-color:var(--blue-mid)}
 
 .section-title{
   font-size:15px;font-weight:700;
@@ -188,7 +204,7 @@ h1,h2,h3,.section-title,.class-title,.cb-title,.concept-term,.week-label,.sk-tit
   border:2px solid var(--border-soft);
   transition:border-color 0.18s,transform 0.18s;
 }
-.concept-card:hover{border-color:#ccc;transform:translateY(-1px)}
+.concept-card:hover{border-color:var(--teal-mid);transform:translateY(-1px)}
 
 .concept-term{
   font-family:'Lexend',sans-serif;
@@ -202,7 +218,7 @@ h1,h2,h3,.section-title,.class-title,.cb-title,.concept-term,.week-label,.sk-tit
   padding:8px 10px;
   background:var(--warm-white);
   border-radius:8px;
-  border-left:3px solid var(--border);
+  border-left:3px solid var(--teal-mid);
   font-style:italic;
 }
 
@@ -259,8 +275,8 @@ h1,h2,h3,.section-title,.class-title,.cb-title,.concept-term,.week-label,.sk-tit
   letter-spacing:-0.1px;
 }
 .btn:hover{background:var(--cream);border-color:#aaa;color:var(--text)}
-.btn-dark{background:var(--text);color:#fff;border-color:var(--text)}
-.btn-dark:hover{background:#333;border-color:#333}
+.btn-dark{background:linear-gradient(135deg, #1A1630 0%, #2A1F4E 100%);color:#fff;border-color:#1A1630}
+.btn-dark:hover{background:linear-gradient(135deg, #251A45 0%, #351A6A 100%);border-color:#251A45}
 .btn-green{background:var(--teal);color:#fff;border-color:var(--teal)}
 .btn-green:hover{background:#168a63;border-color:#168a63}
 .btn-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
@@ -276,7 +292,7 @@ h1,h2,h3,.section-title,.class-title,.cb-title,.concept-term,.week-label,.sk-tit
   color:var(--text-soft);transition:all 0.18s;
 }
 .dt-tab:hover{border-color:#aaa;color:var(--text)}
-.dt-tab.active{background:var(--text);color:#fff;border-color:var(--text)}
+.dt-tab.active{background:linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);color:#fff;border-color:var(--blue)}
 .dt-panel{display:none}.dt-panel.active{display:block}
 
 /* ── TABLES ───────────────────────────────── */
@@ -306,8 +322,8 @@ h1,h2,h3,.section-title,.class-title,.cb-title,.concept-term,.week-label,.sk-tit
   cursor:pointer;transition:all 0.18s;
   background:var(--warm-white);
 }
-.fallacy-card:hover{border-color:#aaa;transform:translateY(-1px)}
-.fallacy-card.open{border-color:var(--text);background:var(--cream)}
+.fallacy-card:hover{border-color:var(--blue-mid);transform:translateY(-1px)}
+.fallacy-card.open{border-color:var(--blue);background:var(--blue-light)}
 .fallacy-name{
   font-family:'Lexend',sans-serif;
   font-size:14px;font-weight:700;
@@ -317,7 +333,7 @@ h1,h2,h3,.section-title,.class-title,.cb-title,.concept-term,.week-label,.sk-tit
 .fallacy-name .expand-hint{
   font-size:11px;color:var(--text-muted);font-weight:400;
   padding:2px 8px;border-radius:12px;
-  background:var(--cream);border:1px solid var(--border);
+  background:var(--blue-light);border:1px solid var(--blue-mid);
   font-family:'Atkinson Hyperlegible',sans-serif;
 }
 .fallacy-card.open .expand-hint{display:none}
@@ -2864,26 +2880,23 @@ function renderDashboard(el) {
   <!-- ── TWO COLUMN: RUBRIC + FORMATTING ── -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">
 
-    <!-- RUBRIC — OMINOUS -->
-    <div style="background:#0f0e0c;border:2px solid #2a2520;border-radius:20px;padding:0;overflow:hidden;position:relative">
+    <!-- RUBRIC -->
+    <div style="background:var(--warm-white);border:2px solid var(--red);border-radius:20px;padding:0;overflow:hidden">
 
       <!-- Header -->
-      <div style="padding:22px 24px 18px;border-bottom:1px solid #2a2520;position:relative">
-        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,0.012) 0px,rgba(255,255,255,0.012) 1px,transparent 1px,transparent 8px)"></div>
-        <div style="position:relative">
-          <div style="font-family:'Lexend',sans-serif;font-size:10px;font-weight:700;color:#5a4a3a;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">Assessment criteria</div>
-          <div style="font-family:'Lexend',sans-serif;font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.5px;line-height:1.15;margin-bottom:6px">The rubric</div>
-          <div style="font-size:13px;color:#6b5a4a;line-height:1.6">Your assessors work through this list. Every gate below is a potential fail. Read it carefully.</div>
-        </div>
+      <div style="padding:22px 24px 18px;border-bottom:2px solid var(--red-light);background:var(--red-light)">
+        <div style="font-family:'Lexend',sans-serif;font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">Assessment criteria</div>
+        <div style="font-family:'Lexend',sans-serif;font-size:22px;font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.15;margin-bottom:6px">⚖️ The rubric</div>
+        <div style="font-size:13px;color:var(--text-soft);line-height:1.6">Your assessors work through this list. Every gate below is a potential fail. Read it carefully.</div>
       </div>
 
       <!-- CONDITIONAL block -->
-      <div style="padding:18px 24px;border-bottom:1px solid #1e1a17">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-          <div style="width:8px;height:8px;border-radius:50%;background:#C0392B;box-shadow:0 0 8px rgba(192,57,43,0.6)"></div>
-          <div style="font-family:'Lexend',sans-serif;font-size:11px;font-weight:700;color:#C0392B;text-transform:uppercase;letter-spacing:1.5px">Conditional — every single one must pass</div>
+      <div style="padding:18px 24px;border-bottom:1px solid var(--border-soft)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+          <span style="font-size:16px">🚨</span>
+          <div style="font-family:'Lexend',sans-serif;font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:1.5px">Conditional — every single one must pass</div>
         </div>
-        <div style="background:#1a0e0e;border:1px solid #3a1a1a;border-radius:10px;padding:4px 0;margin-bottom:10px">
+        <div style="background:var(--red-light);border:1px solid var(--red-mid);border-radius:10px;padding:4px 0;margin-bottom:10px">
           ${['Ethics & integrity — no plagiarism, AI use disclosed, professional tone',
              'Language & structure — grammar, APA7 headings, consistent formatting',
              'Word count — 2,700–3,300 words (body text only, not references)',
@@ -2891,25 +2904,23 @@ function renderDashboard(el) {
              'Interviews — questions based on cultural theory; findings in the body text',
              'Appendices A (questions) · B (transcripts ≥ 3) · C (coding matrix)'
             ].map((t,i,arr) => `
-            <div style="display:flex;gap:12px;align-items:flex-start;padding:10px 14px;${i<arr.length-1?'border-bottom:1px solid rgba(192,57,43,0.1)':''}">
-              <div style="width:18px;height:18px;border-radius:4px;background:#2a1010;border:1px solid #C0392B;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
-                <span style="font-family:'Lexend',sans-serif;font-size:9px;font-weight:700;color:#C0392B">C</span>
-              </div>
-              <span style="font-size:13px;color:#c8b8a8;line-height:1.55">${t}</span>
+            <div style="display:flex;gap:12px;align-items:flex-start;padding:10px 14px;${i<arr.length-1?'border-bottom:1px solid rgba(224,62,62,0.12)':''}">
+              <span style="font-size:14px;flex-shrink:0;margin-top:1px">❌</span>
+              <span style="font-size:13px;color:var(--text-soft);line-height:1.55">${t}</span>
             </div>`).join('')}
         </div>
-        <div style="background:#2a1010;border-radius:8px;padding:10px 14px;border-left:3px solid #C0392B">
-          <div style="font-size:12px;color:#e8a090;line-height:1.6"><strong style="color:#ff6b6b">One NO anywhere here</strong> = the report fails. The first chance defence cannot take place. If the re-submitted report fails once more... you fail the course without having the chance to defend in the oral. There is no partial credit.</div>
+        <div style="background:var(--red-light);border-radius:8px;padding:10px 14px;border-left:3px solid var(--red)">
+          <div style="font-size:12px;color:var(--red);line-height:1.6"><strong>One NO anywhere here</strong> = the report fails. No partial credit.</div>
         </div>
       </div>
 
       <!-- LENIENT block -->
-      <div style="padding:18px 24px;border-bottom:1px solid #1e1a17">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-          <div style="width:8px;height:8px;border-radius:50%;background:#7c5cbf;box-shadow:0 0 8px rgba(124,92,191,0.5)"></div>
-          <div style="font-family:'Lexend',sans-serif;font-size:11px;font-weight:700;color:#9b7dd4;text-transform:uppercase;letter-spacing:1.5px">Lenient — at most 2 NOs permitted</div>
+      <div style="padding:18px 24px;border-bottom:1px solid var(--border-soft)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+          <span style="font-size:16px">⚠️</span>
+          <div style="font-family:'Lexend',sans-serif;font-size:11px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:1.5px">Lenient — at most 2 NOs permitted</div>
         </div>
-        <div style="background:#12101a;border:1px solid #2a2040;border-radius:10px;padding:4px 0;margin-bottom:10px">
+        <div style="background:var(--purple-light);border:1px solid var(--purple-mid);border-radius:10px;padding:4px 0;margin-bottom:10px">
           ${['Topics explained and justified — not just described',
              'Insights reported in a nuanced, balanced way',
              'National / regional culture — theory + interview evidence',
@@ -2919,32 +2930,30 @@ function renderDashboard(el) {
              'Competitor analysis included and named specifically',
              'Quantitative info — ≥ 3 sources, stats, ≥ 2 graph types, contextualised'
             ].map((t,i,arr) => `
-            <div style="display:flex;gap:12px;align-items:flex-start;padding:9px 14px;${i<arr.length-1?'border-bottom:1px solid rgba(124,92,191,0.1)':''}">
-              <div style="width:18px;height:18px;border-radius:4px;background:#1a1428;border:1px solid #7c5cbf;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
-                <span style="font-family:'Lexend',sans-serif;font-size:9px;font-weight:700;color:#9b7dd4">L</span>
-              </div>
-              <span style="font-size:13px;color:#c8b8a8;line-height:1.55">${t}</span>
+            <div style="display:flex;gap:12px;align-items:flex-start;padding:9px 14px;${i<arr.length-1?'border-bottom:1px solid rgba(139,61,255,0.1)':''}">
+              <span style="font-size:14px;flex-shrink:0;margin-top:1px">🔶</span>
+              <span style="font-size:13px;color:var(--text-soft);line-height:1.55">${t}</span>
             </div>`).join('')}
         </div>
-        <div style="background:#1a1428;border-radius:8px;padding:10px 14px;border-left:3px solid #7c5cbf">
-          <div style="font-size:12px;color:#b8a8d8;line-height:1.6"><strong style="color:#c8a0ff">Three or more NOs</strong> = the report fails, regardless of how good the rest is.</div>
+        <div style="background:var(--purple-light);border-radius:8px;padding:10px 14px;border-left:3px solid var(--purple)">
+          <div style="font-size:12px;color:var(--purple);line-height:1.6"><strong>Three or more NOs</strong> = the report fails, regardless of how good the rest is.</div>
         </div>
       </div>
 
       <!-- DEFENCE block -->
       <div style="padding:18px 24px">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-          <div style="width:8px;height:8px;border-radius:50%;background:#b87a10;box-shadow:0 0 8px rgba(184,122,16,0.5)"></div>
-          <div style="font-family:'Lexend',sans-serif;font-size:11px;font-weight:700;color:#d4921a;text-transform:uppercase;letter-spacing:1.5px">Oral defence — if the report passes</div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+          <span style="font-size:16px">🎤</span>
+          <div style="font-family:'Lexend',sans-serif;font-size:11px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:1.5px">Oral defence — if the report passes</div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">
           ${['Problem & goal','Information literacy','Research methods','Qual & quant','Communication','Helicopter view'
             ].map(c => `
-            <div style="background:#1a1408;border:1px solid #3a2c10;border-radius:7px;padding:7px 10px;font-size:12px;color:#c8a860;font-family:'Lexend',sans-serif;font-weight:600">${c}</div>
+            <div style="background:var(--amber-light);border:1px solid var(--amber-mid);border-radius:7px;padding:7px 10px;font-size:12px;color:var(--text-soft);font-family:'Lexend',sans-serif;font-weight:600">${c}</div>
           `).join('')}
         </div>
-        <div style="background:#1a1408;border-radius:8px;padding:10px 14px;border-left:3px solid #b87a10">
-          <div style="font-size:12px;color:#c8a860;line-height:1.6">Grade = average of all 6, rounded to nearest 0.5. <strong style="color:#f0c060">At most 1 criterion may be Insufficient.</strong> More than 1 = fail. No-show or arriving late = ND.</div>
+        <div style="background:var(--amber-light);border-radius:8px;padding:10px 14px;border-left:3px solid var(--amber)">
+          <div style="font-size:12px;color:var(--text-soft);line-height:1.6">Grade = average of all 6, rounded to nearest 0.5. <strong style="color:var(--amber)">At most 1 criterion may be Insufficient.</strong> More than 1 = fail. No-show or arriving late = ND.</div>
         </div>
       </div>
 
