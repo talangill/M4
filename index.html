@@ -581,78 +581,110 @@ function showSavedRQ(val) {
 function renderW1C2(el) {
   el.innerHTML = `
   <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>Primary vs secondary research</div>
-    <div class="concept-grid">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>What is a credible source?</div>
+    <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:12px">A credible source is <strong>free from bias and backed by evidence</strong>. The author is an expert in their field, and the information is published by a trustworthy organisation. — not every website or document you find qualifies.</p>
+    <div class="alert alert-info">Defence question alert: "How did you decide what information to use?" and "How did you assess the reliability of your sources?" are real questions you will be asked in the oral defence. Prepare your answer now.</div>
+    <div class="concept-grid" style="margin-top:12px">
       <div class="concept-card">
         <div class="concept-term">Primary research</div>
-        <div class="concept-def">Data you collect yourself, first-hand. It did not exist before you created it.</div>
-        <div class="concept-example">Your own interviews with former interns · A survey you design and send out · Direct observation at a hotel</div>
+        <div class="concept-def">Data you collect yourself, first-hand. Did not exist before you created it.</div>
+        <div class="concept-example">Your own interviews with former interns · Direct observation · Original survey</div>
       </div>
       <div class="concept-card">
         <div class="concept-term">Secondary research</div>
-        <div class="concept-def">Existing data collected by someone else for another purpose. You interpret and apply it.</div>
-        <div class="concept-example">Books and journal articles · STR reports · Statista data · Government statistics · News articles</div>
+        <div class="concept-def">Existing data collected by someone else. You interpret and apply it to your case.</div>
+        <div class="concept-example">Books, journal articles · STR reports · Statista data · Government statistics</div>
       </div>
     </div>
-    <div class="alert alert-info" style="margin-top:12px">Your report requires both. Secondary research gives you theory and context. Your interviews are your primary research. They should complement each other — not replace each other.</div>
+    <div class="alert alert-info" style="margin-top:10px">Your report requires both. Secondary research gives you theory and context. Your interviews are your primary research. They must complement each other — not replace each other.</div>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>What makes a source valid?</div>
+    <div class="section-title"><span class="section-icon icon-learn">?</span>The CROP method — evaluating any source</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.5">These are the questions your tutors expect you to ask about every source before you use it.</p>
     <table class="source-table">
-      <thead><tr><th>Criterion</th><th>Ask yourself</th><th>Good sign</th><th>Warning sign</th></tr></thead>
+      <thead><tr><th>CROP criterion</th><th>Ask yourself</th><th>Good sign</th><th>Warning sign</th></tr></thead>
       <tbody>
-        <tr><td><strong>Authority</strong></td><td>Who wrote this?</td><td class="good">Academic, expert, official body</td><td class="bad">Anonymous, unknown, no credentials</td></tr>
-        <tr><td><strong>Accuracy</strong></td><td>Is it backed by evidence?</td><td class="good">References, data, peer-reviewed</td><td class="bad">No sources, claims without evidence</td></tr>
-        <tr><td><strong>Currency</strong></td><td>How recent is it?</td><td class="good">Published within 5–7 years for most topics</td><td class="bad">Outdated, pre-2015 for market data</td></tr>
-        <tr><td><strong>Purpose</strong></td><td>Why was this written?</td><td class="good">To inform, educate, report findings</td><td class="bad">To sell, persuade, promote a brand</td></tr>
-        <tr><td><strong>Coverage</strong></td><td>Is it relevant to your topic?</td><td class="good">Directly addresses your research question</td><td class="bad">Only tangentially related</td></tr>
+        <tr><td><strong>Currency</strong></td><td>How recent is it?</td><td class="good">Within 5–7 years; for market data, within 2–3 years</td><td class="bad">Pre-2015 for market data; no date visible</td></tr>
+        <tr><td><strong>Relevance</strong></td><td>Does it actually answer your question?</td><td class="good">Directly addresses your research topic</td><td class="bad">Only tangentially related; you are stretching it to fit</td></tr>
+        <tr><td><strong>Authority</strong></td><td>Who wrote it and for whom?</td><td class="good">Academic, expert, official body, known institution</td><td class="bad">Anonymous, no credentials, personal blog</td></tr>
+        <tr><td><strong>Purpose</strong></td><td>Why was this written?</td><td class="good">To inform, educate, or report findings</td><td class="bad">To sell, persuade, or promote a brand</td></tr>
       </tbody>
     </table>
+    <div class="alert alert-warn" style="margin-top:10px">Is the hotel's own website a reliable source? Why or why not? Think about the P (Purpose) — what is the hotel trying to do on its own website? You can still use it for factual details (services, location), but never for objective claims about the hotel's quality or culture.</div>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>Understanding bias</div>
-    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.6">Bias means a source is skewed towards a particular viewpoint — not necessarily dishonest, but not neutral either. Your job is to spot it.</p>
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Understanding bias — how your search can mislead you</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.6">Bias is not always dishonest — but it means a source is not neutral. Be aware that <strong>how you search can introduce bias</strong>: if you only search for evidence that supports what you already think, you will find biased sources and write a biased report.</p>
     <div id="bias-quiz">
       <p style="font-size:12px;font-weight:600;color:#888;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px">Spot the bias — click the best answer</p>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>Where to find good sources</div>
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Where to find good sources — start here</div>
     <div class="concept-grid">
       <div class="concept-card">
-        <div class="concept-term">Academic sources</div>
-        <div class="concept-def">Google Scholar · JSTOR · ScienceDirect · EBSCOhost · your library catalogue</div>
-        <div class="concept-example">Search for cultural models by name: "Hofstede dimensions hospitality" or "Trompenaars cultural dimensions"</div>
+        <div class="concept-term">Academic databases</div>
+        <div class="concept-def">Google Scholar · Web of Science · LibGuides (HMSM library) · JSTOR · EBSCOhost · Consensus.app</div>
+        <div class="concept-example">Search by topic + keyword: "Hofstede dimensions hospitality" · "intercultural communication hotel"</div>
       </div>
       <div class="concept-card">
-        <div class="concept-term">Market & industry data</div>
-        <div class="concept-def">STR (hotel performance) · Statista · UNWTO · national tourism boards · Eurostat</div>
-        <div class="concept-example">Search "hotel occupancy [country] 2023 STR" or "[country] tourism statistics"</div>
+        <div class="concept-term">Quantitative / market data</div>
+        <div class="concept-def">STR (hotel performance) · Statista · UNWTO · national tourism boards · Eurostat · OECD · World Bank · Hofstede Insights</div>
+        <div class="concept-example">Available from week 3 — keep these in mind when you find them now</div>
       </div>
       <div class="concept-card">
-        <div class="concept-term">Official / institutional</div>
-        <div class="concept-def">UN, WHO, World Bank, OECD, government ministries, national statistics offices</div>
-        <div class="concept-example">For SDG data: sdgs.un.org · For labour market: ILO statistics</div>
+        <div class="concept-term">Starting point: AI tools</div>
+        <div class="concept-def">Use AI (ChatGPT, Claude, Consensus) to generate keywords and search phrases, or to summarise a paper you have already found. Then verify everything independently.</div>
+        <div class="concept-example">Good prompt: "What are useful search terms for researching corporate culture in Japanese hotels?"</div>
       </div>
       <div class="concept-card">
-        <div class="concept-term">Sources to avoid</div>
-        <div class="concept-def">Wikipedia (as a citation) · random blogs · hotel's own marketing website · AI-generated text without verification</div>
-        <div class="concept-example">Wikipedia is fine to orient yourself — but always follow its footnotes to the original source and cite that instead</div>
+        <div class="concept-term">Sources to avoid citing</div>
+        <div class="concept-def">Wikipedia (as a citation) · random blogs · hotel marketing websites · AI-generated text without independent verification</div>
+        <div class="concept-example">Wikipedia is fine to orient yourself — always follow its footnotes to the original source and cite that instead</div>
       </div>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="section-icon icon-do">✓</span>Class checklist</div>
+    <div class="section-title"><span class="section-icon icon-tool">AI</span>Using AI for information literacy — the right way</div>
+    <div class="ai-do-dont">
+      <div class="ai-col ai-do">
+        <div class="ai-col-title">AI can help you…</div>
+        <ul class="ai-list">
+          <li>Generate keywords and search phrases</li>
+          <li>Summarise a paper you have already read</li>
+          <li>Turn complex jargon into plain language</li>
+          <li>Save time on boring tasks so you can do the thinking</li>
+          <li>Find starting points — then you verify</li>
+        </ul>
+      </div>
+      <div class="ai-col ai-dont">
+        <div class="ai-col-title">Do NOT use AI for…</div>
+        <ul class="ai-list">
+          <li>Generating citations — AI invents references (hallucination)</li>
+          <li>Facts, statistics, or data without verification</li>
+          <li>Copy-paste into your report</li>
+          <li>Trusting what it says without triangulating</li>
+          <li>Replacing your own critical thinking</li>
+        </ul>
+      </div>
+    </div>
+    <div class="alert alert-info" style="margin-top:10px"><strong>Remember from today:</strong> Keep track of every source you find. Write it down as you go — author, year, title, URL. In week 5 you will learn to format them in APA7. If you do not track them now, you will spend hours hunting them down later.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-do">✓</span>Class task + checklist</div>
+    <div class="alert alert-warn" style="margin-bottom:12px"><strong>Task:</strong> Find at least 3 relevant and credible sources for your report topics (culture, corporate culture, sustainability, market environment). Note down each one. You will need them in every class from now on.</div>
     <ul class="checklist">
       ${ck('w1c2-1','I can explain the difference between primary and secondary research')}
-      ${ck('w1c2-2','I can evaluate a source using the 5 criteria (authority, accuracy, currency, purpose, coverage)')}
-      ${ck('w1c2-3','I can recognise bias in a source')}
-      ${ck('w1c2-4','I know at least 3 databases or platforms where I can find valid sources for my report')}
-      ${ck('w1c2-5','I have found and saved at least 1 valid academic source for my topic')}
+      ${ck('w1c2-2','I can evaluate a source using the CROP criteria (Currency, Relevance, Authority, Purpose)')}
+      ${ck('w1c2-3','I can identify when a source is biased and explain why')}
+      ${ck('w1c2-4','I know at least 3 databases or platforms where I can find valid sources')}
+      ${ck('w1c2-5','I have found and noted down at least 3 sources relevant to my report topics')}
+      ${ck('w1c2-6','I understand how to use AI as a search support tool without relying on it for facts')}
     </ul>
   </div>
   `;
@@ -718,6 +750,116 @@ function answerBias(scenario, choice) {
 // ─── W2C1 ────────────────────────────────────────────────────────
 function renderW2C1(el) {
   const fallacies = [
+    {name:'Ad hominem', short:'Attacking the person, not the argument', def:'Dismissing a source or argument by criticising the person who made it, rather than engaging with the content.', ex:'"We can\'t trust Hofstede\'s cultural dimensions because he is Dutch and therefore biased towards Western frameworks." Even if the concern about Western bias is valid, dismissing the entire framework without engaging with the evidence is a fallacy.'},
+    {name:'Straw man', short:'Misrepresenting an argument to make it easier to attack', def:'Distorting or exaggerating someone\'s position so you can argue against a weaker version of it.', ex:'"The hotel claims to be sustainable because it uses LED lights. So they think changing a lightbulb solves climate change." — This misrepresents what the hotel actually claimed.'},
+    {name:'Appeal to authority', short:'Something is true because an expert said so', def:'Using someone\'s authority or status as the main reason to accept a claim, without engaging with the actual evidence.', ex:'"Hofstede said individualism scores predict behaviour, so it must be true." Hofstede\'s work is valuable, but you still need to explain the evidence and acknowledge critiques.'},
+    {name:'Hasty generalisation', short:'Drawing broad conclusions from too few examples', def:'Making a sweeping claim based on a small or unrepresentative sample.', ex:'"I interviewed two people from Japan and they both said they avoid direct criticism of managers — so Japanese corporate culture is highly hierarchical." Two interviews cannot support a national generalisation.'},
+    {name:'False dichotomy', short:'Presenting only two options when more exist', def:'Framing a situation as if there are only two possible outcomes or positions, when in reality there are more.', ex:'"Either the hotel is fully sustainable or it is completely greenwashing." In reality, most hotels fall on a spectrum.'},
+    {name:'Correlation ≠ causation', short:'Assuming that because two things are linked, one causes the other', def:'Concluding that because two variables move together, one must be causing the other.', ex:'"Countries with high Hofstede uncertainty avoidance scores have lower RevPAR — so avoiding uncertainty causes lower hotel revenue." There could be many other explanations.'},
+    {name:'Anecdotal evidence', short:'Using a personal story as if it were data', def:'Treating one person\'s experience as representative evidence rather than a data point to be contextualised.', ex:'"My interview subject said staff turnover at the hotel is low. So the hotel has no HR problems." One interview is not sufficient evidence for a broad claim.'},
+  ];
+
+  el.innerHTML = `
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>What is a logical fallacy?</div>
+    <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:12px">A logical fallacy is an error in reasoning that makes an argument seem convincing but is actually flawed. In your report, fallacies make your analysis look weak and can lose you marks on the nuance and justification criteria. Click each card to see a hospitality example.</p>
+    <div id="fallacy-list">
+      ${fallacies.map((f,i) => `
+        <div class="fallacy-card" id="fc-${i}" onclick="toggleFallacy(${i})">
+          <div class="fallacy-name">${f.name} <span style="font-size:11px;color:#aaa;font-weight:400">click to expand</span></div>
+          <div class="fallacy-short">${f.short}</div>
+          <div class="fallacy-body">
+            <div class="fallacy-def">${f.def}</div>
+            <div class="fallacy-ex"><strong>Example in this assignment:</strong> ${f.ex}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-tool">AI</span>Apply it: spot the fallacy</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.6">Read each student statement below. Which fallacy does it contain?</p>
+    ${renderFallacyQuiz()}
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>AI tools available to you — and their trade-offs</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.6"><strong>Critical thinking and analysis are human.</strong> AI is a tool. You are the user. Every conclusion in your report must come from your own brain — not from AI output pasted in.</p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">ChatGPT / Claude</div>
+        <div class="concept-def"><span style="color:#085041">Good for:</span> Descriptive writing, catchy intros, beating writer's block, generating keywords, rephrasing, structuring arguments, giving feedback on your writing.<br><br><span style="color:#791F1F">Risk:</span> Invents references ("hallucination"), information is not always correct, language style is easily spotted by tutors.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">ChatPDF / PDF-reading AI</div>
+        <div class="concept-def"><span style="color:#085041">Good for:</span> Quickly extracting information from PDFs, summarising complex jargon, generating questions to ask about a paper.<br><br><span style="color:#791F1F">Risk:</span> Cannot compare across documents, may misunderstand complex questions, can lead to biased reading of a paper.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Consensus.app / Scite_</div>
+        <div class="concept-def"><span style="color:#085041">Good for:</span> Finding relevant peer-reviewed literature, accurate summaries with valid sources, formal writing support.<br><br><span style="color:#791F1F">Risk:</span> Must manually note references for your bibliography, cannot apply findings to your specific context.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Revoldiv.com</div>
+        <div class="concept-def"><span style="color:#085041">Good for:</span> Transcribing your interview audio automatically. Free account available. Identifies speakers as Speaker 1, 2, 3 — rename them.<br><br><span style="color:#791F1F">Note:</span> Always review and correct the transcript — it makes errors, especially with accents or names.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Responsible AI use in this assignment</div>
+    <div class="ai-do-dont">
+      <div class="ai-col ai-do">
+        <div class="ai-col-title">AI can legitimately support…</div>
+        <ul class="ai-list">
+          <li>Clarifying and explaining topics</li>
+          <li>Transforming chaos into structure</li>
+          <li>Getting feedback on your writing (see week 4)</li>
+          <li>Summarising a source you have already read</li>
+          <li>Generating interview question ideas (then adapt them)</li>
+          <li>Transcribing interviews (then verify)</li>
+          <li>Supporting open coding (then review every code)</li>
+        </ul>
+      </div>
+      <div class="ai-col ai-dont">
+        <div class="ai-col-title">Never rely on AI for…</div>
+        <ul class="ai-list">
+          <li>Generating references — they will be fake</li>
+          <li>Facts or statistics (verify everything independently)</li>
+          <li>Your analysis, interpretation, or conclusions</li>
+          <li>Cultural claims about specific countries</li>
+          <li>Hotel-specific information</li>
+          <li>Replacing your own reading and research</li>
+        </ul>
+      </div>
+    </div>
+    <div class="alert alert-red" style="margin-top:12px"><strong>Integrity rule:</strong> Responsible use of AI must be disclosed in your report. Submitting AI-generated text as your own without disclosure is a breach of academic integrity — it is a conditional (C) criterion and will cause your report to fail.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-tool">AI</span>Using AI for research — a practical example</div>
+    <p style="font-size:13px;color:#444;margin-bottom:10px;line-height:1.6">Your tutors set a practical task to try this week:</p>
+    <div class="interactive-box">
+      <div class="ib-label">Class task — AI + graph analysis</div>
+      <div class="ib-question">Find a graph from Statista relevant to your destination. Use AI to help you analyse it.</div>
+      <div class="ib-hint">Prompt to try: "Here is a graph showing [describe what it shows]. Can you identify any visible trend, what the approximate mean looks like, and what this could mean for a hotel manager at [your hotel]?" Then evaluate: did the AI get it right? What would you add or correct?</div>
+    </div>
+    <div class="alert alert-info" style="margin-top:10px">This is the principle: AI does the surface work (description), you do the thinking (interpretation and relevance to your specific case).</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-do">✓</span>Class checklist</div>
+    <ul class="checklist">
+      ${ck('w2c1-1','I can name at least 5 common logical fallacies')}
+      ${ck('w2c1-2','I can identify a fallacy in a piece of academic writing')}
+      ${ck('w2c1-3','I understand what AI hallucination means and why it is a risk for referencing')}
+      ${ck('w2c1-4','I know which AI tools are available and what each one is best used for')}
+      ${ck('w2c1-5','I understand the integrity requirements around AI use and what must be disclosed')}
+      ${ck('w2c1-6','I have tried using AI to analyse a graph and reflected on what it got right and wrong')}
+    </ul>
+  </div>
+  `;
+}
     {name:'Ad hominem', short:'Attacking the person, not the argument', def:'Dismissing a source or argument by criticising the person who made it, rather than engaging with the content.', ex:'"We can\'t trust Hofstede\'s cultural dimensions because he is Dutch and therefore biased towards Western frameworks." Even if the concern about Western bias is valid, dismissing the entire framework without engaging with the evidence is a fallacy.'},
     {name:'Straw man', short:'Misrepresenting an argument to make it easier to attack', def:'Distorting or exaggerating someone\'s position so you can argue against a weaker version of it.', ex:'"The hotel claims to be sustainable because it uses LED lights. So they think changing a lightbulb solves climate change." — This misrepresents what the hotel actually claimed.'},
     {name:'Appeal to authority', short:'Something is true because an expert said so', def:'Using someone\'s authority or status as the main reason to accept a claim, without engaging with the actual evidence.', ex:'"Hofstede said individualism scores predict behaviour, so it must be true." Hofstede\'s work is valuable, but you still need to explain the evidence and acknowledge critiques.'},
@@ -823,7 +965,138 @@ function showFallacyAnswer(i) {
 function renderW2C2(el) {
   el.innerHTML = `
   <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>What is a semi-structured interview?</div>
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Types of interviews</div>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term" style="color:#791F1F">Structured interview</div>
+        <div class="concept-def">Fixed questionnaire, same questions in the same order. Like a survey. No flexibility to follow up.</div>
+        <div class="concept-example">Used for large-scale data collection — not appropriate for this assignment</div>
+      </div>
+      <div class="concept-card" style="border-color:#9FE1CB">
+        <div class="concept-term" style="color:#085041">Semi-structured interview ← use this</div>
+        <div class="concept-def">Topic list + prepared questions, but you adapt based on what the person says. Freedom to add probing questions. Rich, nuanced answers.</div>
+        <div class="concept-example">What you use for this assignment — allows both consistency across interviews AND depth</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term" style="color:#633806">Unstructured / in-depth interview</div>
+        <div class="concept-def">More like an open conversation. Topic list only — researcher goes with the flow. Requires significant experience.</div>
+        <div class="concept-example">Used in ethnographic research — not appropriate for year 1</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Group interview</div>
+        <div class="concept-def">Interview with a group of people simultaneously. Can be structured or unstructured.</div>
+        <div class="concept-example">Rarely used in this assignment — stick to individual interviews</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Your interview setup — the requirements</div>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">Who to interview</div>
+        <div class="concept-def">People who have lived or worked at your Global Explorer location for a longer period of time — former HMSM interns are ideal. Also hotel staff, managers, or local contacts.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">How many</div>
+        <div class="concept-def">Minimum 4 interviews per pair · Minimum 2 interviews per author · Channel: face-to-face preferred, Teams/Zoom/WhatsApp Video also acceptable</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Topic structure</div>
+        <div class="concept-def">~5 topics on Culture + ~3 topics on Corporate Culture, based on your literature review and cultural analysis models. 2–3 questions per topic.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Interview structure</div>
+        <div class="concept-def"><strong>Introduction:</strong> goal, duration, confidentiality, recording consent<br><strong>Middle:</strong> follow topic list, open questions, probing<br><strong>Closure:</strong> wrap up, thanks, explain next steps</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Open vs closed questions — the most important distinction</div>
+    <div class="concept-grid">
+      <div class="concept-card" style="border-color:#F09595">
+        <div class="concept-term" style="color:#791F1F">Closed — avoid these</div>
+        <div class="concept-def">Yes/no or limited set of answers. Stop the conversation. Eliminate surprise. Can bias the respondent toward a particular answer.</div>
+        <div class="concept-example">"Does your supervisor openly criticise your work?" · "Do people respect the elderly?" · "Do you think British people are overly polite?"</div>
+      </div>
+      <div class="concept-card" style="border-color:#9FE1CB">
+        <div class="concept-term" style="color:#085041">Open — use these</div>
+        <div class="concept-def">Free-form answer. Allow you to find more than you anticipated. Begin with: How, What, Tell me about, Can you describe, In what ways…</div>
+        <div class="concept-example">"How do you get feedback from your supervisor?" · "How would you describe the behaviour towards elderly people?" · "Can you describe British manners?"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-tool">?</span>Are these good or bad interview questions? — practise</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.5">These are real examples from your teaching materials. Click each one to see the analysis.</p>
+    ${[
+      {q:'"How do New York managers interact with employees of different ethnicities?"', verdict:'Difficult to answer in one go — too broad and sensitive. Better: "How would you describe the relationship between managers and staff at your hotel? Were there any cultural differences you noticed in how that worked?"', ok:false},
+      {q:'"How can different functions (hierarchy) in the workplace be recognised — is it usual to have a drink after work with everyone?"', verdict:'Two questions in one — split them. But the second part is actually a good concrete question. Separate: (1) "How can you tell who is senior and who is junior at your hotel?" (2) "Do staff from different levels socialise outside work?"', ok:false},
+      {q:'"Do you also think that there are issues relating to racism in Asia?"', verdict:'Leading question — it assumes there are issues and pushes the interviewee to agree. Better: "What experiences did you have of how people from different backgrounds were treated at your hotel or in your destination?"', ok:false},
+      {q:'"How do colleagues greet each other at work?"', verdict:'Short, clear, and simple. This is a good interview question. It is open-ended, specific, and easy for the interviewee to answer with a concrete example.', ok:true},
+      {q:'"Do you have a good culture here?"', verdict:'Vague — "good" is undefined, and it is a yes/no question. Better: "How would you describe the working culture at your hotel? Can you give me a specific example?"', ok:false},
+    ].map((item,i)=>`
+      <div class="fallacy-card" id="iqex-${i}" onclick="this.classList.toggle('open')">
+        <div class="fallacy-name" style="color:${item.ok?'#085041':'#633806'}">${item.q} <span style="font-size:11px;color:#aaa;font-weight:400">click to analyse</span></div>
+        <div class="fallacy-body">
+          <div class="fallacy-def">${item.verdict}</div>
+        </div>
+      </div>
+    `).join('')}
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Probing techniques — LSP method</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.5">During the interview, your job is to listen actively and probe for depth. The LSP method from your materials:</p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">L — Listening</div>
+        <div class="concept-def">Maintain eye contact · Nod · Don't be afraid of silence (the 4-second rule — wait before jumping in) · Use fillers like "yes", "mmm", "exactly" · Speak audibly and calmly</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">S — Summarising</div>
+        <div class="concept-def">Paraphrase long answers to confirm you understood: "If I have understood you correctly…" · "So what you are saying is…" This also gives the interviewee a chance to correct you.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">P — Probing</div>
+        <div class="concept-def">Ask follow-up questions to go deeper: "Can you give me an example?" · "Can you tell me more about that?" · "What do you mean by [term]?" · "Why was that?"</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Practical before the interview</div>
+        <div class="concept-def">Make a topic list · Recruit participants · Organise a test interview · Send questions in advance so they can prepare · Ask permission to record</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-tool">✎</span>Build your interview questions</div>
+    <p style="font-size:13px;color:#666;margin-bottom:6px;line-height:1.6">Draft your interview questions here. Each question must relate to a cultural model dimension (e.g. Hofstede's power distance, uncertainty avoidance) or a corporate culture topic. Aim for 5–8 open-ended questions across your topics.</p>
+    <div class="alert alert-warn" style="margin-bottom:12px">Questions must be grounded in cultural theory — not just general curiosity. Tutors check this in the defence. Write the Hofstede dimension or cultural concept next to each question as you draft it.</div>
+    <div class="interview-builder" id="iq-builder"></div>
+    <div class="btn-row" style="margin-top:10px">
+      <button class="btn" onclick="addIQ()">+ Add question</button>
+      <button class="btn btn-green" onclick="saveIQs()">Save questions</button>
+      <span class="save-note" id="iq-note"></span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-do">✓</span>Class checklist</div>
+    <ul class="checklist">
+      ${ck('w2c2-1','I understand the difference between structured, semi-structured, and unstructured interviews')}
+      ${ck('w2c2-2','I can write open-ended questions and explain why closed questions are a problem')}
+      ${ck('w2c2-3','I know the LSP method and can describe at least 3 probing techniques')}
+      ${ck('w2c2-4','My interview topic list has ~5 culture topics and ~3 corporate culture topics, each linked to a cultural theory')}
+      ${ck('w2c2-5','I have drafted 2–3 questions per topic and saved them in this tool')}
+      ${ck('w2c2-6','I have contacted at least one potential interviewee to schedule a meeting')}
+    </ul>
+  </div>
+  `;
+
+  renderIQBuilder();
+}
     <div class="concept-grid">
       <div class="concept-card">
         <div class="concept-term">Structured interview</div>
@@ -960,7 +1233,133 @@ function saveIQs() {
 function renderW3C1(el) {
   el.innerHTML = `
   <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>What is quantitative data?</div>
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Why we use quantitative data</div>
+    <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:10px">We use data to <strong>strengthen our claims</strong>. Without data, you are just giving opinions. With data, you are making evidence-based arguments. Every market claim in your report should be backed by a number.</p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">Three questions to answer</div>
+        <div class="concept-def">1. Where do we find it? (databases)<br>2. What is the measurement level? (nominal/ordinal/interval/ratio)<br>3. How do we describe it in a way that means something? (descriptive statistics)</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Qualitative vs quantitative</div>
+        <div class="concept-def"><strong>Qualitative:</strong> describes qualities, meanings, experiences → your interview transcripts<br><strong>Quantitative:</strong> numerical, measurable, comparable → STR data, Statista, tourism statistics</div>
+        <div class="concept-example">Your report needs both. Interviews for culture insight; numbers for market evidence.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>The four levels of measurement</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.6">The level of measurement tells you what you can do with the data — which statistics make sense, and which graphs are appropriate. Getting this wrong makes your analysis invalid.</p>
+    <div class="data-type-tabs">
+      <button class="dt-tab active" onclick="setDataTab('nominal',this)">Nominal</button>
+      <button class="dt-tab" onclick="setDataTab('ordinal',this)">Ordinal</button>
+      <button class="dt-tab" onclick="setDataTab('interval',this)">Interval</button>
+      <button class="dt-tab" onclick="setDataTab('ratio',this)">Ratio</button>
+    </div>
+    <div id="dt-nominal" class="dt-panel active">
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Nominal — unordered categories</div>
+        <div class="concept-def">Data that can be grouped into named categories with no natural order or ranking. You can count how many are in each category but cannot say one is "more" than another.</div>
+        <div class="concept-example"><strong>Hotel examples:</strong> Type of meal (lunch/dinner) → nominal · Location of hotel (Amsterdam) → nominal · Name of hotel → nominal · Guest nationality → nominal · Payment method → nominal</div>
+      </div>
+      <div class="alert alert-info">What you CAN do: count, find the mode (most frequent category), use pie charts or bar charts.<br>What you CANNOT do: calculate an average — it makes no sense to say the "average nationality" of your guests.</div>
+    </div>
+    <div id="dt-ordinal" class="dt-panel">
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Ordinal — ordered categories (ranking)</div>
+        <div class="concept-def">Data that can be ranked or ordered, but the gaps between ranks are not necessarily equal. You know the order, but not how much more one is than another.</div>
+        <div class="concept-example"><strong>Hotel examples:</strong> Star rating of hotel (3-star vs 4-star) → ordinal · Service level rating "very good" → ordinal (part of a Likert scale) · Guest satisfaction score → ordinal · Hofstede dimension category (Low/Medium/High) → ordinal</div>
+      </div>
+      <div class="alert alert-info">What you CAN do: rank, find median, create ordered bar charts.<br>What you CANNOT do: say a 4-star hotel is "twice as good" as a 2-star — the gaps between ranks are not guaranteed equal.</div>
+    </div>
+    <div id="dt-interval" class="dt-panel">
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Interval — equal gaps, no true zero</div>
+        <div class="concept-def">Data where the difference between values is meaningful and equal, but there is no absolute zero — zero does not mean "none of the thing."</div>
+        <div class="concept-example"><strong>Hotel examples:</strong> Temperature in Celsius (0°C does not mean no temperature) · Hofstede dimension scores (0 does not mean no individualism exists) · Calendar years</div>
+      </div>
+      <div class="alert alert-info">What you CAN do: calculate averages, compare differences, use line graphs.<br>What you CANNOT do: say "Country A has twice the individualism of Country B" — the zero is not absolute.</div>
+    </div>
+    <div id="dt-ratio" class="dt-panel">
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Ratio — equal gaps + true zero</div>
+        <div class="concept-def">The richest level of measurement. Zero means genuinely none of the thing exists. All mathematical operations apply.</div>
+        <div class="concept-example"><strong>Hotel examples:</strong> Amount spent on lunch (€25.75) → ratio · Occupancy rate (0% = no rooms occupied) → ratio · RevPAR → ratio · Number of tourist arrivals → ratio · Length of stay in nights → ratio</div>
+      </div>
+      <div class="alert alert-info">What you CAN do: everything — add, subtract, multiply, divide. "RevPAR of €120 is twice as high as €60" is a valid statement. Use any chart type.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Descriptive statistics — measures of central tendency</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.5">Descriptive statistics describe your dataset in a way that means something. There are two categories: <strong>central tendency</strong> (what is typical?) and <strong>variability</strong> (how spread out is the data?).</p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">Mean — the average</div>
+        <div class="concept-def">Sum all values, divide by the number of values.</div>
+        <div class="concept-example">Dataset: 7, 3, 4, 1, 7, 6 → Mean = (7+3+4+1+7+6) / 6 = 28/6 = <strong>4.67</strong><br>Use for: ratio and interval data only</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Mode — most common value</div>
+        <div class="concept-def">The value that appears most frequently in the dataset.</div>
+        <div class="concept-example">Dataset: 7, 3, 4, 1, 7, 6 → Mode = <strong>7</strong> (appears twice)<br>Use for: any data level including nominal</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Median — the middle value</div>
+        <div class="concept-def">Arrange all values in order, pick the middle one. If even number of values, average the two middle values.</div>
+        <div class="concept-example">Dataset ordered: 1, 3, 4, 6, 7, 7 → two middle values: 4 and 6 → Median = (4+6)/2 = <strong>5</strong><br>Use for: ordinal, interval, ratio data</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Descriptive statistics — measures of variability</div>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">Range</div>
+        <div class="concept-def">The total difference between the minimum and maximum values in your dataset.</div>
+        <div class="concept-example">Dataset: 7, 3, 4, 1, 7, 6 → Range = 7 - 1 = <strong>6</strong></div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Variance</div>
+        <div class="concept-def">The average squared deviation of each value from the mean. Measures how far each number in the set is from the mean.</div>
+        <div class="concept-example">Dataset: 7, 3, 4, 1, 7, 6 → Variance = <strong>5.67</strong></div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Standard deviation</div>
+        <div class="concept-def">The average amount of variability in your dataset — how far, on average, each value lies from the mean. Calculated as the square root of the variance.</div>
+        <div class="concept-example">St. Dev = √5.67 = <strong>2.42</strong><br>This means values typically sit about 2.42 units from the mean of 4.67</div>
+      </div>
+    </div>
+    <div class="alert alert-info" style="margin-top:10px">In your report, when you look at a graph ask yourself: Is there a lot of variance in the data? Is a mode visible? Where does the average sit? Answering these questions with the graph is what turns description into analysis.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-warn">!</span>Measurement level summary — what is valid for each type</div>
+    <table class="source-table">
+      <thead><tr><th>Level</th><th>Hotel example</th><th>Valid statistics</th><th>Good graph types</th><th>Common mistake</th></tr></thead>
+      <tbody>
+        <tr><td>Nominal</td><td>Guest nationality, meal type</td><td>Count, mode</td><td>Pie chart, bar chart</td><td class="bad">Calculating an average of categories</td></tr>
+        <tr><td>Ordinal</td><td>Star rating, satisfaction score</td><td>Rank, median, mode</td><td>Ordered bar chart</td><td class="bad">Saying gap between ranks is equal</td></tr>
+        <tr><td>Interval</td><td>Hofstede scores, temperature</td><td>Mean, median, range</td><td>Line graph, bar chart</td><td class="bad">Saying one value is "twice" another</td></tr>
+        <tr><td>Ratio</td><td>RevPAR, occupancy %, arrivals</td><td>All operations</td><td>Any chart type</td><td class="mid">Forgetting to interpret in context</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-do">✓</span>Class checklist</div>
+    <ul class="checklist">
+      ${ck('w3c1-1','I can explain the difference between qualitative and quantitative data')}
+      ${ck('w3c1-2','I can classify nominal, ordinal, interval, and ratio data using hotel examples')}
+      ${ck('w3c1-3','I can calculate mean, mode, and median for a simple dataset')}
+      ${ck('w3c1-4','I understand the difference between variance/range and standard deviation')}
+      ${ck('w3c1-5','I know which calculations and chart types are valid for each measurement level')}
+    </ul>
+  </div>
+  `;
+}
     <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:12px">Quantitative data is information expressed in numbers. Unlike qualitative data (which describes qualities, themes, and meanings), quantitative data can be counted, measured, and compared statistically. In your report, you need at least 3 quantitative sources and 2 graphs.</p>
     <div class="concept-grid">
       <div class="concept-card">
@@ -1057,6 +1456,137 @@ function renderW3C2(el) {
   el.innerHTML = `
   <div class="section">
     <div class="section-title"><span class="section-icon icon-learn">?</span>Where to find quantitative data for your report</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.5">Much like with literature research, you are going to use databases — just quantitative ones.</p>
+    <div class="concept-grid">
+      <div class="concept-card" style="border-color:#9FE1CB">
+        <div class="concept-term" style="color:#085041">STR data — available on Moodle</div>
+        <div class="concept-def">The Excel dataset for hotel performance is on Moodle. Find your destination country. <strong>If your country is not available, use a similar country and explain the connection.</strong></div>
+        <div class="concept-example">Similar means: nearby geographically · similar political climate · similar Hofstede dimensions. Explain the link explicitly in your report.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Statista</div>
+        <div class="concept-def">Aggregated statistics on nearly every topic. Strong on tourism, hospitality, and consumer trends. Very usable for graphs.</div>
+        <div class="concept-example">statista.com → search "[country] hotel industry" or "[city] tourism statistics 2023"</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">World Bank · OECD · Eurostat</div>
+        <div class="concept-def">Economic indicators, GDP, population, employment. Useful for macro environment (PESTLE) context. Eurostat for EU destinations.</div>
+        <div class="concept-example">data.worldbank.org · stats.oecd.org · ec.europa.eu/eurostat</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">National tourism boards · UNWTO</div>
+        <div class="concept-def">Official visitor arrival data, spending, seasonality. UNWTO for global and regional trends.</div>
+        <div class="concept-example">Search "[country] ministry of tourism annual report" · unwto.org → Statistics</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Hofstede Insights</div>
+        <div class="concept-def">Country comparison tool for Hofstede cultural dimensions. Can be used as a quantitative source for your culture chapter.</div>
+        <div class="concept-example">hofstede-insights.com → Country comparison</div>
+      </div>
+    </div>
+    <div class="alert alert-warn" style="margin-top:10px">You need at least <strong>3 different quantitative sources</strong>. Do not use the same platform for all three — this suggests limited information literacy and will weaken your grade.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-warn">!</span>Satisfactory vs excellent — know the difference</div>
+    <div class="concept-grid">
+      <div class="concept-card" style="background:#E1F5EE;border-color:#9FE1CB">
+        <div class="concept-term" style="color:#085041">Satisfactory</div>
+        <div class="concept-def" style="color:#085041">Provides relevant quantitative market information using STR data and at least one other dataset. Uses basic descriptive statistics and at least one graph. Correctly interprets the information.</div>
+      </div>
+      <div class="concept-card" style="background:#E6F1FB;border-color:#85B7EB">
+        <div class="concept-term" style="color:#0C447C">Excellent</div>
+        <div class="concept-def" style="color:#0C447C">Provides highly relevant quantitative market information using STR data and at least two other datasets. Uses descriptive statistics and at least three different graph types. Thorough interpretation is key to understanding the market environment.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>What does a good graph need?</div>
+    <div class="concept-grid">
+      <div class="concept-card" style="border-color:#9FE1CB">
+        <div class="concept-term" style="color:#085041">Every graph must have</div>
+        <div class="concept-def">A clear <strong>title</strong> · Labelled <strong>axes with units</strong> · A <strong>legend</strong> if needed · An <strong>APA caption</strong> below with source · Readable <strong>colour contrast</strong> · The correct <strong>chart type</strong> for the data type</div>
+        <div class="concept-example">Label graphs as Figure 1, Figure 2… Captions go below the figure, not above.</div>
+      </div>
+      <div class="concept-card" style="border-color:#F09595">
+        <div class="concept-term" style="color:#791F1F">Bad graphs do this</div>
+        <div class="concept-def">No title · Unlabelled axes · No data source · Y-axis not starting at zero when it should · 3D effects that distort values · Too much information crammed in · No APA caption</div>
+      </div>
+    </div>
+    <div class="alert alert-info" style="margin-top:10px"><strong>APA figure caption format:</strong> <em>Figure 1. Average gross annual earnings of full-time tourist accommodation employees in Germany, 2010–2023.</em> Adapted from [Source Name], by Author (Year). URL</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Choosing the right chart type</div>
+    <div class="graph-grid">
+      <div class="graph-card">
+        <div class="graph-name">Bar chart</div>
+        <div class="graph-use">Comparing values across categories or time periods.</div>
+        <div class="graph-ok">Use for: occupancy by month, RevPAR by competitor, tourist arrivals by country of origin</div>
+        <div class="graph-not">Avoid for: continuous trends over many time points (use line instead)</div>
+      </div>
+      <div class="graph-card">
+        <div class="graph-name">Line graph</div>
+        <div class="graph-use">Showing trends over time. Best when you have many time points.</div>
+        <div class="graph-ok">Use for: RevPAR trend 2018–2024, tourist arrivals over years, seasonal occupancy pattern</div>
+        <div class="graph-not">Avoid for: comparing separate categories with no time element</div>
+      </div>
+      <div class="graph-card">
+        <div class="graph-name">Pie chart</div>
+        <div class="graph-use">Showing parts of a whole. Only works when parts add up to 100%.</div>
+        <div class="graph-ok">Use for: market share by hotel type, guest nationality breakdown, revenue split by segment</div>
+        <div class="graph-not">Avoid for: more than 5–6 slices, or when differences between slices are very small</div>
+      </div>
+      <div class="graph-card">
+        <div class="graph-name">Stacked bar chart</div>
+        <div class="graph-use">Comparing composition across categories or time.</div>
+        <div class="graph-ok">Use for: revenue by segment across months, guest type by hotel category</div>
+        <div class="graph-not">Avoid if: you need to compare middle segments precisely</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-warn">!</span>Description vs interpretation — where most students lose marks</div>
+    <div class="concept-grid">
+      <div class="concept-card" style="border-color:#F09595">
+        <div class="concept-term" style="color:#791F1F">Description only — not enough</div>
+        <div class="concept-def">"Figure 1 shows that hotel occupancy in [country] was 72% in 2019, dropped to 34% in 2020, and recovered to 68% in 2023."</div>
+        <div class="concept-example">This just reads the numbers. Your reader can already see the graph. You add nothing.</div>
+      </div>
+      <div class="concept-card" style="border-color:#9FE1CB">
+        <div class="concept-term" style="color:#085041">Interpretation — what you need</div>
+        <div class="concept-def">"Figure 1 illustrates the severe impact of COVID-19 on hotel occupancy in [country], with a 38-point decline in 2020. The partial recovery to 68% by 2023 suggests demand has largely returned, but the market has not yet reached pre-pandemic levels. For a future intern, this indicates a market still in recovery — which may affect staffing levels and investment capacity at the hotel."</div>
+        <div class="concept-example">This explains causes, significance, and implications for the reader's specific situation.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Need extra help with Excel?</div>
+    <p style="font-size:13px;color:#444;margin-bottom:10px;line-height:1.5">The STR dataset is an Excel file. If you are not confident with Excel, use these resources:</p>
+    <ul class="checklist" style="padding:0">
+      <li class="check-item" style="cursor:default"><div style="width:6px;height:6px;border-radius:50%;background:#1D9E75;margin-top:6px;flex-shrink:0"></div><span>Microsoft tutorials: Filtering data · Sorting data · Formulas and functions · Create charts and visuals · Working with pivot tables</span></li>
+      <li class="check-item" style="cursor:default"><div style="width:6px;height:6px;border-radius:50%;background:#1D9E75;margin-top:6px;flex-shrink:0"></div><span>Read the Excel guide on Moodle</span></li>
+      <li class="check-item" style="cursor:default"><div style="width:6px;height:6px;border-radius:50%;background:#1D9E75;margin-top:6px;flex-shrink:0"></div><span>Ask your GEI tutor for help</span></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-do">✓</span>Class task + checklist</div>
+    <div class="alert alert-warn" style="margin-bottom:12px"><strong>To do after this class:</strong> Find the STR dataset on Moodle and identify your destination. Use databases to find at least 2 additional datasets. Try to identify the variable types. Use descriptive statistics when looking at visualisations: is there variance? Is a mode visible? Where is the average?</div>
+    <ul class="checklist">
+      ${ck('w3c2-1','I have downloaded the STR dataset from Moodle and found my destination (or a comparable country)')}
+      ${ck('w3c2-2','I have found at least 2 additional quantitative sources from different platforms')}
+      ${ck('w3c2-3','I can identify the 5 elements every good graph must have')}
+      ${ck('w3c2-4','I can choose the right chart type for a given dataset')}
+      ${ck('w3c2-5','I understand the difference between describing and interpreting a graph')}
+      ${ck('w3c2-6','I have a plan for which 2+ graphs I will include and what data they will show')}
+    </ul>
+  </div>
+  `;
+}
     <div class="concept-grid">
       <div class="concept-card">
         <div class="concept-term">STR (Smith Travel Research)</div>
@@ -1173,7 +1703,157 @@ function renderW3C2(el) {
 function renderW4C1(el) {
   el.innerHTML = `
   <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>Why do we code interviews?</div>
+    <div class="section-title"><span class="section-icon icon-learn">?</span>From transcript to analysis — why we code</div>
+    <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:10px">A transcript is raw data — it is not analysis. Coding is the process of reading through transcripts systematically and labelling the content so you can find patterns across multiple interviews. Without coding, you cannot write "my interviewees suggest that…" — you can only repeat individual quotes.</p>
+    <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:10px">The approach used in this module is called <strong>grounded theory coding</strong>, which has three phases:</p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">Phase 1: Open coding</div>
+        <div class="concept-def">Paraphrase each piece of text to make it manageable. Think of a suitable description for each fragment — unravel the text into short labels.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Phase 2: Axial coding</div>
+        <div class="concept-def">Group the coded terms. Look for similarities and differences. Create main groups (axes/themes) from your open codes.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Phase 3: Selective coding</div>
+        <div class="concept-def">Look for relationships between the grouped themes. How do the categories connect to your theoretical framework and research question?</div>
+      </div>
+    </div>
+    <div class="alert alert-red" style="margin-top:10px">Coding is a conditional (C) criterion. Your coding matrix must appear in Appendix C showing both open and axial coding. Missing or superficial coding fails the report regardless of how good the rest is.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Step 1 — Transcribe your interviews first</div>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">By hand</div>
+        <div class="concept-def">Type everything out in Word. Label who is speaking clearly (Interviewer: / Respondent: or use initials). Time-consuming but you engage deeply with the content.</div>
+      </div>
+      <div class="concept-card" style="border-color:#9FE1CB">
+        <div class="concept-term" style="color:#085041">Using AI — Revoldiv.com</div>
+        <div class="concept-def">Free account available. Upload your audio and it transcribes automatically. Identifies speakers as Speaker 1, 2, 3 etc. — rename them to actual names or roles.</div>
+        <div class="concept-example">Always review and correct the output — it makes errors with accents, names, and hospitality jargon. The corrected transcript goes in Appendix B.</div>
+      </div>
+    </div>
+    <div class="alert alert-info" style="margin-top:10px">Transcribe within 24 hours while the conversation is fresh. The transcript of each interview is added to Appendix B of your report — verbatim, labelled, with each speaker identified.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Step 2 — Open coding: paraphrasing the transcript</div>
+    <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:12px">Open coding means reading through a transcript and attaching a short label to each meaningful fragment. You are paraphrasing what the speaker expressed — stay close to their words, do not interpret yet.</p>
+    <div style="background:#f8f7f4;border-radius:10px;padding:14px;border:1px solid #e5e4df;margin-bottom:12px">
+      <div class="ib-label">Real example from your teaching materials</div>
+      <p style="font-size:12px;color:#666;margin-bottom:8px">Question asked: "What major factors led you into teaching?"</p>
+      <table class="source-table" style="margin-top:4px">
+        <thead><tr><th>What the respondent said</th><th>Open code (in orange)</th></tr></thead>
+        <tbody>
+          <tr><td>"I love working with kids and watching them grow"</td><td>love of kids · impact on children's life</td></tr>
+          <tr><td>"The flexible schedule really appealed to me"</td><td>flexible schedule</td></tr>
+          <tr><td>"My own teacher really inspired me when I was young"</td><td>previous teacher motivated them</td></tr>
+          <tr><td>"I wanted to share my passion for the subject"</td><td>desire to share passion</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:11px;color:#888;margin-top:8px">Apply exactly this logic to your culture interviews — label what the interviewee is expressing about hierarchy, communication style, working culture, etc.</p>
+    </div>
+    <div class="alert alert-info">For your hotel assignment, open code every meaningful statement about culture, corporate culture, working conditions, management style, sustainability practices, or market conditions. Do this for all interviews before moving to step 3.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Step 3 — Axial coding: grouping into themes</div>
+    <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:12px">Once you have open coded all transcripts, look for patterns. Which open codes are really talking about the same thing? Group them into broader categories (axes). These must link to your theoretical framework.</p>
+    <div style="background:#f8f7f4;border-radius:10px;padding:14px;border:1px solid #e5e4df;margin-bottom:12px">
+      <div class="ib-label">Teaching material example — open codes grouped into axial themes</div>
+      <table class="source-table" style="margin-top:4px">
+        <thead><tr><th>Open codes</th><th>Axial theme (in green/blue/red)</th></tr></thead>
+        <tbody>
+          <tr><td>love of kids · impact on children's life · helping kids</td><td style="color:#085041">Motivation: child-centred values</td></tr>
+          <tr><td>flexible schedule · wanted different students</td><td style="color:#0C447C">Motivation: work-life preferences</td></tr>
+          <tr><td>previous teacher motivated them · desire to share passion</td><td style="color:#712B13">Motivation: influential role models</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="background:#f8f7f4;border-radius:10px;padding:14px;border:1px solid #e5e4df;margin-bottom:10px">
+      <div class="ib-label">For your hotel assignment — map to Hofstede dimensions</div>
+      <table class="source-table" style="margin-top:4px">
+        <thead><tr><th>Open codes from your interviews</th><th>Axial category</th><th>Hofstede link</th></tr></thead>
+        <tbody>
+          <tr><td>informal address of superiors · flat hierarchy · open door policy</td><td>Low power distance</td><td>Power Distance Index (PDI)</td></tr>
+          <tr><td>collective problem-solving · team decisions · blame avoidance</td><td>Group orientation</td><td>Individualism vs Collectivism (IDV)</td></tr>
+          <tr><td>flexible schedule · adapts to change · comfort with ambiguity</td><td>Uncertainty avoidance</td><td>Uncertainty Avoidance Index (UAI)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-warn">Axial categories must connect to your theoretical framework. If a category does not link to a cultural model you discussed in your literature review, ask yourself: why is this in my analysis?</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Step 4 — The coding matrix (Appendix C)</div>
+    <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:10px">The matrix shows which themes (axial codes) appeared in which interviews, and what each interviewee said (open codes) under each theme. Not every interviewee will have something pertaining to every axial code — leave the cell blank if they said nothing about that theme.</p>
+    <div style="overflow-x:auto;margin-bottom:10px">
+    <table class="source-table" style="min-width:580px">
+      <thead><tr><th>Axial code (theme)</th><th>Interviewee 1</th><th>Interviewee 2</th><th>Interviewee 3</th><th>Interviewee 4</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hierarchy at work</strong></td><td>Had to ask permission for everything</td><td>Many hierarchical levels in the French hotel company</td><td>Superior was often inaccessible</td><td>High degree of dependency on superiors</td></tr>
+        <tr><td><strong>Importance of structure and planning</strong></td><td>Superiors didn't follow rules for employees</td><td>Before meetings, agenda was always shared in advance</td><td style="color:#aaa;font-style:italic">—</td><td>Last-minute changes were rare and frowned upon</td></tr>
+        <tr><td><strong>Group orientation</strong></td><td style="color:#aaa;font-style:italic">—</td><td>Decisions were always made as a team</td><td>Individual recognition was avoided</td><td>Team lunches were a weekly ritual</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="alert alert-info">A theme that appears across all three or four interviews is stronger evidence than one that appears in only one. Note this in your report: "This theme was identified across all interviews, suggesting…" vs "One interviewee mentioned…"</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-tool">AI</span>Using AI to support your coding — with a real prompt</div>
+    <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:12px">Below is the actual prompt your tutors recommend — modelled on how previous students used it successfully. Always review every code the AI produces before using it. You must be able to defend every code in your oral defence.</p>
+    <div style="border:1px solid #e5e4df;border-radius:8px;overflow:hidden;margin-bottom:10px">
+      <div style="padding:10px 14px;background:#f8f7f4;font-size:12px;font-weight:600;color:#1a1a1a;display:flex;justify-content:space-between;align-items:center">
+        Recommended AI coding prompt (paste your transcripts after this)
+        <button class="btn" style="font-size:11px;padding:4px 10px" onclick="copyCodingPrompt()">Copy prompt</button>
+      </div>
+      <pre id="coding-prompt" style="padding:12px 14px;font-size:12px;line-height:1.6;white-space:pre-wrap;font-family:inherit;color:#444;background:#fff;margin:0">These are [number] interviews. I would like you to:
+
+1. Find recurring themes across all interviews — these will be our AXIAL CODES.
+2. Under each interviewee, paraphrase their relevant quotes into OPEN CODES that support those axial codes.
+3. Make a CODING MATRIX showing: rows = axial codes, columns = each interviewee, cells = the open codes (paraphrased quotes) from that interviewee that support the axial code. Leave cells blank where an interviewee said nothing about that theme.
+
+The axial codes should relate to cultural dimensions (e.g. Hofstede's Power Distance, Individualism, Uncertainty Avoidance) or corporate culture concepts where relevant.
+
+[PASTE INTERVIEW TRANSCRIPTS HERE]</pre>
+    </div>
+    <div class="concept-grid">
+      <div class="concept-card" style="background:#E1F5EE;border-color:#9FE1CB">
+        <div class="concept-term" style="color:#085041">After getting the AI output</div>
+        <div class="concept-def" style="color:#085041">Check every open code against your actual transcript. Correct errors. Add codes the AI missed. Remove codes that misrepresent what was said. Connect each axial code explicitly to a Hofstede dimension or cultural theory in your report.</div>
+      </div>
+      <div class="concept-card" style="background:#FAEEDA;border-color:#FAC775">
+        <div class="concept-term" style="color:#633806">Disclose your AI use</div>
+        <div class="concept-def" style="color:#633806">Write in your report: "AI (Revoldiv) was used to support transcription. AI was used to support initial open coding. All codes were reviewed and refined by the authors." This is responsible disclosure and protects your integrity.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-do">✓</span>Class checklist</div>
+    <ul class="checklist">
+      ${ck('w4c1-1','I can explain the three phases of grounded theory coding (open, axial, selective)')}
+      ${ck('w4c1-2','I have transcribed at least one full interview (by hand or using Revoldiv)')}
+      ${ck('w4c1-3','I have open coded at least one full interview transcript')}
+      ${ck('w4c1-4','I have grouped my open codes into axial categories linked to a named cultural theory')}
+      ${ck('w4c1-5','I have started building my coding matrix for Appendix C')}
+      ${ck('w4c1-6','I understand how to use AI for coding support and what I must disclose')}
+    </ul>
+  </div>
+  `;
+}
+
+function copyCodingPrompt() {
+  const el = document.getElementById('coding-prompt');
+  if(!el) return;
+  navigator.clipboard.writeText(el.textContent).catch(()=>{});
+  const btn = el.previousElementSibling.querySelector('button');
+  if(btn){const o=btn.textContent;btn.textContent='Copied!';setTimeout(()=>btn.textContent=o,1500);}
+}
     <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:12px">A transcript is raw data — it is not analysis. Coding is the process of reading through transcripts systematically and labelling the content so you can find patterns across multiple interviews. Without coding, you cannot say "my interviewees suggest that…" — you can only repeat individual quotes.</p>
     <div class="alert alert-info">Coding is a conditional (C) criterion. Your coding matrix must appear in Appendix C, showing both open and axial coding. Missing or superficial coding will fail the report regardless of how good the rest is.</div>
   </div>
@@ -1382,7 +2062,215 @@ function copyPrompt(id) {
 function renderW5C1(el) {
   el.innerHTML = `
   <div class="section">
-    <div class="section-title"><span class="section-icon icon-warn">!</span>Your source list — you should have been building this since week 2</div>
+    <div class="section-title"><span class="section-icon icon-warn">!</span>Your source list — you should have been building this since week 1</div>
+    <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:10px">From week 1 class 2, you were told to keep track of every source you find. If you have been doing this, today is about formatting. If you have not, you now face the painful task of hunting down every source you cited. Use tools like <strong>Scribbr, Mendeley, Zotero, or OneNote</strong> to manage references as you go.</p>
+    <div class="alert alert-red">Referencing is a conditional (C) criterion. Inconsistent, incomplete, or wrongly formatted references = automatic fail on this criterion = report fail. Every source cited in your text must be in your reference list. Every entry in your reference list must appear in your text.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>What needs to be referenced — and what does not</div>
+    <div class="concept-grid">
+      <div class="concept-card" style="border-color:#F09595">
+        <div class="concept-term" style="color:#791F1F">Always reference these</div>
+        <div class="concept-def">Images that use data you have not collected yourself (STR data graphs) · Images you have not made yourself (e.g. a Hofstede comparison screenshot) · Information that is not common knowledge · Ideas that are not your own</div>
+      </div>
+      <div class="concept-card" style="border-color:#9FE1CB">
+        <div class="concept-term" style="color:#085041">No reference needed for</div>
+        <div class="concept-def">Images you created yourself from your own data · Ideas and connections you made yourself based on the data · Common knowledge that any reader would know</div>
+        <div class="concept-example">Common knowledge: "Food is an important aspect of culture" — no reference needed<br>NOT common knowledge: "Traditional food of the Yezidis in Armenia mainly consists of lamb and milk products" — needs a source</div>
+      </div>
+    </div>
+    <div class="alert alert-info" style="margin-top:10px">You MUST have in-text references throughout the body of your report. Use a tool like Scribbr, Mendeley, or Zotero to format them as you write — do not leave it to the end.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>APA7 fundamentals — the logic</div>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">In-text citation</div>
+        <div class="concept-def">A short reference inside the body of your text, directly after the claim it supports.</div>
+        <div class="concept-example">…as argued by Hofstede (1984) · …(Hofstede, 1984) · …(Hofstede, 1984, p. 45) for direct quotes<br><br>"Being aware of the culture and corporate culture of the country have been linked to greater internship success (Warrick, 2017)."</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Reference list</div>
+        <div class="concept-def">Full details of every source cited, alphabetical by first author's surname. Appears after your conclusion. Heading: References (not Bibliography).</div>
+        <div class="concept-example">Hanging indent format: first line flush left, subsequent lines indented 0.5 inches. In Word: select entry → Format → Paragraph → Hanging.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Sentence case for titles</div>
+        <div class="concept-def">Article and book titles use sentence case — only the first word and proper nouns capitalised. Journal names keep title case.</div>
+        <div class="concept-example">Correct: <em>Cultures and organizations: Software of the mind</em><br>Wrong: <em>Cultures And Organizations: Software Of The Mind</em></div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Multiple authors</div>
+        <div class="concept-def">2 authors: cite both every time — (Smith &amp; Jones, 2020)<br>3+ authors: use et al. from the first citation — (Hofstede et al., 2010)</div>
+        <div class="concept-example">Also in text: "Research by Advito (2017) suggests…" (only year in brackets when author is named in sentence)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Reference formats by source type</div>
+    <div class="data-type-tabs" id="apa-tabs">
+      <button class="dt-tab active" onclick="setApaTab('journal',this)">Journal article</button>
+      <button class="dt-tab" onclick="setApaTab('book',this)">Book</button>
+      <button class="dt-tab" onclick="setApaTab('website',this)">Website</button>
+      <button class="dt-tab" onclick="setApaTab('report',this)">Report/data</button>
+      <button class="dt-tab" onclick="setApaTab('figure',this)">Figure ⚠</button>
+      <button class="dt-tab" onclick="setApaTab('interview',this)">Interview</button>
+    </div>
+
+    <div id="apapanel-journal" class="dt-panel active">
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Journal article format</div>
+        <div class="concept-def" style="font-family:Georgia,serif;font-size:13px;line-height:1.8">Author, A. A., &amp; Author, B. B. (Year). Title of article in sentence case. <em>Journal Name in Title Case, Volume</em>(Issue), pages. https://doi.org/xxxxx</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term" style="color:#085041">Real example</div>
+        <div class="concept-def" style="font-family:Georgia,serif;font-size:13px;line-height:1.8">Lee, M., &amp; Chan, R. (2021). Guest satisfaction trends in boutique hotels. <em>Journal of Hospitality Studies, 15</em>(2), 45–59. https://doi.org/10.1234/jhs.v15i2.7890</div>
+      </div>
+    </div>
+
+    <div id="apapanel-book" class="dt-panel">
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Book format</div>
+        <div class="concept-def" style="font-family:Georgia,serif;font-size:13px;line-height:1.8">Author, A. A. (Year). <em>Title of book in sentence case</em> (Nth ed.). Publisher.</div>
+      </div>
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Book chapter in edited volume</div>
+        <div class="concept-def" style="font-family:Georgia,serif;font-size:13px;line-height:1.8">Author, A. A. (Year). Title of chapter. In E. E. Editor (Ed.), <em>Title of book</em> (pp. xx–xx). Publisher.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term" style="color:#085041">Real example</div>
+        <div class="concept-def" style="font-family:Georgia,serif;font-size:13px;line-height:1.8">Hofstede, G., Hofstede, G. J., &amp; Minkov, M. (2010). <em>Cultures and organizations: Software of the mind</em> (3rd ed.). McGraw-Hill.</div>
+      </div>
+    </div>
+
+    <div id="apapanel-website" class="dt-panel">
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Web page with individual author</div>
+        <div class="concept-def" style="font-family:Georgia,serif;font-size:13px;line-height:1.8">Author, A. A. (Year, Month Day). <em>Title of page</em>. Website Name. https://www.example.com/url</div>
+      </div>
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Web page with organisation as author</div>
+        <div class="concept-def" style="font-family:Georgia,serif;font-size:13px;line-height:1.8">Organisation Name. (Year). <em>Title of page</em>. https://www.example.com/url</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term" style="color:#085041">Real example</div>
+        <div class="concept-def" style="font-family:Georgia,serif;font-size:13px;line-height:1.8">World Tourism Organization. (2023). <em>Tourism statistics database</em>. UNWTO. https://www.unwto.org/tourism-statistics/key-tourism-statistics</div>
+      </div>
+    </div>
+
+    <div id="apapanel-report" class="dt-panel">
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Report or institutional publication</div>
+        <div class="concept-def" style="font-family:Georgia,serif;font-size:13px;line-height:1.8">Author, A. A., or Organisation. (Year). <em>Title of report</em>. Publisher/Institution. https://doi.org/xxxxx or URL</div>
+      </div>
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Statista dataset</div>
+        <div class="concept-def" style="font-family:Georgia,serif;font-size:13px;line-height:1.8">Statista Research Department. (Year). <em>Title of statistic</em>. Statista. https://www.statista.com/statistics/xxxxx</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term" style="color:#085041">Real example</div>
+        <div class="concept-def" style="font-family:Georgia,serif;font-size:13px;line-height:1.8">Statista Research Department. (2024). <em>Hotel occupancy rate in the Netherlands from 2013 to 2023</em>. Statista. https://www.statista.com/statistics/761258/hotel-occupancy-rate-netherlands/</div>
+      </div>
+    </div>
+
+    <div id="apapanel-figure" class="dt-panel">
+      <div class="alert alert-red" style="margin-bottom:12px"><strong>Figures are the most commonly failed referencing requirement.</strong> Every graph or image must have: (1) a figure number and title, (2) an APA caption below with source, and (3) a full entry in your reference list. "Adapted from" vs "From" matters.</div>
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Figure you created yourself from data</div>
+        <div class="concept-def" style="font-size:13px;line-height:1.8"><strong>Above the figure:</strong> Figure 1<br><strong>Below the figure (caption):</strong> <em>Title of figure.</em> From [Organisation] (Year). URL. Copyright Year by Organisation.</div>
+      </div>
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Figure adapted from a source (you modified it)</div>
+        <div class="concept-def" style="font-size:13px;line-height:1.8"><em>Title of figure.</em> Adapted from [Source Title], by A. Author, Year, Publisher (URL). Copyright Year by Author.</div>
+      </div>
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Figure reproduced directly (unchanged)</div>
+        <div class="concept-def" style="font-size:13px;line-height:1.8"><em>Title of figure.</em> From [Source Title], by A. Author, Year, Publisher (URL). Copyright Year by Author. Reprinted with permission.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term" style="color:#085041">Complete example</div>
+        <div class="concept-def" style="font-size:13px;line-height:1.8"><strong>Figure 2</strong><br><br>[graph appears here]<br><br><em>Figure 2. Average gross annual earnings of full-time tourist accommodation employees in Germany, 2010–2023.</em> Adapted from <em>Earnings in tourism</em>, by Statista Research Department, 2024 (https://statista.com/...). Copyright 2024 by Statista.</div>
+        <div class="concept-example">The full Statista reference then also appears in your reference list.</div>
+      </div>
+    </div>
+
+    <div id="apapanel-interview" class="dt-panel">
+      <div class="alert alert-info" style="margin-bottom:12px">Personal interviews you conducted yourself are cited as personal communications in-text but do NOT appear in the reference list (APA7). They do appear in Appendix B as transcripts.</div>
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">In-text citation for your own interviews</div>
+        <div class="concept-def" style="font-family:Georgia,serif;font-size:13px;line-height:1.8">…(J. Smith, personal communication, March 15, 2026).<br><br>Or: According to a former intern at [Hotel] (personal communication, March 2026), the management style was characterised by…</div>
+      </div>
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">If the interviewee wishes to remain anonymous</div>
+        <div class="concept-def" style="font-family:Georgia,serif;font-size:13px;line-height:1.8">…(former intern, personal communication, March 2026).<br><br>Note in Appendix B that the interviewee requested anonymity.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term" style="color:#085041">Example from your teaching materials</div>
+        <div class="concept-def" style="font-family:Georgia,serif;font-size:13px;line-height:1.8">"Management decisions that could impact first nations must be treated with due sensitivity" (L. Blake, personal communication, 2024).<br><br>A conversation with Elsa Harder highlighted the differences between working in Toronto and Vancouver (personal communication, 2024).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>How to avoid plagiarism — paraphrasing correctly</div>
+    <div class="concept-grid">
+      <div class="concept-card" style="border-color:#9FE1CB">
+        <div class="concept-term" style="color:#085041">Good paraphrasing</div>
+        <div class="concept-def">Rewrite the idea in your own words, then cite the source. The original meaning is preserved but the language is entirely yours.</div>
+        <div class="concept-example">"Verhoeven et al. (2000) argue that women's professional networks are generally less advantageous than those available to men."</div>
+      </div>
+      <div class="concept-card" style="border-color:#F09595">
+        <div class="concept-term" style="color:#791F1F">Direct quotation (use rarely)</div>
+        <div class="concept-def">Copy the exact words in quotation marks with a page number. Use only when the precise wording matters — not as a substitute for paraphrasing.</div>
+        <div class="concept-example">"There are strong 'efforts to enhance industry engagement' in Australia" (Jackson, 2024, p. 1).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Common APA mistakes to avoid</div>
+    <table class="source-table">
+      <thead><tr><th>Mistake</th><th>Wrong</th><th>Correct</th></tr></thead>
+      <tbody>
+        <tr><td>No in-text citation</td><td>"Japanese culture values harmony."</td><td>"Japanese culture values harmony (Hofstede et al., 2010)."</td></tr>
+        <tr><td>3+ authors not using et al.</td><td>(Hofstede, Hofstede and Minkov, 2010)</td><td>(Hofstede et al., 2010)</td></tr>
+        <tr><td>Title case in article title</td><td><em>The Impact Of Culture On Hotel Management</em></td><td><em>The impact of culture on hotel management</em></td></tr>
+        <tr><td>Figure with no APA caption</td><td>[graph with just a title]</td><td>Full APA caption below: Figure 1. <em>Title.</em> From Source (Year). URL</td></tr>
+        <tr><td>No DOI or URL</td><td>Hofstede, G. (1984). <em>Culture's consequences.</em> Sage.</td><td>Add DOI or URL if available</td></tr>
+        <tr><td>Interview in reference list</td><td>Smith, J. (2026). Interview conducted by [student name].</td><td>Personal communications are NOT in the reference list — cite in-text only</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-do">✓</span>Class checklist</div>
+    <ul class="checklist">
+      ${ck('w5c1-1','Every in-text citation in my report has a matching entry in the reference list')}
+      ${ck('w5c1-2','Every reference list entry is cited somewhere in the report body')}
+      ${ck('w5c1-3','All article and book titles are in sentence case')}
+      ${ck('w5c1-4','All figures have a numbered title and an APA caption with source below them')}
+      ${ck('w5c1-5','All figure sources also appear in the reference list')}
+      ${ck('w5c1-6','My interview citations are in-text only (personal communication) — not in the reference list')}
+      ${ck('w5c1-7','My reference list is in alphabetical order with hanging indent')}
+      ${ck('w5c1-8','I have used a reference manager (Scribbr, Mendeley, Zotero) or the APA builder in the hub')}
+    </ul>
+  </div>
+  `;
+}
+
+function setApaTab(id, btn) {
+  document.querySelectorAll('#apa-tabs .dt-tab').forEach(t=>t.classList.remove('active'));
+  ['journal','book','website','report','figure','interview'].forEach(p=>{
+    const el=document.getElementById('apapanel-'+p);
+    if(el)el.classList.remove('active');
+  });
+  btn.classList.add('active');
+  const panel=document.getElementById('apapanel-'+id);
+  if(panel)panel.classList.add('active');
+}
     <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:12px">From week 1 class 2, you were introduced to the importance of tracking sources as you find them. If you have been doing this, this class is about formatting. If you have not, you now face the painful task of tracking down every source you cited.</p>
     <div class="alert alert-red">Referencing is a conditional (C) criterion. Inconsistent, incomplete, or incorrectly formatted references = automatic fail on this criterion = report fail. Every source in your text must appear in your reference list. Every entry in your reference list must be cited in your text.</div>
   </div>
