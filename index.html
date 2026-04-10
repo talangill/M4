@@ -2864,47 +2864,90 @@ function renderDashboard(el) {
   <!-- ── TWO COLUMN: RUBRIC + FORMATTING ── -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">
 
-    <!-- RUBRIC -->
-    <div style="background:var(--warm-white);border:2px solid var(--border);border-radius:20px;padding:24px">
-      <div style="font-family:'Lexend',sans-serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:4px">Grading rubric</div>
-      <div style="font-size:13px;color:var(--text-muted);margin-bottom:16px">What your assessors check</div>
+    <!-- RUBRIC — OMINOUS -->
+    <div style="background:#0f0e0c;border:2px solid #2a2520;border-radius:20px;padding:0;overflow:hidden;position:relative">
 
-      <div style="background:var(--red-light);border-left:5px solid var(--red);border-radius:10px;padding:12px 14px;margin-bottom:14px">
-        <div style="font-family:'Lexend',sans-serif;font-size:12px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px">Conditional (C) — ALL must be YES</div>
-        ${['Ethics & integrity — no plagiarism, AI disclosed, professional tone',
-           'Language & structure — grammar correct, APA7 headings, consistent format',
-           'Word count — 2,700–3,300 words (introduction + body + conclusion only)',
-           'Sources — course literature cited, sources recent and relevant',
-           'Interview questions based on cultural theory; results used in the body text',
-           'Appendix A (topic list) · B (transcripts ≥3) · C (coding matrix)'
-          ].map(t => `
-          <div style="display:flex;gap:10px;padding:6px 0;border-bottom:1px solid rgba(192,57,43,0.12);font-size:13px;line-height:1.5;color:var(--text)">
-            <span style="color:var(--red);font-weight:700;flex-shrink:0;margin-top:1px">C</span>
-            <span>${t}</span>
-          </div>`).join('')}
+      <!-- Header -->
+      <div style="padding:22px 24px 18px;border-bottom:1px solid #2a2520;position:relative">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,0.012) 0px,rgba(255,255,255,0.012) 1px,transparent 1px,transparent 8px)"></div>
+        <div style="position:relative">
+          <div style="font-family:'Lexend',sans-serif;font-size:10px;font-weight:700;color:#5a4a3a;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">Assessment criteria</div>
+          <div style="font-family:'Lexend',sans-serif;font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.5px;line-height:1.15;margin-bottom:6px">The rubric</div>
+          <div style="font-size:13px;color:#6b5a4a;line-height:1.6">Your assessors work through this list. Every gate below is a potential fail. Read it carefully.</div>
+        </div>
       </div>
 
-      <div style="background:var(--purple-light);border-left:5px solid var(--purple);border-radius:10px;padding:12px 14px">
-        <div style="font-family:'Lexend',sans-serif;font-size:12px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px">Lenient (L) — max 2 NOs allowed</div>
-        ${['Topics explained and justified in relation to the assignment',
-           'Insights reported in a nuanced, balanced way',
-           'National/regional culture — theory + interview evidence',
-           'Corporate culture — theory + interview evidence',
-           'SDGs explained as relevant to the national/regional context',
-           'Market environment — macro level AND micro level covered',
-           'Competitor analysis included and named',
-           'Quantitative info — ≥3 sources, stats, ≥2 graphs, contextualised'
-          ].map(t => `
-          <div style="display:flex;gap:10px;padding:6px 0;border-bottom:1px solid rgba(91,63,166,0.12);font-size:13px;line-height:1.5;color:var(--text)">
-            <span style="color:var(--purple);font-weight:700;flex-shrink:0;margin-top:1px">L</span>
-            <span>${t}</span>
-          </div>`).join('')}
+      <!-- CONDITIONAL block -->
+      <div style="padding:18px 24px;border-bottom:1px solid #1e1a17">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <div style="width:8px;height:8px;border-radius:50%;background:#C0392B;box-shadow:0 0 8px rgba(192,57,43,0.6)"></div>
+          <div style="font-family:'Lexend',sans-serif;font-size:11px;font-weight:700;color:#C0392B;text-transform:uppercase;letter-spacing:1.5px">Conditional — every single one must pass</div>
+        </div>
+        <div style="background:#1a0e0e;border:1px solid #3a1a1a;border-radius:10px;padding:4px 0;margin-bottom:10px">
+          ${['Ethics & integrity — no plagiarism, AI use disclosed, professional tone',
+             'Language & structure — grammar, APA7 headings, consistent formatting',
+             'Word count — 2,700–3,300 words (body text only, not references)',
+             'Sources — course literature cited, all sources recent and relevant',
+             'Interviews — questions based on cultural theory; findings in the body text',
+             'Appendices A (questions) · B (transcripts ≥ 3) · C (coding matrix)'
+            ].map((t,i,arr) => `
+            <div style="display:flex;gap:12px;align-items:flex-start;padding:10px 14px;${i<arr.length-1?'border-bottom:1px solid rgba(192,57,43,0.1)':''}">
+              <div style="width:18px;height:18px;border-radius:4px;background:#2a1010;border:1px solid #C0392B;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
+                <span style="font-family:'Lexend',sans-serif;font-size:9px;font-weight:700;color:#C0392B">C</span>
+              </div>
+              <span style="font-size:13px;color:#c8b8a8;line-height:1.55">${t}</span>
+            </div>`).join('')}
+        </div>
+        <div style="background:#2a1010;border-radius:8px;padding:10px 14px;border-left:3px solid #C0392B">
+          <div style="font-size:12px;color:#e8a090;line-height:1.6"><strong style="color:#ff6b6b">One NO anywhere here</strong> = the report fails. The first chance defence cannot take place. If the re-submitted report fails once more... you fail the course without having the chance to defend in the oral. There is no partial credit.</div>
+        </div>
       </div>
 
-      <div style="background:var(--amber-light);border-left:5px solid var(--amber);border-radius:10px;padding:12px 14px;margin-top:14px">
-        <div style="font-family:'Lexend',sans-serif;font-size:12px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Oral defence — 6 criteria</div>
-        <div style="font-size:13px;color:var(--text-soft);line-height:1.65">Graded on: Problem & goal · Information literacy · Research methods · Qual & quant methods · Structured communication · Helicopter view.<br><br>Grade = average of all 6, rounded to nearest 0.5. At most <strong>1 criterion</strong> may be Insufficient.</div>
+      <!-- LENIENT block -->
+      <div style="padding:18px 24px;border-bottom:1px solid #1e1a17">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <div style="width:8px;height:8px;border-radius:50%;background:#7c5cbf;box-shadow:0 0 8px rgba(124,92,191,0.5)"></div>
+          <div style="font-family:'Lexend',sans-serif;font-size:11px;font-weight:700;color:#9b7dd4;text-transform:uppercase;letter-spacing:1.5px">Lenient — at most 2 NOs permitted</div>
+        </div>
+        <div style="background:#12101a;border:1px solid #2a2040;border-radius:10px;padding:4px 0;margin-bottom:10px">
+          ${['Topics explained and justified — not just described',
+             'Insights reported in a nuanced, balanced way',
+             'National / regional culture — theory + interview evidence',
+             'Corporate culture — theory + interview evidence',
+             'SDGs explained as relevant to the specific national context',
+             'Market environment — macro level AND micro level',
+             'Competitor analysis included and named specifically',
+             'Quantitative info — ≥ 3 sources, stats, ≥ 2 graph types, contextualised'
+            ].map((t,i,arr) => `
+            <div style="display:flex;gap:12px;align-items:flex-start;padding:9px 14px;${i<arr.length-1?'border-bottom:1px solid rgba(124,92,191,0.1)':''}">
+              <div style="width:18px;height:18px;border-radius:4px;background:#1a1428;border:1px solid #7c5cbf;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
+                <span style="font-family:'Lexend',sans-serif;font-size:9px;font-weight:700;color:#9b7dd4">L</span>
+              </div>
+              <span style="font-size:13px;color:#c8b8a8;line-height:1.55">${t}</span>
+            </div>`).join('')}
+        </div>
+        <div style="background:#1a1428;border-radius:8px;padding:10px 14px;border-left:3px solid #7c5cbf">
+          <div style="font-size:12px;color:#b8a8d8;line-height:1.6"><strong style="color:#c8a0ff">Three or more NOs</strong> = the report fails, regardless of how good the rest is.</div>
+        </div>
       </div>
+
+      <!-- DEFENCE block -->
+      <div style="padding:18px 24px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <div style="width:8px;height:8px;border-radius:50%;background:#b87a10;box-shadow:0 0 8px rgba(184,122,16,0.5)"></div>
+          <div style="font-family:'Lexend',sans-serif;font-size:11px;font-weight:700;color:#d4921a;text-transform:uppercase;letter-spacing:1.5px">Oral defence — if the report passes</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">
+          ${['Problem & goal','Information literacy','Research methods','Qual & quant','Communication','Helicopter view'
+            ].map(c => `
+            <div style="background:#1a1408;border:1px solid #3a2c10;border-radius:7px;padding:7px 10px;font-size:12px;color:#c8a860;font-family:'Lexend',sans-serif;font-weight:600">${c}</div>
+          `).join('')}
+        </div>
+        <div style="background:#1a1408;border-radius:8px;padding:10px 14px;border-left:3px solid #b87a10">
+          <div style="font-size:12px;color:#c8a860;line-height:1.6">Grade = average of all 6, rounded to nearest 0.5. <strong style="color:#f0c060">At most 1 criterion may be Insufficient.</strong> More than 1 = fail. No-show or arriving late = ND.</div>
+        </div>
+      </div>
+
     </div>
 
     <!-- FORMATTING -->
