@@ -692,6 +692,17 @@ function go(id) {
   document.querySelectorAll('.class-btn').forEach(b => b.classList.remove('active'));
   const btn = document.getElementById('btn-'+id);
   if(btn) btn.classList.add('active');
+  // Update survival button appearance when active
+  const survBtn = document.getElementById('btn-survival');
+  if(survBtn) {
+    if(id === 'survival') {
+      survBtn.style.background = 'linear-gradient(135deg,rgba(224,62,62,0.45),rgba(245,158,11,0.35))';
+      survBtn.style.borderColor = 'rgba(224,62,62,0.6)';
+    } else {
+      survBtn.style.background = 'linear-gradient(135deg,rgba(224,62,62,0.25),rgba(245,158,11,0.2))';
+      survBtn.style.borderColor = 'rgba(224,62,62,0.35)';
+    }
+  }
   const main = document.getElementById('main-content');
 
   if(id === 'dashboard') {
@@ -1775,6 +1786,9 @@ function renderW2C2(el) {
 
   renderIQBApp();
 }
+
+// ─── HELPERS ─────────────────────────────────────────────────────
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 // ─── INTERVIEW QUESTION BUILDER ───────────────────────────────────
 const IQB_CATS = [
@@ -3171,7 +3185,7 @@ function renderDashboard(el) {
 
   // Update stats
   const done = Object.keys(state).filter(k => k.startsWith('ck-') && state[k]).length;
-  const total = 47;
+  const total = 68;
   const pct = Math.round(done/total*100);
   const dashDone = document.getElementById('dash-done');
   const dashPct = document.getElementById('dash-pct');
@@ -3196,6 +3210,44 @@ function renderDashboard(el) {
 }
 
 
+// ─── DEADLINE HELPERS (top-level so onclick handlers can reach them) ────────
+function _panicLevel(days){
+  if(days < 0)  return { color:'var(--text-muted)', label:'Done ✅', bar:100 };
+  if(days <= 3) return { color:'var(--red)',    label:'🔥 OH NO',      bar:95 };
+  if(days <= 7) return { color:'var(--red)',    label:'😬 Get moving',  bar:80 };
+  if(days <= 14)return { color:'var(--amber)',  label:'👀 Coming up',   bar:50 };
+  return          { color:'var(--teal)',   label:'😌 You\'re fine',  bar:15 };
+}
+function loadDeadlineDates() {
+  return state['deadlines'] || {};
+}
+function saveDeadlineDate(id, val) {
+  const d = loadDeadlineDates();
+  d[id] = val;
+  state['deadlines'] = d;
+  saveCookie(state);
+  updateDeadlineRow(id, val);
+}
+function updateDeadlineRow(id, dateStr) {
+  const bar = document.getElementById('dl-bar-' + id);
+  const label = document.getElementById('dl-label-' + id);
+  if(!bar || !label) return;
+  if(!dateStr) {
+    bar.style.width = '0%';
+    bar.style.background = 'var(--border)';
+    label.textContent = 'No date set';
+    label.style.color = 'var(--text-muted)';
+    return;
+  }
+  const days = Math.ceil((new Date(dateStr) - new Date()) / 86400000);
+  const p = _panicLevel(days);
+  const txt = days < 0 ? 'Passed' : days === 0 ? 'TODAY' : days + ' day' + (days===1?'':'s');
+  bar.style.width = (days<0?100:Math.max(4,100-p.bar)) + '%';
+  bar.style.background = p.color;
+  label.textContent = txt + ' · ' + p.label;
+  label.style.color = p.color;
+}
+
 // ─── SURVIVAL GUIDE ──────────────────────────────────────────────
 function renderSurvival(el) {
 
@@ -3216,35 +3268,7 @@ function renderSurvival(el) {
     if(days <= 14)return { color:'var(--amber)',  label:'👀 Coming up',   bar:50 };
     return          { color:'var(--teal)',   label:'😌 You\'re fine',  bar:15 };
   }
-  function loadDeadlineDates() {
-    return state['deadlines'] || {};
-  }
-  function saveDeadlineDate(id, val) {
-    const d = loadDeadlineDates();
-    d[id] = val;
-    state['deadlines'] = d;
-    saveCookie(state);
-    updateDeadlineRow(id, val);
-  }
-  function updateDeadlineRow(id, dateStr) {
-    const bar = document.getElementById('dl-bar-' + id);
-    const label = document.getElementById('dl-label-' + id);
-    if(!bar || !label) return;
-    if(!dateStr) {
-      bar.style.width = '0%';
-      bar.style.background = 'var(--border)';
-      label.textContent = 'No date set';
-      label.style.color = 'var(--text-muted)';
-      return;
-    }
-    const days = daysUntil(new Date(dateStr));
-    const p = panicLevel(days);
-    const txt = days < 0 ? 'Passed' : days === 0 ? 'TODAY' : days + ' day' + (days===1?'':'s');
-    bar.style.width = (days<0?100:Math.max(4,100-p.bar)) + '%';
-    bar.style.background = p.color;
-    label.textContent = txt + ' · ' + p.label;
-    label.style.color = p.color;
-  }
+
 
   const jargon = [
     { word:'APA7', plain:'A strict formatting recipe for your reference list. Doesn\'t matter if you think it\'s pointless — your markers do care, and getting it wrong costs you marks for zero intellectual reason. Use the APA tool in Week 1. It takes 5 minutes.' },
