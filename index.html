@@ -3445,6 +3445,18 @@ function renderSurvival(el) {
 
   // Risk calculator logic
   window._riskAnswers = {};
+
+  const riskMeta = {
+    rq1: { label: 'research question',  action: 'Write your research question first — everything else depends on it. Use the 6W builder in Week 1 · Class 1.' },
+    rq2: { label: '4+ interviews',      action: 'Interviews are your primary data and cannot be faked. Message potential interviewees today — people who have lived or worked in your country for 3+ months.' },
+    rq3: { label: 'coding matrix',      action: 'Your transcripts need to be analysed, not just summarised. Go to Week 4 · Class 1 for the open coding → axial coding → matrix process.' },
+    rq4: { label: '10+ sources',        action: 'You need 10+ cited sources total. Use Statista, your course readings, recent news, and government/tourism data for your country.' },
+    rq5: { label: 'body chapters',      action: 'Start writing. Even rough paragraphs beat a blank page. Begin with the culture chapter — you likely have the most material there already.' },
+    rq6: { label: '3+ graph types',     action: 'You need at least 3 different graph types (e.g. bar, line, pie) based on real cited data. Use Statista or national tourism boards as sources.' },
+    rq7: { label: 'intro & conclusion', action: 'Your intro ends with your research question. Your conclusion answers it directly — no new information. Write these last, once you know what you found.' },
+    rq8: { label: 'APA reference list', action: 'Every source cited in your text needs a matching entry, in alphabetical order. Use the APA tool in Week 1 · Class 2 to check your format.' },
+  };
+
   window.setRisk = function(id, val, btn) {
     window._riskAnswers[id] = val;
     const row = btn.closest('div[style*="background:var(--cream)"]');
@@ -3473,23 +3485,40 @@ function renderSurvival(el) {
     const pct = maxAnswered > 0 ? Math.round(score / 100 * 100) : 0;
     const allAnswered = answered === questions.length;
 
-    let verdict, color, borderColor, advice;
+    // Build targeted gap list from actual No answers
+    const gaps = questions
+      .filter(q => window._riskAnswers[q.id] === false)
+      .map(q => riskMeta[q.id]);
+
+    let verdict, color, borderColor, intro;
     if(!allAnswered) {
       verdict = '...'; color = 'var(--blue-light)'; borderColor = 'var(--blue)';
-      advice = 'Keep answering to see your full risk picture.';
+      intro = 'Keep answering to see your full picture.';
     } else if(pct >= 80) {
       verdict = '✅ You\'re in good shape'; color = 'var(--teal-light)'; borderColor = 'var(--teal)';
-      advice = 'Focus on polishing your APA references and practising your oral explanation. You\'re not in danger — don\'t waste time on things you\'ve already done.';
+      intro = gaps.length ? 'Almost there. A few things still need attention:' : 'Everything is ticked. Focus on polishing your APA and practising your oral. You\'re not in danger.';
     } else if(pct >= 55) {
       verdict = '⚠️ At risk — fixable'; color = 'var(--amber-light)'; borderColor = 'var(--amber)';
-      advice = 'You\'ve made a start but there are gaps that will cost you. Look at what you answered No to — those are your priorities right now. Missing interviews and the coding matrix are the most dangerous gaps.';
+      intro = 'You\'ve made a start but these gaps will cost you marks. Work through them in the order listed — the higher ones are worth more:';
     } else if(pct >= 30) {
       verdict = '🚨 Serious risk of failing'; color = 'var(--red-light)'; borderColor = 'var(--red)';
-      advice = 'You need to move fast. The interviews are the biggest blocker — message people today. Everything else can be fixed in a few hours. The interviews cannot be faked.';
+      intro = 'You have significant gaps. Address each of these — in order:';
     } else {
       verdict = '🔴 Stop reading this. Start working.'; color = 'var(--red-light)'; borderColor = 'var(--red)';
-      advice = 'You are in genuine fail territory. Close this guide. Open WhatsApp and message people about interviews. Every hour you spend reading instead of doing is a mark you\'re losing.';
+      intro = 'You are in genuine fail territory. Here is exactly what you need to do, in order:';
     }
+
+    const gapsHtml = gaps.length ? `
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+        ${gaps.map((g, i) => `
+          <div style="display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,0.5);border-radius:10px;padding:10px 12px">
+            <div style="width:22px;height:22px;border-radius:50%;background:${borderColor};color:#fff;font-family:'Lexend',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">${i+1}</div>
+            <div>
+              <div style="font-family:'Lexend',sans-serif;font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px">Missing: ${g.label}</div>
+              <div style="font-size:12px;color:var(--text-soft);line-height:1.55">${g.action}</div>
+            </div>
+          </div>`).join('')}
+      </div>` : '';
 
     const resultEl = document.getElementById('risk-result');
     resultEl.style.display = 'block';
@@ -3500,7 +3529,8 @@ function renderSurvival(el) {
           ${allAnswered ? `<div style="font-family:'Lexend',sans-serif;font-size:13px;font-weight:700;color:var(--text-soft)">Readiness: ${pct}%</div>` : ''}
         </div>
         ${allAnswered ? `<div style="height:8px;background:rgba(0,0,0,0.1);border-radius:4px;margin-bottom:12px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${borderColor};border-radius:4px;transition:width 0.6s"></div></div>` : ''}
-        <div style="font-size:14px;color:var(--text-soft);line-height:1.7">${advice}</div>
+        <div style="font-size:14px;color:var(--text-soft);line-height:1.7">${intro}</div>
+        ${gapsHtml}
       </div>`;
   };
 }
