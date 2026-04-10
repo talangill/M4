@@ -3199,13 +3199,13 @@ function renderDashboard(el) {
 // ─── SURVIVAL GUIDE ──────────────────────────────────────────────
 function renderSurvival(el) {
 
-  // Deadline countdown
-  const deadlines = [
-    { label: 'Pitch 1 — culture findings', emoji: '🎤', date: new Date('2026-02-13') },
-    { label: 'Pitch 2 — market findings',  emoji: '📊', date: new Date('2026-02-27') },
-    { label: 'Final pitch',                emoji: '🎯', date: new Date('2026-03-13') },
-    { label: 'Report submitted',           emoji: '📄', date: new Date('2026-03-20') },
-    { label: 'Oral defence',               emoji: '😬', date: new Date('2026-03-27') },
+  // Deadline countdown — dates loaded from cookie, editable by student
+  const deadlineKeys = [
+    { id:'dl1', label: 'Pitch 1 — culture findings', emoji: '🎤' },
+    { id:'dl2', label: 'Pitch 2 — market findings',  emoji: '📊' },
+    { id:'dl3', label: 'Final pitch',                emoji: '🎯' },
+    { id:'dl4', label: 'Report submitted',           emoji: '📄' },
+    { id:'dl5', label: 'Oral defence',               emoji: '😬' },
   ];
   const now = new Date();
   function daysUntil(d){ return Math.ceil((d - now) / 86400000); }
@@ -3215,6 +3215,35 @@ function renderSurvival(el) {
     if(days <= 7) return { color:'var(--red)',    label:'😬 Get moving',  bar:80 };
     if(days <= 14)return { color:'var(--amber)',  label:'👀 Coming up',   bar:50 };
     return          { color:'var(--teal)',   label:'😌 You\'re fine',  bar:15 };
+  }
+  function loadDeadlineDates() {
+    return state['deadlines'] || {};
+  }
+  function saveDeadlineDate(id, val) {
+    const d = loadDeadlineDates();
+    d[id] = val;
+    state['deadlines'] = d;
+    saveCookie(state);
+    updateDeadlineRow(id, val);
+  }
+  function updateDeadlineRow(id, dateStr) {
+    const bar = document.getElementById('dl-bar-' + id);
+    const label = document.getElementById('dl-label-' + id);
+    if(!bar || !label) return;
+    if(!dateStr) {
+      bar.style.width = '0%';
+      bar.style.background = 'var(--border)';
+      label.textContent = 'No date set';
+      label.style.color = 'var(--text-muted)';
+      return;
+    }
+    const days = daysUntil(new Date(dateStr));
+    const p = panicLevel(days);
+    const txt = days < 0 ? 'Passed' : days === 0 ? 'TODAY' : days + ' day' + (days===1?'':'s');
+    bar.style.width = (days<0?100:Math.max(4,100-p.bar)) + '%';
+    bar.style.background = p.color;
+    label.textContent = txt + ' · ' + p.label;
+    label.style.color = p.color;
   }
 
   const jargon = [
@@ -3322,21 +3351,31 @@ function renderSurvival(el) {
         <div class="section-icon icon-warn">⏰</div>
         How long do you have?
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        ${deadlines.map(d => {
-          const days = daysUntil(d.date);
-          const p = panicLevel(days);
-          const label = days < 0 ? 'Passed' : days === 0 ? 'TODAY' : `${days} day${days===1?'':'s'}`;
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;line-height:1.6">Enter your deadlines once and this will track them automatically.</p>
+      <div style="display:flex;flex-direction:column;gap:12px" id="deadline-rows">
+        ${deadlineKeys.map(d => {
+          const saved = loadDeadlineDates()[d.id] || '';
+          const days = saved ? daysUntil(new Date(saved)) : null;
+          const p = saved ? panicLevel(days) : null;
+          const txt = !saved ? 'No date set' : days < 0 ? 'Passed' : days === 0 ? 'TODAY' : days + ' day' + (days===1?'':'s') + ' · ' + p.label;
+          const txtColor = p ? p.color : 'var(--text-muted)';
+          const barW = saved ? (days<0?100:Math.max(4,100-p.bar)) : 0;
+          const barColor = p ? p.color : 'var(--border)';
           return `
-          <div style="display:flex;align-items:center;gap:14px">
+          <div style="display:flex;align-items:center;gap:12px">
             <span style="font-size:18px;width:26px;text-align:center;flex-shrink:0">${d.emoji}</span>
             <div style="flex:1;min-width:0">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;gap:8px;flex-wrap:wrap">
                 <span style="font-family:'Lexend',sans-serif;font-size:13px;font-weight:600;color:var(--text)">${d.label}</span>
-                <span style="font-family:'Lexend',sans-serif;font-size:12px;font-weight:700;color:${p.color}">${label} · ${p.label}</span>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span id="dl-label-${d.id}" style="font-family:'Lexend',sans-serif;font-size:12px;font-weight:700;color:${txtColor}">${txt}</span>
+                  <input type="date" value="${saved}"
+                    onchange="saveDeadlineDate('${d.id}', this.value)"
+                    style="font-family:'Lexend',sans-serif;font-size:12px;padding:3px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--cream);color:var(--text);cursor:pointer;outline:none">
+                </div>
               </div>
               <div style="height:7px;background:var(--border);border-radius:4px;overflow:hidden">
-                <div style="height:100%;width:${days<0?100:Math.max(4,100-p.bar)}%;background:${p.color};border-radius:4px;transition:width 0.6s"></div>
+                <div id="dl-bar-${d.id}" style="height:100%;width:${barW}%;background:${barColor};border-radius:4px;transition:width 0.4s,background 0.4s"></div>
               </div>
             </div>
           </div>`;
