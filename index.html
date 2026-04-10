@@ -483,6 +483,17 @@ pre{
   .main{padding:20px 18px 40px}
   .class-title{font-size:22px}
 }
+
+/* ── APA TYPE BUTTONS ─────────────────────── */
+.apa-type-btn{
+  font-family:'Lexend',sans-serif;
+  font-size:12px;font-weight:600;
+  padding:7px 14px;border-radius:20px;
+  border:2px solid var(--border);
+  background:var(--warm-white);color:var(--text-soft);
+  cursor:pointer;transition:all 0.18s;
+}
+.apa-type-btn:hover{border-color:#aaa;color:var(--text)}
 </style>
 </head>
 <body>
@@ -911,149 +922,477 @@ function showSavedRQ(val) {
 // ─── W1C2 ────────────────────────────────────────────────────────
 function renderW1C2(el) {
   el.innerHTML = `
-  <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>What is a credible source?</div>
-    <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:12px">A credible source is <strong>free from bias and backed by evidence</strong>. The author is an expert in their field, and the information is published by a trustworthy organisation. — not every website or document you find qualifies.</p>
-    <div class="alert alert-info">Defence question alert: "How did you decide what information to use?" and "How did you assess the reliability of your sources?" are real questions you will be asked in the oral defence. Prepare your answer now.</div>
-    <div class="concept-grid" style="margin-top:12px">
-      <div class="concept-card">
-        <div class="concept-term">Primary research</div>
-        <div class="concept-def">Data you collect yourself, first-hand. Did not exist before you created it.</div>
-        <div class="concept-example">Your own interviews with former interns · Direct observation · Original survey</div>
+  <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap">
+    <button class="w1c2-tab-btn active" id="tab-btn-il" onclick="switchW1C2Tab('il')" style="display:flex;align-items:center;gap:10px;padding:14px 22px;border-radius:14px;border:2px solid var(--w1);background:var(--w1-light);color:var(--w1);font-family:'Lexend',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.18s;flex:1;min-width:180px">
+      <span style="font-size:22px">🔍</span>
+      <span style="text-align:left"><span style="display:block">Information literacy</span><span style="font-size:11px;font-weight:400;opacity:0.8">CROP · bias · sources</span></span>
+    </button>
+    <button class="w1c2-tab-btn" id="tab-btn-apa" onclick="switchW1C2Tab('apa')" style="display:flex;align-items:center;gap:10px;padding:14px 22px;border-radius:14px;border:2px solid var(--border);background:var(--warm-white);color:var(--text-soft);font-family:'Lexend',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.18s;flex:1;min-width:180px">
+      <span style="font-size:22px">📚</span>
+      <span style="text-align:left"><span style="display:block">APA builder</span><span style="font-size:11px;font-weight:400;opacity:0.8">cite sources · build your list</span></span>
+    </button>
+  </div>
+
+  <!-- ── INFORMATION LITERACY TAB ── -->
+  <div id="w1c2-tab-il">
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-learn">?</span>What is a credible source?</div>
+      <p style="font-size:15px;color:var(--text-soft);line-height:1.75;margin-bottom:14px">A credible source is <strong>free from bias and backed by evidence</strong>. The author is an expert in their field, and the information is published by a trustworthy organisation. Not every website or document you find qualifies.</p>
+      <div class="alert alert-info">Two real defence questions: <strong>"How did you decide what information to use?"</strong> and <strong>"How did you assess the reliability of your sources?"</strong> — prepare your answer now by using CROP on every source.</div>
+      <div class="concept-grid" style="margin-top:14px">
+        <div class="concept-card">
+          <div class="concept-term">Primary research</div>
+          <div class="concept-def">Data you collect yourself, first-hand. Did not exist before you created it.</div>
+          <div class="concept-example">Your own interviews with former interns · Direct observation · Original survey</div>
+        </div>
+        <div class="concept-card">
+          <div class="concept-term">Secondary research</div>
+          <div class="concept-def">Existing data collected by someone else. You interpret and apply it to your case.</div>
+          <div class="concept-example">Books · Journal articles · STR reports · Statista · Government statistics</div>
+        </div>
       </div>
-      <div class="concept-card">
-        <div class="concept-term">Secondary research</div>
-        <div class="concept-def">Existing data collected by someone else. You interpret and apply it to your case.</div>
-        <div class="concept-example">Books, journal articles · STR reports · Statista data · Government statistics</div>
+      <div class="alert alert-info" style="margin-top:14px">Your report requires both. Secondary gives you theory and context. Your interviews are primary. They must complement each other — not replace each other.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-learn">C R O P</span>The CROP method — evaluate every source</div>
+      <p style="font-size:15px;color:var(--text-soft);line-height:1.75;margin-bottom:14px">Ask these four questions before you use any source. Your tutors will ask you exactly these things in the defence.</p>
+      <div class="concept-grid">
+        <div class="concept-card" style="border-left:5px solid var(--w1)">
+          <div class="concept-term" style="font-size:18px;color:var(--w1)">C — Currency</div>
+          <div class="concept-def">How recent is it?</div>
+          <div class="concept-example"><span style="color:var(--teal);font-weight:700">✓ Good:</span> Within 5–7 years; market data within 2–3 years<br><span style="color:var(--red);font-weight:700">✗ Warning:</span> Pre-2015 for market data; no date visible</div>
+        </div>
+        <div class="concept-card" style="border-left:5px solid var(--w2)">
+          <div class="concept-term" style="font-size:18px;color:var(--w2)">R — Relevance</div>
+          <div class="concept-def">Does it actually answer your question?</div>
+          <div class="concept-example"><span style="color:var(--teal);font-weight:700">✓ Good:</span> Directly addresses your research topic<br><span style="color:var(--red);font-weight:700">✗ Warning:</span> Only tangentially related; you are stretching it to fit</div>
+        </div>
+        <div class="concept-card" style="border-left:5px solid var(--w3)">
+          <div class="concept-term" style="font-size:18px;color:var(--w3)">O — Authority</div>
+          <div class="concept-def">Who wrote it and for whom?</div>
+          <div class="concept-example"><span style="color:var(--teal);font-weight:700">✓ Good:</span> Academic, expert, official body, known institution<br><span style="color:var(--red);font-weight:700">✗ Warning:</span> Anonymous, no credentials, personal blog</div>
+        </div>
+        <div class="concept-card" style="border-left:5px solid var(--w4)">
+          <div class="concept-term" style="font-size:18px;color:var(--w4)">P — Purpose</div>
+          <div class="concept-def">Why was this written?</div>
+          <div class="concept-example"><span style="color:var(--teal);font-weight:700">✓ Good:</span> To inform, educate, or report findings<br><span style="color:var(--red);font-weight:700">✗ Warning:</span> To sell, persuade, or promote a brand</div>
+        </div>
+      </div>
+      <div class="alert alert-warn" style="margin-top:14px"><strong>Class question:</strong> Is the hotel's own website a reliable source? Think about P — Purpose. What is the hotel trying to do on its own website?</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-warn">!</span>Understanding bias — how your search can mislead you</div>
+      <p style="font-size:15px;color:var(--text-soft);line-height:1.75;margin-bottom:14px">Bias is not always dishonest — but it means a source is not neutral. If you only search for evidence that supports what you already think, you will find biased sources and write a biased report.</p>
+      <div id="bias-quiz">
+        <p style="font-family:'Lexend',sans-serif;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px">Spot the bias — tap the best answer</p>
       </div>
     </div>
-    <div class="alert alert-info" style="margin-top:10px">Your report requires both. Secondary research gives you theory and context. Your interviews are your primary research. They must complement each other — not replace each other.</div>
-  </div>
 
-  <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>The CROP method — evaluating any source</div>
-    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.5">These are the questions your tutors expect you to ask about every source before you use it.</p>
-    <table class="source-table">
-      <thead><tr><th>CROP criterion</th><th>Ask yourself</th><th>Good sign</th><th>Warning sign</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Currency</strong></td><td>How recent is it?</td><td class="good">Within 5–7 years; for market data, within 2–3 years</td><td class="bad">Pre-2015 for market data; no date visible</td></tr>
-        <tr><td><strong>Relevance</strong></td><td>Does it actually answer your question?</td><td class="good">Directly addresses your research topic</td><td class="bad">Only tangentially related; you are stretching it to fit</td></tr>
-        <tr><td><strong>Authority</strong></td><td>Who wrote it and for whom?</td><td class="good">Academic, expert, official body, known institution</td><td class="bad">Anonymous, no credentials, personal blog</td></tr>
-        <tr><td><strong>Purpose</strong></td><td>Why was this written?</td><td class="good">To inform, educate, or report findings</td><td class="bad">To sell, persuade, or promote a brand</td></tr>
-      </tbody>
-    </table>
-    <div class="alert alert-warn" style="margin-top:10px">Is the hotel's own website a reliable source? Why or why not? Think about the P (Purpose) — what is the hotel trying to do on its own website? You can still use it for factual details (services, location), but never for objective claims about the hotel's quality or culture.</div>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>Understanding bias — how your search can mislead you</div>
-    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.6">Bias is not always dishonest — but it means a source is not neutral. Be aware that <strong>how you search can introduce bias</strong>: if you only search for evidence that supports what you already think, you will find biased sources and write a biased report.</p>
-    <div id="bias-quiz">
-      <p style="font-size:12px;font-weight:600;color:#888;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px">Spot the bias — click the best answer</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>Where to find good sources — start here</div>
-    <div class="concept-grid">
-      <div class="concept-card">
-        <div class="concept-term">Academic databases</div>
-        <div class="concept-def">Google Scholar · Web of Science · LibGuides (HMSM library) · JSTOR · EBSCOhost · Consensus.app</div>
-        <div class="concept-example">Search by topic + keyword: "Hofstede dimensions hospitality" · "intercultural communication hotel"</div>
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-learn">?</span>Where to find good sources</div>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="concept-term">Academic databases</div>
+          <div class="concept-def">Google Scholar · Web of Science · LibGuides · JSTOR · EBSCOhost · Consensus.app</div>
+          <div class="concept-example">Search tip: "Hofstede dimensions hospitality" · "intercultural communication hotel"</div>
+        </div>
+        <div class="concept-card">
+          <div class="concept-term">Market &amp; industry data</div>
+          <div class="concept-def">STR · Statista · UNWTO · national tourism boards · Eurostat · OECD · World Bank · Hofstede Insights</div>
+          <div class="concept-example">You'll use these from week 3 — keep a note of the platforms now</div>
+        </div>
+        <div class="concept-card">
+          <div class="concept-term">AI as a starting point</div>
+          <div class="concept-def">Use AI to generate search keywords or summarise a paper you've already found. Verify everything.</div>
+          <div class="concept-example">Good prompt: "What are useful search terms for researching corporate culture in Japanese hotels?"</div>
+        </div>
+        <div class="concept-card" style="border-color:var(--red-mid)">
+          <div class="concept-term" style="color:var(--red)">Sources to avoid citing</div>
+          <div class="concept-def">Wikipedia · random blogs · hotel marketing websites · unverified AI output</div>
+          <div class="concept-example">Wikipedia is fine to orient yourself — but follow its footnotes to the original source and cite that instead.</div>
+        </div>
       </div>
-      <div class="concept-card">
-        <div class="concept-term">Quantitative / market data</div>
-        <div class="concept-def">STR (hotel performance) · Statista · UNWTO · national tourism boards · Eurostat · OECD · World Bank · Hofstede Insights</div>
-        <div class="concept-example">Available from week 3 — keep these in mind when you find them now</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-term">Starting point: AI tools</div>
-        <div class="concept-def">Use AI (ChatGPT, Claude, Consensus) to generate keywords and search phrases, or to summarise a paper you have already found. Then verify everything independently.</div>
-        <div class="concept-example">Good prompt: "What are useful search terms for researching corporate culture in Japanese hotels?"</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-term">Sources to avoid citing</div>
-        <div class="concept-def">Wikipedia (as a citation) · random blogs · hotel marketing websites · AI-generated text without independent verification</div>
-        <div class="concept-example">Wikipedia is fine to orient yourself — always follow its footnotes to the original source and cite that instead</div>
+      <div class="ai-do-dont" style="margin-top:14px">
+        <div class="ai-col ai-do">
+          <div class="ai-col-title">AI can help you…</div>
+          <ul class="ai-list">
+            <li>Generate keywords and search phrases</li>
+            <li>Summarise a paper you have already read</li>
+            <li>Turn complex jargon into plain language</li>
+            <li>Find starting points — then you verify</li>
+          </ul>
+        </div>
+        <div class="ai-col ai-dont">
+          <div class="ai-col-title">Do NOT rely on AI for…</div>
+          <ul class="ai-list">
+            <li>Generating citations — AI invents references</li>
+            <li>Facts or statistics without verification</li>
+            <li>Copy-paste into your report</li>
+            <li>Replacing your own critical thinking</li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="section">
-    <div class="section-title"><span class="section-icon icon-tool">AI</span>Using AI for information literacy — the right way</div>
-    <div class="ai-do-dont">
-      <div class="ai-col ai-do">
-        <div class="ai-col-title">AI can help you…</div>
-        <ul class="ai-list">
-          <li>Generate keywords and search phrases</li>
-          <li>Summarise a paper you have already read</li>
-          <li>Turn complex jargon into plain language</li>
-          <li>Save time on boring tasks so you can do the thinking</li>
-          <li>Find starting points — then you verify</li>
-        </ul>
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-do">✓</span>Checklist</div>
+      <div class="alert alert-warn" style="margin-bottom:14px"><strong>Class task:</strong> Find at least 3 credible sources for your report topics. Go to the APA tab above and add them to your bibliography as you find them.</div>
+      <ul class="checklist">
+        ${ck('w1c2-1','I can explain the difference between primary and secondary research')}
+        ${ck('w1c2-2','I can evaluate any source using CROP (Currency, Relevance, Authority, Purpose)')}
+        ${ck('w1c2-3','I can identify when a source is biased and explain why')}
+        ${ck('w1c2-4','I know at least 3 platforms where I can find valid academic sources')}
+        ${ck('w1c2-5','I have found 3 sources and added them to my APA bibliography (APA tab)')}
+        ${ck('w1c2-6','I understand AI can help me search but must not generate citations or facts')}
+        ${ck('w1c2-7','I understand the basics of in-text citation and the reference list')}
+      </ul>
+    </div>
+
+  </div><!-- end info literacy tab -->
+
+  <!-- ── APA TAB ── -->
+  <div id="w1c2-tab-apa" style="display:none">
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-learn">?</span>Why we cite — the two-part rule</div>
+      <div class="concept-grid">
+        <div class="concept-card" style="border-left:5px solid var(--w1)">
+          <div class="concept-term">In-text citation</div>
+          <div class="concept-def">Place <strong>(Author, Year)</strong> directly after any claim from a source — in the body of your text.</div>
+          <div class="concept-example">"Cultural awareness has been linked to internship success <strong>(Warrick, 2017)</strong>."<br><br>Or name the author: "Hofstede <strong>(1984)</strong> argues that…"</div>
+        </div>
+        <div class="concept-card" style="border-left:5px solid var(--w2)">
+          <div class="concept-term">Reference list entry</div>
+          <div class="concept-def">Every in-text citation needs a <strong>full entry</strong> at the end of your report, listed alphabetically. Heading: <em>References</em> (not Bibliography).</div>
+          <div class="concept-example">Build your reference list below as you find sources. You can copy the whole list at any time.</div>
+        </div>
       </div>
-      <div class="ai-col ai-dont">
-        <div class="ai-col-title">Do NOT use AI for…</div>
-        <ul class="ai-list">
-          <li>Generating citations — AI invents references (hallucination)</li>
-          <li>Facts, statistics, or data without verification</li>
-          <li>Copy-paste into your report</li>
-          <li>Trusting what it says without triangulating</li>
-          <li>Replacing your own critical thinking</li>
-        </ul>
+      <div class="alert alert-info" style="margin-top:14px">What needs referencing: information not common knowledge · ideas not your own · data you did not collect · all graphs and images from external sources.<br><br>What does NOT: images you made yourself · your own analysis · common knowledge ("Food is important in culture").</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-tool">+</span>Add a source to your reference list</div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px" id="apa-type-btns">
+        <button class="apa-type-btn active" onclick="setApaTypeW1('journal',this)">Journal article</button>
+        <button class="apa-type-btn" onclick="setApaTypeW1('book',this)">Book</button>
+        <button class="apa-type-btn" onclick="setApaTypeW1('website',this)">Website</button>
+        <button class="apa-type-btn" onclick="setApaTypeW1('report',this)">Report / dataset</button>
+      </div>
+
+      <div id="apa-w1-fields" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px"></div>
+
+      <div style="background:var(--teal-light);border:2px solid var(--teal-mid);border-radius:12px;padding:16px;margin-bottom:14px">
+        <p style="font-family:'Lexend',sans-serif;font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Your formatted reference</p>
+        <div id="apa-w1-preview" style="font-family:Georgia,serif;font-size:15px;line-height:1.8;color:var(--text);min-height:50px;font-style:italic">Fill in the fields above and your reference will appear here…</div>
+      </div>
+
+      <div style="background:var(--blue-light);border:2px solid var(--blue-mid);border-radius:12px;padding:16px;margin-bottom:16px">
+        <p style="font-family:'Lexend',sans-serif;font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">In-text citation</p>
+        <div id="apa-w1-intext" style="font-family:Georgia,serif;font-size:15px;color:var(--text);min-height:28px">—</div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-green" onclick="saveApaW1()">Add to my reference list</button>
+        <button class="btn" onclick="copyApaW1()">Copy this reference</button>
       </div>
     </div>
-    <div class="alert alert-info" style="margin-top:10px"><strong>Remember from today:</strong> Keep track of every source you find. Write it down as you go — author, year, title, URL. In week 5 you will learn to format them in APA7. If you do not track them now, you will spend hours hunting them down later.</div>
-  </div>
 
-  <div class="section">
-    <div class="section-title"><span class="section-icon icon-do">✓</span>Class task + checklist</div>
-  <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>Introduction to APA referencing — start tracking sources now</div>
-    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.6">Every source you use in your report must be cited in two places: <strong>in-text</strong> (directly after the claim) and in your <strong>reference list</strong> (at the end). APA7 is the required format. You will get a full recap in week 5 — but the most important thing to do right now is keep a running list of every source you find.</p>
-    <div class="concept-grid">
-      <div class="concept-card">
-        <div class="concept-term">In-text citation — the basics</div>
-        <div class="concept-def">Place (Author, Year) directly after any claim that is not your own idea or common knowledge.</div>
-        <div class="concept-example">"Awareness of cultural differences has been linked to greater internship success (Warrick, 2017)."<br><br>Author named in sentence: "Hofstede (1984) argues that…"</div>
+    <div class="section">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+        <div class="section-title" style="margin-bottom:0"><span class="section-icon icon-do">📋</span>My reference list</div>
+        <div class="btn-row">
+          <button class="btn btn-green" onclick="copyAllRefsW1()">Copy full list</button>
+          <button class="btn" onclick="resetBibliographyW1()" style="color:var(--red);border-color:var(--red-mid)">Reset list</button>
+        </div>
       </div>
-      <div class="concept-card">
-        <div class="concept-term">Reference list — the basics</div>
-        <div class="concept-def">At the end of your report, list all cited sources alphabetically by first author's surname in APA7 format. Heading: <em>References</em> (not Bibliography).</div>
-        <div class="concept-example">Track sources now using: Scribbr · Mendeley · Zotero · OneNote<br><br>If you don't track as you go, you will spend hours hunting them before submission.</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-term">What always needs referencing</div>
-        <div class="concept-def">Information not common knowledge · Ideas not your own · Data you did not collect · Images and graphs from other sources (STR data, Statista, Hofstede screenshots)</div>
-        <div class="concept-example">Needs reference: "Traditional Yezidi food in Armenia consists of lamb and milk products" — this is not common knowledge.</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-term">What does NOT need referencing</div>
-        <div class="concept-def">Images you created yourself from your own data · Your own analysis and connections · Common knowledge</div>
-        <div class="concept-example">Common knowledge (no reference needed): "Food is an important aspect of culture."</div>
-      </div>
+      <div id="apa-w1-refcount" style="font-size:13px;color:var(--text-muted);margin-bottom:12px">No references saved yet.</div>
+      <div id="apa-w1-reflist"></div>
     </div>
-    <div class="alert alert-info" style="margin-top:10px">Full APA formats (journal, book, website, figures, interviews) are covered in week 5. For now: write down author, year, title, and URL for every source you find — today.</div>
-  </div>
 
-  <div class="section">
-    <div class="section-title"><span class="section-icon icon-do">✓</span>Class task + checklist</div>
-    <div class="alert alert-warn" style="margin-bottom:12px"><strong>Task:</strong> Find at least 3 relevant and credible sources for your report topics (culture, corporate culture, sustainability, market environment). Note down each one. You will need them in every class from now on.</div>
-    <ul class="checklist">
-      ${ck('w1c2-1','I can explain the difference between primary and secondary research')}
-      ${ck('w1c2-2','I can evaluate a source using the CROP criteria (Currency, Relevance, Authority, Purpose)')}
-      ${ck('w1c2-3','I can identify when a source is biased and explain why')}
-      ${ck('w1c2-4','I know at least 3 databases or platforms where I can find valid sources')}
-      ${ck('w1c2-5','I have found and noted down at least 3 sources with author, year, title, and URL')}
-      ${ck('w1c2-6','I understand how to use AI as a search support tool without relying on it for facts')}
-      ${ck('w1c2-7','I understand the basics of in-text citation and the reference list')}
-    </ul>
-  </div>
+  </div><!-- end apa tab -->
   `;
 
   renderBiasQuiz();
+  initApaW1();
+  renderRefsW1();
 }
 
+function switchW1C2Tab(tab) {
+  const il = document.getElementById('w1c2-tab-il');
+  const apa = document.getElementById('w1c2-tab-apa');
+  const btnIl = document.getElementById('tab-btn-il');
+  const btnApa = document.getElementById('tab-btn-apa');
+  if(!il||!apa||!btnIl||!btnApa) return;
+  if(tab === 'il') {
+    il.style.display = 'block';
+    apa.style.display = 'none';
+    btnIl.style.borderColor = 'var(--w1)';
+    btnIl.style.background = 'var(--w1-light)';
+    btnIl.style.color = 'var(--w1)';
+    btnApa.style.borderColor = 'var(--border)';
+    btnApa.style.background = 'var(--warm-white)';
+    btnApa.style.color = 'var(--text-soft)';
+  } else {
+    il.style.display = 'none';
+    apa.style.display = 'block';
+    btnApa.style.borderColor = 'var(--w1)';
+    btnApa.style.background = 'var(--w1-light)';
+    btnApa.style.color = 'var(--w1)';
+    btnIl.style.borderColor = 'var(--border)';
+    btnIl.style.background = 'var(--warm-white)';
+    btnIl.style.color = 'var(--text-soft)';
+  }
+}
+
+const APA_W1_COOKIE = 'm4_apa_refs_v1';
+let apaW1Type = 'journal';
+let apaW1Refs = [];
+
+const apaW1Schema = {
+  journal:{
+    fields:[
+      {id:'authors',label:'Author(s)',hint:'e.g. Hofstede, G., & Bond, M. H.',ph:'Smith, J. A., & Jones, B.'},
+      {id:'year',label:'Year',hint:'Publication year',ph:'2023'},
+      {id:'title',label:'Article title',hint:'Sentence case — only capitalise first word',ph:'The impact of culture on hotel management'},
+      {id:'journal',label:'Journal name',hint:'Title Case — every major word capitalised',ph:'International Journal of Hospitality Management'},
+      {id:'volume',label:'Volume',hint:'The bold number',ph:'45'},
+      {id:'issue',label:'Issue',hint:'The number in brackets',ph:'3'},
+      {id:'pages',label:'Pages',hint:'e.g. 112–128',ph:'112–128'},
+      {id:'doi',label:'DOI or URL',hint:'Starts with https://doi.org/…',ph:'https://doi.org/10.xxxx/xxxxx'}
+    ],
+    ref(v){
+      const a=v.authors||'Author, A. A.';
+      const y=v.year?`(${v.year})`:'(n.d.)';
+      const t=v.title||'Article title';
+      const j=v.journal?`<em>${v.journal}</em>`:'<em>Journal Name</em>';
+      const vol=v.volume?`, <em>${v.volume}</em>`:'';
+      const iss=v.issue?`(${v.issue})`:'';
+      const pg=v.pages?`, ${v.pages}`:'';
+      const doi=v.doi?`. ${v.doi}`:'';
+      return `${a}. ${y}. ${t}. ${j}${vol}${iss}${pg}${doi}.`;
+    },
+    intext(v){
+      const auth = v.authors ? v.authors.split(',')[0].trim() : 'Author';
+      const yr = v.year || 'n.d.';
+      const mult = v.authors && v.authors.includes('&') ? ' et al.' : '';
+      return `(${auth}${mult}, ${yr})`;
+    }
+  },
+  book:{
+    fields:[
+      {id:'authors',label:'Author(s)',hint:'e.g. Hofstede, G., & Hofstede, G. J.',ph:'Hofstede, G.'},
+      {id:'year',label:'Year',hint:'',ph:'2010'},
+      {id:'title',label:'Book title',hint:'Sentence case — will be italicised',ph:'Cultures and organizations'},
+      {id:'edition',label:'Edition',hint:'Leave blank if 1st edition',ph:'3rd ed.'},
+      {id:'publisher',label:'Publisher',hint:'',ph:'McGraw-Hill'},
+      {id:'doi',label:'DOI or URL',hint:'Only if ebook',ph:'https://…'}
+    ],
+    ref(v){
+      const a=v.authors||'Author, A. A.';
+      const y=v.year?`(${v.year})`:'(n.d.)';
+      const t=v.title?`<em>${v.title}</em>`:'<em>Book title</em>';
+      const ed=v.edition?` (${v.edition})`:'';
+      const pub=v.publisher?`. ${v.publisher}`:'';
+      const doi=v.doi?`. ${v.doi}`:'';
+      return `${a}. ${y}. ${t}${ed}${pub}${doi}.`;
+    },
+    intext(v){
+      const auth = v.authors ? v.authors.split(',')[0].trim() : 'Author';
+      const yr = v.year || 'n.d.';
+      return `(${auth}, ${yr})`;
+    }
+  },
+  website:{
+    fields:[
+      {id:'authors',label:'Author or organisation',hint:'',ph:'World Tourism Organization'},
+      {id:'year',label:'Year',hint:'Year published or last updated',ph:'2024'},
+      {id:'title',label:'Page title',hint:'Sentence case — will be italicised',ph:'Tourism statistics 2024'},
+      {id:'site',label:'Website name',hint:'If different from the author',ph:'UNWTO'},
+      {id:'url',label:'URL',hint:'Full web address',ph:'https://www.unwto.org/…'}
+    ],
+    ref(v){
+      const a=v.authors||'Author, A. A.';
+      const y=v.year?`(${v.year})`:'(n.d.)';
+      const t=v.title?`<em>${v.title}</em>`:'<em>Page title</em>';
+      const site=v.site?`. ${v.site}`:'';
+      const url=v.url?`. ${v.url}`:'';
+      return `${a}. ${y}. ${t}${site}${url}.`;
+    },
+    intext(v){
+      const auth = v.authors ? v.authors.split(',')[0].trim() : 'Author';
+      const yr = v.year || 'n.d.';
+      return `(${auth}, ${yr})`;
+    }
+  },
+  report:{
+    fields:[
+      {id:'authors',label:'Author or organisation',hint:'',ph:'Statista Research Department'},
+      {id:'year',label:'Year',hint:'',ph:'2024'},
+      {id:'title',label:'Report or dataset title',hint:'Sentence case — will be italicised',ph:'Hotel occupancy rate in the Netherlands 2023'},
+      {id:'publisher',label:'Publisher or platform',hint:'',ph:'Statista'},
+      {id:'url',label:'URL',hint:'',ph:'https://www.statista.com/…'}
+    ],
+    ref(v){
+      const a=v.authors||'Author, A. A.';
+      const y=v.year?`(${v.year})`:'(n.d.)';
+      const t=v.title?`<em>${v.title}</em>`:'<em>Report title</em>';
+      const pub=v.publisher?`. ${v.publisher}`:'';
+      const url=v.url?`. ${v.url}`:'';
+      return `${a}. ${y}. ${t}${pub}${url}.`;
+    },
+    intext(v){
+      const auth = v.authors ? v.authors.split(',')[0].trim() : 'Author';
+      const yr = v.year || 'n.d.';
+      return `(${auth}, ${yr})`;
+    }
+  }
+};
+
+function loadApaRefsW1(){
+  try{
+    const m=document.cookie.split(';').map(c=>c.trim()).find(c=>c.startsWith(APA_W1_COOKIE+'='));
+    if(m) return JSON.parse(decodeURIComponent(m.split('=').slice(1).join('=')));
+  }catch(e){}
+  return [];
+}
+function saveApaRefsCookieW1(){
+  try{document.cookie=APA_W1_COOKIE+'='+encodeURIComponent(JSON.stringify(apaW1Refs))+';max-age='+60*60*24*365+';path=/;SameSite=Lax'}catch(e){}
+}
+
+function initApaW1(){
+  apaW1Refs = loadApaRefsW1();
+  setApaTypeW1('journal', document.querySelector('.apa-type-btn'));
+}
+
+function setApaTypeW1(type, btn){
+  apaW1Type = type;
+  document.querySelectorAll('.apa-type-btn').forEach(b=>{
+    b.style.background='var(--warm-white)';
+    b.style.borderColor='var(--border)';
+    b.style.color='var(--text-soft)';
+    b.style.fontWeight='600';
+  });
+  if(btn){
+    btn.style.background='var(--w1-light)';
+    btn.style.borderColor='var(--w1)';
+    btn.style.color='var(--w1)';
+  }
+  const schema = apaW1Schema[type];
+  const container = document.getElementById('apa-w1-fields');
+  if(!container) return;
+  container.innerHTML = '';
+  schema.fields.forEach(f=>{
+    const div = document.createElement('div');
+    div.className = 'w-field';
+    div.innerHTML = `<label>${f.label}</label>${f.hint?`<span class="w-hint">${f.hint}</span>`:''}<input type="text" id="apaw1_${f.id}" placeholder="${f.ph}" oninput="updateApaPreviewW1()">`;
+    container.appendChild(div);
+  });
+  updateApaPreviewW1();
+}
+
+function getApaValsW1(){
+  const v={};
+  apaW1Schema[apaW1Type].fields.forEach(f=>{
+    const el=document.getElementById('apaw1_'+f.id);
+    if(el) v[f.id]=el.value.trim();
+  });
+  return v;
+}
+
+function updateApaPreviewW1(){
+  const v = getApaValsW1();
+  const hasAny = Object.values(v).some(x=>x.length>0);
+  const prev = document.getElementById('apa-w1-preview');
+  const intext = document.getElementById('apa-w1-intext');
+  if(!prev||!intext) return;
+  if(!hasAny){
+    prev.innerHTML='Fill in the fields above and your reference will appear here…';
+    prev.style.fontStyle='italic';
+    prev.style.color='var(--text-muted)';
+    intext.textContent='—';
+    return;
+  }
+  prev.innerHTML = apaW1Schema[apaW1Type].ref(v);
+  prev.style.fontStyle='normal';
+  prev.style.color='var(--text)';
+  intext.textContent = apaW1Schema[apaW1Type].intext(v);
+}
+
+function plainApa(html){ return html.replace(/<em>/g,'').replace(/<\/em>/g,'').replace(/<strong>/g,'').replace(/<\/strong>/g,''); }
+
+function copyApaW1(){
+  const el = document.getElementById('apa-w1-preview');
+  if(!el) return;
+  navigator.clipboard.writeText(plainApa(el.innerHTML)).catch(()=>{});
+  const btn = document.querySelector('[onclick="copyApaW1()"]');
+  if(btn){const o=btn.textContent;btn.textContent='Copied!';setTimeout(()=>btn.textContent=o,1600);}
+}
+
+function saveApaW1(){
+  const v = getApaValsW1();
+  const hasAny = Object.values(v).some(x=>x.length>0);
+  if(!hasAny) return;
+  const html = apaW1Schema[apaW1Type].ref(v);
+  const plain = plainApa(html);
+  const intext = apaW1Schema[apaW1Type].intext(v);
+  apaW1Refs.push({html, plain, intext, type:apaW1Type});
+  apaW1Refs.sort((a,b)=>a.plain.localeCompare(b.plain));
+  saveApaRefsCookieW1();
+  renderRefsW1();
+  // Clear fields
+  apaW1Schema[apaW1Type].fields.forEach(f=>{
+    const el=document.getElementById('apaw1_'+f.id);
+    if(el) el.value='';
+  });
+  updateApaPreviewW1();
+  const btn = document.querySelector('[onclick="saveApaW1()"]');
+  if(btn){const o=btn.textContent;btn.textContent='Added! ✓';setTimeout(()=>btn.textContent=o,1800);}
+}
+
+function deleteRefW1(i){
+  apaW1Refs.splice(i,1);
+  saveApaRefsCookieW1();
+  renderRefsW1();
+}
+
+function renderRefsW1(){
+  const list = document.getElementById('apa-w1-reflist');
+  const count = document.getElementById('apa-w1-refcount');
+  if(!list) return;
+  if(apaW1Refs.length===0){
+    if(count) count.textContent='No references saved yet.';
+    list.innerHTML='';
+    return;
+  }
+  if(count) count.textContent=`${apaW1Refs.length} reference${apaW1Refs.length!==1?'s':''} saved — sorted alphabetically.`;
+  list.innerHTML = apaW1Refs.map((r,i)=>`
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border-soft)">
+      <div style="flex:1">
+        <div style="font-family:Georgia,serif;font-size:14px;line-height:1.75;color:var(--text);margin-bottom:4px">${r.html}</div>
+        <div style="font-size:13px;color:var(--text-muted)">In-text: <span style="font-family:Georgia,serif;color:var(--blue);font-weight:600">${r.intext}</span></div>
+      </div>
+      <button onclick="deleteRefW1(${i})" style="font-size:12px;padding:4px 10px;border-radius:6px;border:1px solid var(--red-mid);background:none;color:var(--red);cursor:pointer;flex-shrink:0;font-family:inherit;white-space:nowrap">Remove</button>
+    </div>
+  `).join('');
+}
+
+function copyAllRefsW1(){
+  const txt = apaW1Refs.map(r=>r.plain).join('\n\n');
+  navigator.clipboard.writeText(txt).catch(()=>{});
+  const btn = document.querySelector('[onclick="copyAllRefsW1()"]');
+  if(btn){const o=btn.textContent;btn.textContent='Copied! ✓';setTimeout(()=>btn.textContent=o,1800);}
+}
+
+function resetBibliographyW1(){
+  if(!confirm('This will permanently delete all your saved references. Are you sure?')) return;
+  apaW1Refs = [];
+  saveApaRefsCookieW1();
+  renderRefsW1();
+}
 const biasScenarios = [
   {
     text: 'A hotel chain publishes a report on its own website titled "Why [Country] is the Best Destination for International Interns — Our Hotel Leads the Way."',
@@ -1445,7 +1784,7 @@ function renderW3C1(el) {
       </div>
       <div class="concept-card">
         <div class="concept-term">Qualitative vs quantitative</div>
-        <div class="concept-def"><strong>Qualitative:</strong> describes qualities, meanings, experiences → your interview transcripts<br><strong>Quantitative:</strong> numerical, measurable, comparable → STR data, Statista, tourism statistics</div>
+        <div class="concept-def"><strong>Qualitative:</strong> describes qualities, meanings, experiences → your interview transcripts<br><strong>Quantitative:</strong> numerical, measurable, comparable → Statista, tourism boards, UNWTO statistics</div>
         <div class="concept-example">Your report needs both. Interviews for culture insight; numbers for market evidence.</div>
       </div>
     </div>
@@ -1576,136 +1915,350 @@ function renderW3C2(el) {
   el.innerHTML = `
   <div class="section">
     <div class="section-title"><span class="section-icon icon-learn">?</span>Where to find quantitative data for your report</div>
-    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.5">Much like with literature research, you are going to use databases — just quantitative ones.</p>
+    <p style="font-size:15px;color:var(--text-soft);line-height:1.75;margin-bottom:14px">You need at least <strong>3 different quantitative sources</strong> from different platforms. Using the same platform for all three suggests limited information literacy.</p>
     <div class="concept-grid">
-      <div class="concept-card" style="border-color:#9FE1CB">
-        <div class="concept-term" style="color:#085041">STR data — available on Moodle</div>
-        <div class="concept-def">The Excel dataset for hotel performance is on Moodle. Find your destination country. <strong>If your country is not available, use a similar country and explain the connection.</strong></div>
-        <div class="concept-example">Similar means: nearby geographically · similar political climate · similar Hofstede dimensions. Explain the link explicitly in your report.</div>
-      </div>
       <div class="concept-card">
         <div class="concept-term">Statista</div>
-        <div class="concept-def">Aggregated statistics on nearly every topic. Strong on tourism, hospitality, and consumer trends. Very usable for graphs.</div>
-        <div class="concept-example">statista.com → search "[country] hotel industry" or "[city] tourism statistics 2023"</div>
+        <div class="concept-def">Aggregated statistics on nearly every topic. Strong on tourism, hospitality, and consumer trends. Easy to download graphs.</div>
+        <div class="concept-example">statista.com → search "[country] hotel industry" or "[city] tourism statistics"</div>
       </div>
       <div class="concept-card">
         <div class="concept-term">World Bank · OECD · Eurostat</div>
-        <div class="concept-def">Economic indicators, GDP, population, employment. Useful for macro environment (PESTLE) context. Eurostat for EU destinations.</div>
+        <div class="concept-def">Economic indicators, GDP, population, employment. Useful for macro environment (PESTLE). Eurostat for EU destinations.</div>
         <div class="concept-example">data.worldbank.org · stats.oecd.org · ec.europa.eu/eurostat</div>
       </div>
       <div class="concept-card">
         <div class="concept-term">National tourism boards · UNWTO</div>
-        <div class="concept-def">Official visitor arrival data, spending, seasonality. UNWTO for global and regional trends.</div>
+        <div class="concept-def">Official visitor arrival data, spending, seasonality. UNWTO for global and regional hospitality trends.</div>
         <div class="concept-example">Search "[country] ministry of tourism annual report" · unwto.org → Statistics</div>
       </div>
       <div class="concept-card">
         <div class="concept-term">Hofstede Insights</div>
-        <div class="concept-def">Country comparison tool for Hofstede cultural dimensions. Can be used as a quantitative source for your culture chapter.</div>
+        <div class="concept-def">Country comparison tool for cultural dimension scores. Can be used as a quantitative source in your culture chapter.</div>
         <div class="concept-example">hofstede-insights.com → Country comparison</div>
       </div>
     </div>
-    <div class="alert alert-warn" style="margin-top:10px">You need at least <strong>3 different quantitative sources</strong>. Do not use the same platform for all three — this suggests limited information literacy and will weaken your grade.</div>
   </div>
 
   <div class="section">
     <div class="section-title"><span class="section-icon icon-warn">!</span>Satisfactory vs excellent — know the difference</div>
     <div class="concept-grid">
-      <div class="concept-card" style="background:#E1F5EE;border-color:#9FE1CB">
-        <div class="concept-term" style="color:#085041">Satisfactory</div>
-        <div class="concept-def" style="color:#085041">Provides relevant quantitative market information using STR data and at least one other dataset. Uses basic descriptive statistics and at least one graph. Correctly interprets the information.</div>
+      <div class="concept-card" style="background:var(--teal-light);border-color:var(--teal-mid)">
+        <div class="concept-term" style="color:var(--teal)">Satisfactory</div>
+        <div class="concept-def" style="color:#064E37">At least 3 quantitative sources from different platforms. Basic descriptive statistics used. At least 2 different graph types included and correctly interpreted.</div>
       </div>
-      <div class="concept-card" style="background:#E6F1FB;border-color:#85B7EB">
-        <div class="concept-term" style="color:#0C447C">Excellent</div>
-        <div class="concept-def" style="color:#0C447C">Provides highly relevant quantitative market information using STR data and at least two other datasets. Uses descriptive statistics and at least three different graph types. Thorough interpretation is key to understanding the market environment.</div>
+      <div class="concept-card" style="background:var(--blue-light);border-color:var(--blue-mid)">
+        <div class="concept-term" style="color:var(--blue)">Excellent</div>
+        <div class="concept-def" style="color:#0C3460">Highly relevant data from 3+ well-chosen platforms. Descriptive statistics applied meaningfully. 3+ different graph types. Thorough interpretation that genuinely informs a future intern about the market.</div>
       </div>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>What does a good graph need?</div>
-    <div class="concept-grid">
-      <div class="concept-card" style="border-color:#9FE1CB">
-        <div class="concept-term" style="color:#085041">Every graph must have</div>
-        <div class="concept-def">A clear <strong>title</strong> · Labelled <strong>axes with units</strong> · A <strong>legend</strong> if needed · An <strong>APA caption</strong> below with source · Readable <strong>colour contrast</strong> · The correct <strong>chart type</strong> for the data type</div>
-        <div class="concept-example">Label graphs as Figure 1, Figure 2… Captions go below the figure, not above.</div>
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Good graph vs bad graph — spot the difference</div>
+    <p style="font-size:15px;color:var(--text-soft);line-height:1.75;margin-bottom:16px">Both charts below use the same data. One is ready to submit. One would lose you marks. Can you see why?</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+
+      <div style="border:3px solid var(--red);border-radius:14px;overflow:hidden">
+        <div style="background:var(--red-light);padding:10px 14px;display:flex;align-items:center;gap:8px">
+          <span style="font-family:'Lexend',sans-serif;font-size:13px;font-weight:700;color:var(--red)">✗ Bad graph</span>
+        </div>
+        <div style="padding:14px;background:var(--warm-white)">
+          <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+            <!-- Bad graph: no title, no axis labels, no units, truncated y-axis starting at 60 to exaggerate, garish colours, no caption -->
+            <!-- Y axis from 60 to 80 — truncated! -->
+            <line x1="38" y1="10" x2="38" y2="145" stroke="#ccc" stroke-width="1.5"/>
+            <line x1="38" y1="145" x2="270" y2="145" stroke="#ccc" stroke-width="1.5"/>
+            <!-- Y gridlines and labels — note NO unit label, starts at 60 -->
+            <text x="30" y="148" text-anchor="end" font-size="9" fill="#aaa">60</text>
+            <text x="30" y="110" text-anchor="end" font-size="9" fill="#aaa">65</text>
+            <text x="30" y="72" text-anchor="end" font-size="9" fill="#aaa">70</text>
+            <text x="30" y="34" text-anchor="end" font-size="9" fill="#aaa">75</text>
+            <line x1="35" y1="148" x2="270" y2="148" stroke="#eee" stroke-width="0.5"/>
+            <line x1="35" y1="110" x2="270" y2="110" stroke="#eee" stroke-width="0.5"/>
+            <line x1="35" y1="72" x2="270" y2="72" stroke="#eee" stroke-width="0.5"/>
+            <line x1="35" y1="34" x2="270" y2="34" stroke="#eee" stroke-width="0.5"/>
+            <!-- Bars: wildly different colours, no labels on x axis -->
+            <rect x="50" y="56" width="28" height="89" fill="#FF0000"/>
+            <rect x="95" y="64" width="28" height="81" fill="#00FF00"/>
+            <rect x="140" y="72" width="28" height="73" fill="#FFFF00"/>
+            <rect x="185" y="80" width="28" height="65" fill="#FF00FF"/>
+            <rect x="230" y="88" width="28" height="57" fill="#00FFFF"/>
+            <!-- No x axis labels, no title, tiny note at bottom -->
+            <text x="140" y="170" text-anchor="middle" font-size="8" fill="#bbb">data</text>
+          </svg>
+          <div style="margin-top:8px">
+            <p style="font-size:12px;color:var(--red);font-family:'Lexend',sans-serif;font-weight:700;margin-bottom:4px">What's wrong?</p>
+            <ul style="font-size:12px;color:var(--text-soft);line-height:1.6;padding-left:16px">
+              <li>No title — reader has no idea what this shows</li>
+              <li>Y-axis starts at 60, not 0 — makes the drop look massive</li>
+              <li>No axis labels or units — what are we measuring?</li>
+              <li>No x-axis labels — which year is which?</li>
+              <li>Clashing colours with no meaning</li>
+              <li>No APA caption or source</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="concept-card" style="border-color:#F09595">
-        <div class="concept-term" style="color:#791F1F">Bad graphs do this</div>
-        <div class="concept-def">No title · Unlabelled axes · No data source · Y-axis not starting at zero when it should · 3D effects that distort values · Too much information crammed in · No APA caption</div>
+
+      <div style="border:3px solid var(--teal);border-radius:14px;overflow:hidden">
+        <div style="background:var(--teal-light);padding:10px 14px;display:flex;align-items:center;gap:8px">
+          <span style="font-family:'Lexend',sans-serif;font-size:13px;font-weight:700;color:var(--teal)">✓ Good graph</span>
+        </div>
+        <div style="padding:14px;background:var(--warm-white)">
+          <p style="font-family:'Lexend',sans-serif;font-size:11px;font-weight:700;text-align:center;color:var(--text);margin-bottom:4px">Figure 1</p>
+          <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+            <!-- Good graph: title, labelled axes, units, y-axis from 0, single clear colour, clean -->
+            <!-- Y axis 0–80 -->
+            <line x1="48" y1="10" x2="48" y2="135" stroke="#555" stroke-width="1.5"/>
+            <line x1="48" y1="135" x2="270" y2="135" stroke="#555" stroke-width="1.5"/>
+            <!-- Y axis label -->
+            <text x="8" y="75" text-anchor="middle" font-size="9" fill="#555" transform="rotate(-90,8,75)">Occupancy (%)</text>
+            <!-- Y gridlines and labels from 0 -->
+            <text x="40" y="138" text-anchor="end" font-size="9" fill="#888">0</text>
+            <text x="40" y="105" text-anchor="end" font-size="9" fill="#888">20</text>
+            <text x="40" y="72" text-anchor="end" font-size="9" fill="#888">40</text>
+            <text x="40" y="39" text-anchor="end" font-size="9" fill="#888">60</text>
+            <text x="40" y="17" text-anchor="end" font-size="9" fill="#888">80</text>
+            <line x1="45" y1="105" x2="270" y2="105" stroke="#eee" stroke-width="1"/>
+            <line x1="45" y1="72" x2="270" y2="72" stroke="#eee" stroke-width="1"/>
+            <line x1="45" y1="39" x2="270" y2="39" stroke="#eee" stroke-width="1"/>
+            <!-- Bars: consistent colour, proper height from 0 -->
+            <!-- 2019: 72% → height = 72/80*125 = 112.5 → y = 135-112.5=22.5 -->
+            <rect x="58" y="22" width="30" height="113" fill="#1D9E75" rx="3"/>
+            <!-- 2020: 34% → 53px high → y=82 -->
+            <rect x="100" y="82" width="30" height="53" fill="#1D9E75" rx="3"/>
+            <!-- 2021: 51% → 80px → y=55 -->
+            <rect x="142" y="55" width="30" height="80" fill="#1D9E75" rx="3"/>
+            <!-- 2022: 63% → 98px → y=37 -->
+            <rect x="184" y="37" width="30" height="98" fill="#1D9E75" rx="3"/>
+            <!-- 2023: 68% → 106px → y=29 -->
+            <rect x="226" y="29" width="30" height="106" fill="#1D9E75" rx="3"/>
+            <!-- X axis labels -->
+            <text x="73" y="148" text-anchor="middle" font-size="9" fill="#555">2019</text>
+            <text x="115" y="148" text-anchor="middle" font-size="9" fill="#555">2020</text>
+            <text x="157" y="148" text-anchor="middle" font-size="9" fill="#555">2021</text>
+            <text x="199" y="148" text-anchor="middle" font-size="9" fill="#555">2022</text>
+            <text x="241" y="148" text-anchor="middle" font-size="9" fill="#555">2023</text>
+          </svg>
+          <p style="font-size:10px;color:var(--text-muted);margin-top:6px;line-height:1.5;font-style:italic">Figure 1. <em>Hotel occupancy rate in [country], 2019–2023.</em> Adapted from National Tourism Board (2024). https://example.com</p>
+          <div style="margin-top:8px">
+            <p style="font-size:12px;color:var(--teal);font-family:'Lexend',sans-serif;font-weight:700;margin-bottom:4px">What's right?</p>
+            <ul style="font-size:12px;color:var(--text-soft);line-height:1.6;padding-left:16px">
+              <li>Numbered title above (Figure 1)</li>
+              <li>Y-axis starts at 0 — honest scale</li>
+              <li>Both axes labelled with units</li>
+              <li>X-axis shows years clearly</li>
+              <li>Single consistent colour</li>
+              <li>APA caption with source below</li>
+            </ul>
+          </div>
+        </div>
       </div>
+
     </div>
-    <div class="alert alert-info" style="margin-top:10px"><strong>APA figure caption format:</strong> <em>Figure 1. Average gross annual earnings of full-time tourist accommodation employees in Germany, 2010–2023.</em> Adapted from [Source Name], by Author (Year). URL</div>
+    <div class="alert alert-info"><strong>APA caption format:</strong> Figure N. <em>Title in sentence case, year range.</em> Adapted from Source Name, by Author (Year). URL</div>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>Choosing the right chart type</div>
-    <div class="graph-grid">
-      <div class="graph-card">
-        <div class="graph-name">Bar chart</div>
-        <div class="graph-use">Comparing values across categories or time periods.</div>
-        <div class="graph-ok">Use for: occupancy by month, RevPAR by competitor, tourist arrivals by country of origin</div>
-        <div class="graph-not">Avoid for: continuous trends over many time points (use line instead)</div>
-      </div>
-      <div class="graph-card">
-        <div class="graph-name">Line graph</div>
-        <div class="graph-use">Showing trends over time. Best when you have many time points.</div>
-        <div class="graph-ok">Use for: RevPAR trend 2018–2024, tourist arrivals over years, seasonal occupancy pattern</div>
-        <div class="graph-not">Avoid for: comparing separate categories with no time element</div>
-      </div>
-      <div class="graph-card">
-        <div class="graph-name">Pie chart</div>
-        <div class="graph-use">Showing parts of a whole. Only works when parts add up to 100%.</div>
-        <div class="graph-ok">Use for: market share by hotel type, guest nationality breakdown, revenue split by segment</div>
-        <div class="graph-not">Avoid for: more than 5–6 slices, or when differences between slices are very small</div>
-      </div>
-      <div class="graph-card">
-        <div class="graph-name">Stacked bar chart</div>
-        <div class="graph-use">Comparing composition across categories or time.</div>
-        <div class="graph-ok">Use for: revenue by segment across months, guest type by hotel category</div>
-        <div class="graph-not">Avoid if: you need to compare middle segments precisely</div>
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Which chart type should I use?</div>
+    <p style="font-size:15px;color:var(--text-soft);line-height:1.75;margin-bottom:16px">The chart type must match what you are trying to show. Click each type to see a mini example.</p>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px" id="chart-type-tabs">
+      <button class="apa-type-btn active" onclick="setChartTab('bar',this)">Bar chart</button>
+      <button class="apa-type-btn" onclick="setChartTab('line',this)">Line graph</button>
+      <button class="apa-type-btn" onclick="setChartTab('pie',this)">Pie chart</button>
+      <button class="apa-type-btn" onclick="setChartTab('stacked',this)">Stacked bar</button>
+    </div>
+
+    <div id="chart-tab-bar" class="chart-tab-panel">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
+        <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;border:2px solid var(--border-soft);border-radius:12px;background:var(--warm-white);padding:8px">
+          <text x="110" y="14" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">Tourist arrivals by country, 2023</text>
+          <line x1="30" y1="20" x2="30" y2="120" stroke="#555" stroke-width="1.5"/>
+          <line x1="30" y1="120" x2="210" y2="120" stroke="#555" stroke-width="1.5"/>
+          <text x="8" y="75" text-anchor="middle" font-size="7" fill="#888" transform="rotate(-90,8,75)">Arrivals (M)</text>
+          <text x="28" y="123" text-anchor="end" font-size="7" fill="#888">0</text>
+          <text x="28" y="78" text-anchor="end" font-size="7" fill="#888">5</text>
+          <text x="28" y="33" text-anchor="end" font-size="7" fill="#888">10</text>
+          <line x1="28" y1="78" x2="210" y2="78" stroke="#eee" stroke-width="1"/>
+          <line x1="28" y1="35" x2="210" y2="35" stroke="#eee" stroke-width="1"/>
+          <rect x="38" y="40" width="28" height="80" fill="#1A6BB5" rx="2"/>
+          <rect x="78" y="60" width="28" height="60" fill="#1A6BB5" rx="2"/>
+          <rect x="118" y="50" width="28" height="70" fill="#1A6BB5" rx="2"/>
+          <rect x="158" y="70" width="28" height="50" fill="#1A6BB5" rx="2"/>
+          <text x="52" y="132" text-anchor="middle" font-size="7" fill="#555">France</text>
+          <text x="92" y="132" text-anchor="middle" font-size="7" fill="#555">Spain</text>
+          <text x="132" y="132" text-anchor="middle" font-size="7" fill="#555">Italy</text>
+          <text x="172" y="132" text-anchor="middle" font-size="7" fill="#555">Greece</text>
+          <text x="110" y="144" text-anchor="middle" font-size="7" fill="#aaa" font-style="italic">Figure 2. Tourist arrivals... Source (Year).</text>
+        </svg>
+        <div>
+          <p style="font-family:'Lexend',sans-serif;font-size:14px;font-weight:700;color:var(--w1);margin-bottom:8px">Bar chart</div>
+          <p style="font-size:14px;color:var(--text-soft);line-height:1.65;margin-bottom:10px">Best for <strong>comparing values across categories</strong> — countries, hotels, market segments.</p>
+          <div class="graph-ok" style="margin-bottom:6px">Use for: tourist arrivals by country · hotel ratings by competitor · revenue by room type</div>
+          <div class="graph-not">Avoid for: trends over many time points — use a line graph instead</div>
+        </div>
       </div>
     </div>
+
+    <div id="chart-tab-line" class="chart-tab-panel" style="display:none">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
+        <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;border:2px solid var(--border-soft);border-radius:12px;background:var(--warm-white);padding:8px">
+          <text x="110" y="14" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">Hotel occupancy rate 2018–2023</text>
+          <line x1="30" y1="20" x2="30" y2="120" stroke="#555" stroke-width="1.5"/>
+          <line x1="30" y1="120" x2="210" y2="120" stroke="#555" stroke-width="1.5"/>
+          <text x="8" y="75" text-anchor="middle" font-size="7" fill="#888" transform="rotate(-90,8,75)">Occupancy (%)</text>
+          <text x="28" y="123" text-anchor="end" font-size="7" fill="#888">0</text>
+          <text x="28" y="88" text-anchor="end" font-size="7" fill="#888">40</text>
+          <text x="28" y="53" text-anchor="end" font-size="7" fill="#888">70</text>
+          <line x1="28" y1="88" x2="210" y2="88" stroke="#eee" stroke-width="1"/>
+          <line x1="28" y1="53" x2="210" y2="53" stroke="#eee" stroke-width="1"/>
+          <!-- Points: 2018:70, 2019:72, 2020:34, 2021:51, 2022:63, 2023:68 → scale: 100%=100px, y=120-(val/100*100) -->
+          <polyline points="43,50 76,48 109,86 142,69 175,57 208,62" fill="none" stroke="#1D9E75" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="43" cy="50" r="3.5" fill="#1D9E75"/>
+          <circle cx="76" cy="48" r="3.5" fill="#1D9E75"/>
+          <circle cx="109" cy="86" r="3.5" fill="#C0392B"/>
+          <circle cx="142" cy="69" r="3.5" fill="#1D9E75"/>
+          <circle cx="175" cy="57" r="3.5" fill="#1D9E75"/>
+          <circle cx="208" cy="62" r="3.5" fill="#1D9E75"/>
+          <text x="43" y="132" text-anchor="middle" font-size="7" fill="#555">2018</text>
+          <text x="76" y="132" text-anchor="middle" font-size="7" fill="#555">2019</text>
+          <text x="109" y="132" text-anchor="middle" font-size="7" fill="#555">2020</text>
+          <text x="142" y="132" text-anchor="middle" font-size="7" fill="#555">2021</text>
+          <text x="175" y="132" text-anchor="middle" font-size="7" fill="#555">2022</text>
+          <text x="208" y="132" text-anchor="middle" font-size="7" fill="#555">2023</text>
+          <text x="110" y="144" text-anchor="middle" font-size="7" fill="#aaa" font-style="italic">Figure 3. Hotel occupancy... Source (Year).</text>
+        </svg>
+        <div>
+          <p style="font-family:'Lexend',sans-serif;font-size:14px;font-weight:700;color:var(--w2);margin-bottom:8px">Line graph</p>
+          <p style="font-size:14px;color:var(--text-soft);line-height:1.65;margin-bottom:10px">Best for <strong>showing trends over time</strong> — especially with many time points where a pattern is the story.</p>
+          <div class="graph-ok" style="margin-bottom:6px">Use for: occupancy trends over years · tourist arrivals over time · seasonal patterns</div>
+          <div class="graph-not">Avoid for: comparing categories with no time relationship</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="chart-tab-pie" class="chart-tab-panel" style="display:none">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
+        <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;border:2px solid var(--border-soft);border-radius:12px;background:var(--warm-white);padding:8px">
+          <text x="110" y="14" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">Guest nationality breakdown, 2023</text>
+          <!-- Pie slices: centre 80,82, radius 52 -->
+          <!-- Germany 35%: 0° to 126° -->
+          <path d="M80,82 L80,30 A52,52 0 0,1 124,108 Z" fill="#1A6BB5"/>
+          <!-- Netherlands 25%: 126° to 216° -->
+          <path d="M80,82 L124,108 A52,52 0 0,1 38,108 Z" fill="#1D9E75"/>
+          <!-- UK 20%: 216° to 288° -->
+          <path d="M80,82 L38,108 A52,52 0 0,1 62,34 Z" fill="#D4780A"/>
+          <!-- France 12%: 288° to 331.2° -->
+          <path d="M80,82 L62,34 A52,52 0 0,1 100,31 Z" fill="#5B3FA6"/>
+          <!-- Other 8%: 331.2° to 360° -->
+          <path d="M80,82 L100,31 A52,52 0 0,1 80,30 Z" fill="#9C9590"/>
+          <!-- Legend -->
+          <rect x="145" y="30" width="9" height="9" fill="#1A6BB5" rx="2"/><text x="158" y="39" font-size="8" fill="#555">Germany 35%</text>
+          <rect x="145" y="46" width="9" height="9" fill="#1D9E75" rx="2"/><text x="158" y="55" font-size="8" fill="#555">Netherlands 25%</text>
+          <rect x="145" y="62" width="9" height="9" fill="#D4780A" rx="2"/><text x="158" y="71" font-size="8" fill="#555">UK 20%</text>
+          <rect x="145" y="78" width="9" height="9" fill="#5B3FA6" rx="2"/><text x="158" y="87" font-size="8" fill="#555">France 12%</text>
+          <rect x="145" y="94" width="9" height="9" fill="#9C9590" rx="2"/><text x="158" y="103" font-size="8" fill="#555">Other 8%</text>
+          <text x="110" y="144" text-anchor="middle" font-size="7" fill="#aaa" font-style="italic">Figure 4. Guest nationality... Source (Year).</text>
+        </svg>
+        <div>
+          <p style="font-family:'Lexend',sans-serif;font-size:14px;font-weight:700;color:var(--w3);margin-bottom:8px">Pie chart</p>
+          <p style="font-size:14px;color:var(--text-soft);line-height:1.65;margin-bottom:10px">Best for <strong>showing parts of a whole</strong> — when slices add up to 100% and you want to show composition.</p>
+          <div class="graph-ok" style="margin-bottom:6px">Use for: guest nationality breakdown · market share · revenue split by segment</div>
+          <div class="graph-not">Avoid for: more than 5–6 slices, or when differences are very small and hard to see</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="chart-tab-stacked" class="chart-tab-panel" style="display:none">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
+        <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;border:2px solid var(--border-soft);border-radius:12px;background:var(--warm-white);padding:8px">
+          <text x="110" y="14" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">Revenue by segment 2021–2023</text>
+          <line x1="30" y1="20" x2="30" y2="120" stroke="#555" stroke-width="1.5"/>
+          <line x1="30" y1="120" x2="210" y2="120" stroke="#555" stroke-width="1.5"/>
+          <text x="8" y="75" text-anchor="middle" font-size="7" fill="#888" transform="rotate(-90,8,75)">Revenue (€M)</text>
+          <text x="28" y="123" text-anchor="end" font-size="7" fill="#888">0</text>
+          <!-- 2021 -->
+          <rect x="45" y="60" width="38" height="60" fill="#1A6BB5" rx="2"/>
+          <rect x="45" y="35" width="38" height="25" fill="#1D9E75" rx="2"/>
+          <rect x="45" y="20" width="38" height="15" fill="#D4780A" rx="2"/>
+          <!-- 2022 -->
+          <rect x="95" y="50" width="38" height="70" fill="#1A6BB5" rx="2"/>
+          <rect x="95" y="25" width="38" height="25" fill="#1D9E75" rx="2"/>
+          <rect x="95" y="20" width="38" height="5" fill="#D4780A" rx="2"/>
+          <!-- 2023 -->
+          <rect x="145" y="45" width="38" height="75" fill="#1A6BB5" rx="2"/>
+          <rect x="145" y="22" width="38" height="23" fill="#1D9E75" rx="2"/>
+          <rect x="145" y="20" width="38" height="2" fill="#D4780A" rx="2"/>
+          <!-- X labels -->
+          <text x="64" y="132" text-anchor="middle" font-size="8" fill="#555">2021</text>
+          <text x="114" y="132" text-anchor="middle" font-size="8" fill="#555">2022</text>
+          <text x="164" y="132" text-anchor="middle" font-size="8" fill="#555">2023</text>
+          <!-- Legend -->
+          <rect x="170" y="50" width="7" height="7" fill="#1A6BB5" rx="1"/><text x="180" y="57" font-size="7" fill="#555">Rooms</text>
+          <rect x="170" y="62" width="7" height="7" fill="#1D9E75" rx="1"/><text x="180" y="69" font-size="7" fill="#555">F&amp;B</text>
+          <rect x="170" y="74" width="7" height="7" fill="#D4780A" rx="1"/><text x="180" y="81" font-size="7" fill="#555">Events</text>
+          <text x="110" y="144" text-anchor="middle" font-size="7" fill="#aaa" font-style="italic">Figure 5. Revenue by segment... Source (Year).</text>
+        </svg>
+        <div>
+          <p style="font-family:'Lexend',sans-serif;font-size:14px;font-weight:700;color:var(--w4);margin-bottom:8px">Stacked bar chart</p>
+          <p style="font-size:14px;color:var(--text-soft);line-height:1.65;margin-bottom:10px">Best for <strong>showing composition over time or across categories</strong> — how the mix of things changes.</p>
+          <div class="graph-ok" style="margin-bottom:6px">Use for: revenue by segment across years · guest type breakdown by period</div>
+          <div class="graph-not">Avoid for: comparing the middle segments precisely — the floating baseline makes it hard</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="section">
     <div class="section-title"><span class="section-icon icon-warn">!</span>Description vs interpretation — where most students lose marks</div>
+    <p style="font-size:15px;color:var(--text-soft);line-height:1.75;margin-bottom:14px">Your reader can see the graph. They need you to explain what it means — not repeat what it shows.</p>
     <div class="concept-grid">
-      <div class="concept-card" style="border-color:#F09595">
-        <div class="concept-term" style="color:#791F1F">Description only — not enough</div>
-        <div class="concept-def">"Figure 1 shows that hotel occupancy in [country] was 72% in 2019, dropped to 34% in 2020, and recovered to 68% in 2023."</div>
-        <div class="concept-example">This just reads the numbers. Your reader can already see the graph. You add nothing.</div>
+      <div class="concept-card" style="border-left:5px solid var(--red)">
+        <div class="concept-term" style="color:var(--red)">✗ Description only — not enough</div>
+        <div class="concept-def">"Figure 1 shows that hotel occupancy was 72% in 2019, dropped to 34% in 2020, and recovered to 68% in 2023."</div>
+        <div class="concept-example">This just reads the numbers out loud. You add nothing your reader cannot already see.</div>
       </div>
-      <div class="concept-card" style="border-color:#9FE1CB">
-        <div class="concept-term" style="color:#085041">Interpretation — what you need</div>
-        <div class="concept-def">"Figure 1 illustrates the severe impact of COVID-19 on hotel occupancy in [country], with a 38-point decline in 2020. The partial recovery to 68% by 2023 suggests demand has largely returned, but the market has not yet reached pre-pandemic levels. For a future intern, this indicates a market still in recovery — which may affect staffing levels and investment capacity at the hotel."</div>
-        <div class="concept-example">This explains causes, significance, and implications for the reader's specific situation.</div>
+      <div class="concept-card" style="border-left:5px solid var(--teal)">
+        <div class="concept-term" style="color:var(--teal)">✓ Interpretation — what you need</div>
+        <div class="concept-def">"Figure 1 illustrates the severe impact of COVID-19, with a 38-point decline in 2020. The partial recovery to 68% by 2023 suggests demand has largely returned but the market has not reached pre-pandemic levels. For a future intern, this indicates a market still in recovery — which may affect staffing levels and the hotel's investment capacity."</div>
+        <div class="concept-example">This explains cause, significance, and what it means for your specific reader.</div>
       </div>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="section-icon icon-learn">?</span>Need extra help with Excel?</div>
-    <p style="font-size:13px;color:#444;margin-bottom:10px;line-height:1.5">The STR dataset is an Excel file. If you are not confident with Excel, use these resources:</p>
-    <ul class="checklist" style="padding:0">
-      <li class="check-item" style="cursor:default"><div style="width:6px;height:6px;border-radius:50%;background:#1D9E75;margin-top:6px;flex-shrink:0"></div><span>Microsoft tutorials: Filtering data · Sorting data · Formulas and functions · Create charts and visuals · Working with pivot tables</span></li>
-      <li class="check-item" style="cursor:default"><div style="width:6px;height:6px;border-radius:50%;background:#1D9E75;margin-top:6px;flex-shrink:0"></div><span>Read the Excel guide on Moodle</span></li>
-      <li class="check-item" style="cursor:default"><div style="width:6px;height:6px;border-radius:50%;background:#1D9E75;margin-top:6px;flex-shrink:0"></div><span>Ask your GEI tutor for help</span></li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="section-icon icon-do">✓</span>Class task + checklist</div>
-    <div class="alert alert-warn" style="margin-bottom:12px"><strong>To do after this class:</strong> Find the STR dataset on Moodle and identify your destination. Use databases to find at least 2 additional datasets. Try to identify the variable types. Use descriptive statistics when looking at visualisations: is there variance? Is a mode visible? Where is the average?</div>
+    <div class="section-title"><span class="section-icon icon-do">✓</span>Class checklist</div>
+    <div class="alert alert-warn" style="margin-bottom:14px"><strong>To do:</strong> Find at least 3 quantitative sources from different platforms. Identify what type of data each source gives you. Plan which 2 graphs you will include and what they will show.</div>
     <ul class="checklist">
-      ${ck('w3c2-1','I have downloaded the STR dataset from Moodle and found my destination (or a comparable country)')}
-      ${ck('w3c2-2','I have found at least 2 additional quantitative sources from different platforms')}
-      ${ck('w3c2-3','I can identify the 5 elements every good graph must have')}
-      ${ck('w3c2-4','I can choose the right chart type for a given dataset')}
-      ${ck('w3c2-5','I understand the difference between describing and interpreting a graph')}
-      ${ck('w3c2-6','I have a plan for which 2+ graphs I will include and what data they will show')}
+      ${ck('w3c2-1','I have found at least 3 quantitative sources from different platforms (not all from Statista)')}
+      ${ck('w3c2-2','I can list the 6 elements every good graph must have')}
+      ${ck('w3c2-3','I can choose the right chart type for a given dataset')}
+      ${ck('w3c2-4','I understand why y-axes should start at 0 (and when it is acceptable not to)')}
+      ${ck('w3c2-5','I can write an interpretation of a graph — not just a description')}
+      ${ck('w3c2-6','I have a plan for which 2+ graphs I will include and what each one shows')}
     </ul>
   </div>
   `;
+}
+
+function setChartTab(id, btn) {
+  document.querySelectorAll('.chart-tab-panel').forEach(p => p.style.display = 'none');
+  document.querySelectorAll('#chart-type-tabs .apa-type-btn').forEach(b => {
+    b.style.background = 'var(--warm-white)';
+    b.style.borderColor = 'var(--border)';
+    b.style.color = 'var(--text-soft)';
+  });
+  const panel = document.getElementById('chart-tab-'+id);
+  if(panel) panel.style.display = 'block';
+  if(btn) {
+    btn.style.background = 'var(--w3-light)';
+    btn.style.borderColor = 'var(--w3)';
+    btn.style.color = 'var(--w3)';
+  }
 }
 // ─── W4C1 ────────────────────────────────────────────────────────
 function renderW4C1(el) {
@@ -1903,7 +2456,7 @@ function renderW4C2(el) {
 
     ${promptCard('Culture chapter — nuance and theory', 'You are assessing a first-year hospitality student\'s report chapter on national and corporate culture. The assessment criterion is: "The student displays balanced knowledge of and insights into the national and/or regional culture, based on both theoretical insights and interview results." A \'YES\' on this criterion requires: cultural models are correctly applied, insights are nuanced (not one-sided), both theory AND interview evidence are present, and the information is relevant to a future intern.\n\nHere is the student\'s culture chapter:\n[PASTE YOUR TEXT HERE]\n\nPlease:\n1. Identify which assessment criteria are clearly met\n2. Identify which criteria are weak or missing\n3. Give 3 specific, actionable suggestions to improve this section\n4. Flag any statements that are oversimplified or one-sided')}
 
-    ${promptCard('Market analysis — quantitative data and graphs', 'You are assessing a first-year hospitality student\'s report section on market analysis. The criterion is: "The student provides and integrates relevant quantitative market information on the basis of at least three sources (e.g. STR data, Statista, national statistics). Descriptive statistics and at least two different visualisations are included and adequately put into context."\n\nHere is the student\'s market analysis section:\n[PASTE YOUR TEXT HERE]\n\nPlease:\n1. Count how many distinct quantitative sources are cited\n2. Check whether each graph is described AND interpreted (not just described)\n3. Identify any claims that need a quantitative source but do not have one\n4. Rate the section: does it meet the criterion? What is missing?')}
+    ${promptCard('Market analysis — quantitative data and graphs', 'You are assessing a first-year hospitality student\'s report section on market analysis. The criterion is: "The student provides and integrates relevant quantitative market information on the basis of at least three sources (e.g. Statista, UNWTO, national tourism boards). Descriptive statistics and at least two different visualisations are included and adequately put into context."\n\nHere is the student\'s market analysis section:\n[PASTE YOUR TEXT HERE]\n\nPlease:\n1. Count how many distinct quantitative sources are cited\n2. Check whether each graph is described AND interpreted (not just described)\n3. Identify any claims that need a quantitative source but do not have one\n4. Rate the section: does it meet the criterion? What is missing?')}
 
     ${promptCard('Justification and nuance — lenient criteria', 'You are assessing a first-year hospitality student\'s report. Two assessment criteria are: (1) "It is explained and justified why certain topics are analysed, and the gathered information is explained in relation to the assignment." (2) "Insights are reported in a largely nuanced way."\n\nHere is the student\'s report body:\n[PASTE YOUR TEXT HERE]\n\nPlease:\n1. Identify 3 places where the student makes a claim without justifying why it is relevant to the assignment\n2. Identify any generalisations or one-sided statements that need to be made more nuanced\n3. Suggest how each identified passage could be improved\n4. Give an overall yes/no judgement on each criterion with a reason')}
 
