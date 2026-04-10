@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M4 Go Explore — Class Companion</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a1a;background:#f5f4f0;min-height:100vh}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{background:#fff;border-right:1px solid #e5e4df;padding:0;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sidebar-header{padding:20px 16px 12px;border-bottom:1px solid #e5e4df}
+.sidebar-title{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:2px}
+.sidebar-sub{font-size:11px;color:#888}
+.week-group{border-bottom:1px solid #f0efe9}
+.week-label{padding:10px 16px 4px;font-size:10px;font-weight:600;color:#aaa;text-transform:uppercase;letter-spacing:0.6px}
+.class-btn{display:flex;align-items:center;gap:10px;width:100%;padding:8px 16px;border:none;background:none;text-align:left;cursor:pointer;font-family:inherit;transition:background 0.12s}
+.class-btn:hover{background:#f5f4f0}
+.class-btn.active{background:#1a1a1a}
+.class-btn.active .cb-title{color:#fff}
+.class-btn.active .cb-sub{color:#aaa}
+.class-btn.active .cb-dot{background:#4ade80}
+.cb-dot{width:8px;height:8px;border-radius:50%;background:#e5e4df;flex-shrink:0;transition:background 0.2s}
+.cb-dot.done{background:#1D9E75}
+.cb-info{flex:1;min-width:0}
+.cb-title{font-size:12px;font-weight:500;color:#1a1a1a;line-height:1.3}
+.cb-sub{font-size:10px;color:#999;margin-top:1px}
+.main{padding:32px 36px;max-width:860px}
+.class-header{margin-bottom:24px}
+.class-week-tag{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:#888;margin-bottom:6px}
+.class-title{font-size:24px;font-weight:600;color:#1a1a1a;line-height:1.3;margin-bottom:6px}
+.class-desc{font-size:14px;color:#666;line-height:1.6}
+.section{background:#fff;border:1px solid #e5e4df;border-radius:12px;padding:20px;margin-bottom:16px}
+.section-title{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section-icon{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.icon-learn{background:#E6F1FB;color:#0C447C}
+.icon-do{background:#E1F5EE;color:#085041}
+.icon-warn{background:#FAEEDA;color:#633806}
+.icon-tool{background:#EEEDFE;color:#3C3489}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:640px){.concept-grid{grid-template-columns:1fr}}
+.concept-card{background:#f8f7f4;border-radius:8px;padding:12px;border:1px solid #eee}
+.concept-term{font-size:12px;font-weight:600;color:#1a1a1a;margin-bottom:4px}
+.concept-def{font-size:12px;color:#555;line-height:1.5}
+.concept-example{font-size:11px;color:#888;margin-top:4px;font-style:italic;padding-left:8px;border-left:2px solid #e5e4df}
+.pill-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.pill{font-size:12px;padding:4px 10px;border-radius:20px;border:1px solid #e5e4df;background:#f8f7f4;color:#555;cursor:pointer;font-family:inherit;transition:all 0.15s}
+.pill:hover{border-color:#999;color:#1a1a1a}
+.pill.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.interactive-box{background:#f8f7f4;border-radius:10px;padding:16px;border:1px solid #e5e4df}
+.ib-label{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.ib-question{font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:8px;line-height:1.4}
+.ib-hint{font-size:12px;color:#888;margin-bottom:10px;line-height:1.5}
+textarea{width:100%;font-family:inherit;font-size:13px;color:#1a1a1a;background:#fff;border:1px solid #e5e4df;border-radius:6px;padding:10px;resize:vertical;min-height:70px;outline:none;transition:border-color 0.15s;line-height:1.5}
+textarea:focus{border-color:#999}
+input[type=text]{width:100%;font-family:inherit;font-size:13px;color:#1a1a1a;background:#fff;border:1px solid #e5e4df;border-radius:6px;padding:9px 10px;outline:none;transition:border-color 0.15s}
+input[type=text]:focus{border-color:#999}
+.w6-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+@media(max-width:560px){.w6-grid{grid-template-columns:1fr}}
+.w-field{display:flex;flex-direction:column;gap:4px}
+.w-field label{font-size:12px;font-weight:600;color:#1a1a1a}
+.w-field .w-hint{font-size:11px;color:#888;margin-bottom:2px}
+.rq-output{background:#fff;border:1px solid #e5e4df;border-radius:8px;padding:14px;min-height:52px;font-size:14px;line-height:1.7;color:#1a1a1a;margin-bottom:10px;font-style:italic}
+.rq-placeholder{color:#bbb;font-style:normal;font-size:13px}
+.btn{font-size:12px;padding:7px 14px;border-radius:6px;border:1px solid #ccc;cursor:pointer;background:#fff;color:#444;font-family:inherit;transition:all 0.15s}
+.btn:hover{background:#f0efe9;border-color:#999}
+.btn-dark{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.btn-dark:hover{background:#333}
+.btn-green{background:#1D9E75;color:#fff;border-color:#1D9E75}
+.btn-green:hover{background:#0F6E56}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.save-note{font-size:11px;color:#aaa}
+.checklist{list-style:none}
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0efe9;font-size:13px;line-height:1.5}
+.check-item:last-child{border-bottom:none}
+.ck{width:17px;height:17px;border:1.5px solid #ccc;border-radius:3px;cursor:pointer;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:white;background:#fff;transition:all 0.15s}
+.ck.done{background:#1D9E75;border-color:#1D9E75}
+.ck:hover:not(.done){border-color:#1D9E75}
+.ck-text.done{text-decoration:line-through;color:#aaa}
+.alert{border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.6;margin-bottom:12px}
+.alert-warn{background:#FAEEDA;border:1px solid #FAC775;color:#633806}
+.alert-info{background:#E1F5EE;border:1px solid #9FE1CB;color:#085041}
+.alert-red{background:#FCEBEB;border:1px solid #F09595;color:#791F1F}
+.fallacy-card{border:1px solid #e5e4df;border-radius:8px;padding:12px;margin-bottom:8px;cursor:pointer;transition:border-color 0.15s}
+.fallacy-card:hover{border-color:#999}
+.fallacy-card.open{border-color:#1a1a1a}
+.fallacy-name{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:2px;display:flex;justify-content:space-between}
+.fallacy-short{font-size:12px;color:#666}
+.fallacy-body{display:none;margin-top:10px;padding-top:10px;border-top:1px solid #f0efe9}
+.fallacy-card.open .fallacy-body{display:block}
+.fallacy-def{font-size:13px;color:#444;line-height:1.6;margin-bottom:6px}
+.fallacy-ex{font-size:12px;color:#888;font-style:italic;padding:8px;background:#f8f7f4;border-radius:6px;line-height:1.5}
+.source-table{width:100%;border-collapse:collapse;font-size:12px}
+.source-table th{text-align:left;padding:6px 10px;background:#f8f7f4;font-weight:600;color:#555;border-bottom:1px solid #e5e4df}
+.source-table td{padding:6px 10px;border-bottom:1px solid #f0efe9;color:#444;vertical-align:top;line-height:1.5}
+.source-table tr:last-child td{border-bottom:none}
+.good{color:#085041}.bad{color:#791F1F}.mid{color:#633806}
+.data-type-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.dt-tab{padding:6px 12px;font-size:12px;cursor:pointer;border:1px solid #e5e4df;border-radius:6px;background:#f8f7f4;color:#666;font-family:inherit;transition:all 0.15s}
+.dt-tab.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.dt-panel{display:none}.dt-panel.active{display:block}
+.graph-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:580px){.graph-grid{grid-template-columns:1fr}}
+.graph-card{border:1px solid #e5e4df;border-radius:8px;padding:12px;background:#f8f7f4}
+.graph-name{font-size:12px;font-weight:600;margin-bottom:4px}
+.graph-use{font-size:11px;color:#666;margin-bottom:4px;line-height:1.4}
+.graph-ok{font-size:11px;color:#085041}
+.graph-not{font-size:11px;color:#791F1F}
+.interview-builder{display:flex;flex-direction:column;gap:10px}
+.iq-row{display:flex;gap:8px;align-items:center}
+.iq-num{font-size:12px;font-weight:600;color:#888;width:18px;flex-shrink:0}
+.iq-input{flex:1}
+.iq-del{font-size:18px;color:#ccc;cursor:pointer;border:none;background:none;line-height:1;padding:0 4px;transition:color 0.15s}
+.iq-del:hover{color:#A32D2D}
+.bias-scenario{background:#f8f7f4;border-radius:8px;padding:14px;margin-bottom:10px;border:1px solid #e5e4df}
+.bias-text{font-size:13px;line-height:1.6;margin-bottom:10px}
+.bias-options{display:flex;flex-direction:column;gap:6px}
+.bias-opt{padding:8px 12px;border-radius:6px;border:1px solid #e5e4df;cursor:pointer;font-size:12px;background:#fff;font-family:inherit;text-align:left;transition:all 0.15s;color:#1a1a1a}
+.bias-opt:hover{border-color:#999}
+.bias-opt.correct{background:#E1F5EE;border-color:#9FE1CB;color:#085041}
+.bias-opt.wrong{background:#FCEBEB;border-color:#F09595;color:#791F1F}
+.bias-feedback{display:none;font-size:12px;margin-top:8px;padding:8px;border-radius:6px;line-height:1.5}
+.bias-feedback.show{display:block}
+.bf-correct{background:#E1F5EE;color:#085041}
+.bf-wrong{background:#FCEBEB;color:#791F1F}
+.nav-row{display:flex;justify-content:space-between;margin-top:24px;padding-top:20px;border-top:1px solid #e5e4df}
+.progress-mini{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+.pm-bar{flex:1;height:4px;background:#e5e4df;border-radius:2px;overflow:hidden}
+.pm-fill{height:100%;background:#1D9E75;border-radius:2px;transition:width 0.4s}
+.pm-text{font-size:12px;color:#888;white-space:nowrap}
+.saved-rq{background:#E1F5EE;border:1px solid #9FE1CB;border-radius:8px;padding:12px;font-size:13px;color:#085041;margin-top:10px;display:none;line-height:1.6}
+.ai-do-dont{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:520px){.ai-do-dont{grid-template-columns:1fr}}
+.ai-col{border-radius:8px;padding:12px}
+.ai-do{background:#E1F5EE;border:1px solid #9FE1CB}
+.ai-dont{background:#FCEBEB;border:1px solid #F09595}
+.ai-col-title{font-size:12px;font-weight:600;margin-bottom:8px}
+.ai-do .ai-col-title{color:#085041}
+.ai-dont .ai-col-title{color:#791F1F}
+.ai-list{list-style:none;font-size:12px;line-height:1.5}
+.ai-list li{padding:3px 0;border-bottom:1px solid rgba(0,0,0,0.06)}
+.ai-list li:last-child{border-bottom:none}
+.ai-do .ai-list li{color:#085041}
+.ai-dont .ai-list li{color:#791F1F}
+@media(max-width:700px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:relative;height:auto;border-right:none;border-bottom:1px solid #e5e4df}
+  .main{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">M4 Go Explore</div>
+    <div class="sidebar-sub">Class companion · 2025–2026</div>
+  </div>
+
+  <div class="week-group">
+    <div class="week-label">Week 1</div>
+    <button class="class-btn active" onclick="go('w1c1')" id="btn-w1c1">
+      <div class="cb-dot" id="dot-w1c1"></div>
+      <div class="cb-info"><div class="cb-title">Making a research question</div><div class="cb-sub">Class 1</div></div>
+    </button>
+    <button class="class-btn" onclick="go('w1c2')" id="btn-w1c2">
+      <div class="cb-dot" id="dot-w1c2"></div>
+      <div class="cb-info"><div class="cb-title">Information literacy</div><div class="cb-sub">Class 2</div></div>
+    </button>
+  </div>
+
+  <div class="week-group">
+    <div class="week-label">Week 2</div>
+    <button class="class-btn" onclick="go('w2c1')" id="btn-w2c1">
+      <div class="cb-dot" id="dot-w2c1"></div>
+      <div class="cb-info"><div class="cb-title">Logical fallacies &amp; AI</div><div class="cb-sub">Class 1</div></div>
+    </button>
+    <button class="class-btn" onclick="go('w2c2')" id="btn-w2c2">
+      <div class="cb-dot" id="dot-w2c2"></div>
+      <div class="cb-info"><div class="cb-title">Interview design</div><div class="cb-sub">Class 2</div></div>
+    </button>
+  </div>
+
+  <div class="week-group">
+    <div class="week-label">Week 3</div>
+    <button class="class-btn" onclick="go('w3c1')" id="btn-w3c1">
+      <div class="cb-dot" id="dot-w3c1"></div>
+      <div class="cb-info"><div class="cb-title">Quantitative data types</div><div class="cb-sub">Class 1</div></div>
+    </button>
+    <button class="class-btn" onclick="go('w3c2')" id="btn-w3c2">
+      <div class="cb-dot" id="dot-w3c2"></div>
+      <div class="cb-info"><div class="cb-title">Graphs &amp; market analysis</div><div class="cb-sub">Class 2</div></div>
+    </button>
+  </div>
+</nav>
+
+<main class="main" id="main-content">
+  <!-- content injected by JS -->
+</main>
+
+</div>
+
+<script>
+const COOKIE_KEY = 'm4classes_v1';
+let state = {};
+
+function saveCookie(val){
+  try{document.cookie=COOKIE_KEY+'='+encodeURIComponent(JSON.stringify(val))+';max-age='+60*60*24*365+';path=/;SameSite=Lax'}catch(e){}
+}
+function loadCookie(){
+  try{
+    const m=document.cookie.split(';').map(c=>c.trim()).find(c=>c.startsWith(COOKIE_KEY+'='));
+    if(m)return JSON.parse(decodeURIComponent(m.split('=').slice(1).join('=')));
+  }catch(e){}
+  return {};
+}
+
+let currentClass = 'w1c1';
+
+const classes = {
+
+w1c1: {
+  week: 'Week 1 · Class 1',
+  title: 'Making a research question',
+  desc: 'A good research question is the backbone of your entire report. This class introduces the 6W method and the Big 6 research framework to help you build a focused, answerable question.',
+  render: renderW1C1
+},
+w1c2: {
+  week: 'Week 1 · Class 2',
+  title: 'Information literacy',
+  desc: 'Not all sources are equal. This class teaches you how to evaluate sources critically, understand bias, and know when to use primary vs secondary research.',
+  render: renderW1C2
+},
+w2c1: {
+  week: 'Week 2 · Class 1',
+  title: 'Logical fallacies & AI for research',
+  desc: 'Clear thinking is a research skill. This class covers the most common logical errors students make, and how to use AI tools responsibly without compromising your academic integrity.',
+  render: renderW2C1
+},
+w2c2: {
+  week: 'Week 2 · Class 2',
+  title: 'How to design and conduct an interview',
+  desc: 'Your semi-structured interviews are a core part of this assignment. This class gives you the tools to design strong questions and conduct professional interviews.',
+  render: renderW2C2
+},
+w3c1: {
+  week: 'Week 3 · Class 1',
+  title: 'Quantitative data types',
+  desc: 'Understanding the type of data you are working with determines what you can do with it. This class introduces the four levels of measurement and why they matter for your market analysis.',
+  render: renderW3C1
+},
+w3c2: {
+  week: 'Week 3 · Class 2',
+  title: 'Finding data, making graphs & market analysis',
+  desc: 'Where to find reliable quantitative data, what makes a graph actually good, and how to turn numbers into a compelling market analysis section in your report.',
+  render: renderW3C2
+}
+
+};
+
+function go(id) {
+  currentClass = id;
+  document.querySelectorAll('.class-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('btn-'+id);
+  if(btn) btn.classList.add('active');
+  const cls = classes[id];
+  const main = document.getElementById('main-content');
+
+  // calc overall progress
+  const taskIds = Object.keys(state).filter(k => state[k] === true);
+  const allTasks = document.querySelectorAll('.ck').length;
+
+  main.innerHTML = `
+    <div class="class-header">
+      <div class="class-week-tag">${cls.week}</div>
+      <div class="class-title">${cls.title}</div>
+      <div class="class-desc">${cls.desc}</div>
+    </div>
+    <div id="class-body"></div>
+    <div class="nav-row">
+      ${prevClass(id) ? `<button class="btn" onclick="go('${prevClass(id)}')">← Previous class</button>` : '<span></span>'}
+      ${nextClass(id) ? `<button class="btn btn-dark" onclick="go('${nextClass(id)}')">Next class →</button>` : '<span style="font-size:13px;color:#888">You have reached the last class</span>'}
+    </div>
+  `;
+  cls.render(document.getElementById('class-body'));
+  restoreChecks();
+  window.scrollTo(0,0);
+}
+
+const classOrder = ['w1c1','w1c2','w2c1','w2c2','w3c1','w3c2'];
+function nextClass(id){ const i=classOrder.indexOf(id); return i<classOrder.length-1?classOrder[i+1]:null; }
+function prevClass(id){ const i=classOrder.indexOf(id); return i>0?classOrder[i-1]:null; }
+
+function ck(id, label) {
+  return `<li class="check-item"><div class="ck" id="ck-${id}" onclick="tick('ck-${id}')">${state['ck-'+id]?'✓':''}</div><span class="ck-text ${state['ck-'+id]?'done':''}">${label}</span></li>`;
+}
+
+function tick(id) {
+  const el = document.getElementById(id);
+  if(!el) return;
+  const done = !el.classList.contains('done');
+  el.classList.toggle('done', done);
+  el.textContent = done ? '✓' : '';
+  const txt = el.nextElementSibling;
+  if(txt) txt.classList.toggle('done', done);
+  state[id] = done;
+  saveCookie(state);
+  updateDots();
+}
+
+function restoreChecks() {
+  Object.keys(state).forEach(k => {
+    if(!state[k]) return;
+    const el = document.getElementById(k);
+    if(!el) return;
+    el.classList.add('done');
+    el.textContent = '✓';
+    const txt = el.nextElementSibling;
+    if(txt) txt.classList.add('done');
+  });
+  updateDots();
+}
+
+function updateDots() {
+  // per-class dot: green if any task in that class is done
+  classOrder.forEach(cls => {
+    const dot = document.getElementById('dot-'+cls);
+    if(!dot) return;
+    // check if saved rq or any ck for this class
+    const relevant = Object.keys(state).filter(k => (k.includes(cls) || k.startsWith('ck-'+cls)) && state[k]);
+    if(relevant.length > 0) dot.classList.add('done');
+  });
+}
+
+// ─── W1C1 ────────────────────────────────────────────────────────
+function renderW1C1(el) {
+  el.innerHTML = `
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>What is the Big 6 research method?</div>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">1. Task definition</div>
+        <div class="concept-def">Define the information problem and identify exactly what you need to know.</div>
+        <div class="concept-example">What do I actually need to find out about my hotel's destination?</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">2. Information seeking strategies</div>
+        <div class="concept-def">Decide which sources will best answer your question and in what order.</div>
+        <div class="concept-example">Will I start with books, databases, interviews, or statistics?</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">3. Location & access</div>
+        <div class="concept-def">Find and retrieve the information from those sources.</div>
+        <div class="concept-example">Which library database, which website, which contact person?</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">4. Use of information</div>
+        <div class="concept-def">Engage with the source — read, extract, note what is relevant.</div>
+        <div class="concept-example">What does this source actually tell me that I can use?</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">5. Synthesis</div>
+        <div class="concept-def">Organise and present the information — connect different sources into a coherent story.</div>
+        <div class="concept-example">How do my sources support or contradict each other?</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">6. Evaluation</div>
+        <div class="concept-def">Assess the process and the product — was this the best way? Is the outcome sufficient?</div>
+        <div class="concept-example">Did I answer my research question? What would I do differently?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-tool">6W</span>Build your research question — the 6W method</div>
+    <p style="font-size:13px;color:#666;margin-bottom:14px;line-height:1.6">Answer each W question for your specific hotel and destination. Your answers will combine into a draft research question at the bottom.</p>
+    <div class="w6-grid">
+      <div class="w-field">
+        <label>Who — who is this report for?</label>
+        <div class="w-hint">Think about your reader. Who will use this information?</div>
+        <input type="text" id="w6-who" placeholder="e.g. future HMSM students considering an internship at…" oninput="buildRQ()">
+      </div>
+      <div class="w-field">
+        <label>What — what is the subject?</label>
+        <div class="w-hint">What specific aspect of the hotel/destination are you researching?</div>
+        <input type="text" id="w6-what" placeholder="e.g. the cultural characteristics, market position, and SDG practices of…" oninput="buildRQ()">
+      </div>
+      <div class="w-field">
+        <label>Where — where is the focus?</label>
+        <div class="w-hint">Name the destination and/or hotel.</div>
+        <input type="text" id="w6-where" placeholder="e.g. [Hotel name] in [City, Country]" oninput="buildRQ()">
+      </div>
+      <div class="w-field">
+        <label>When — what time period?</label>
+        <div class="w-hint">Are you looking at current data? Recent years?</div>
+        <input type="text" id="w6-when" placeholder="e.g. in the period 2022–2025" oninput="buildRQ()">
+      </div>
+      <div class="w-field">
+        <label>Why — why is this relevant?</label>
+        <div class="w-hint">Why does this information matter to your reader?</div>
+        <input type="text" id="w6-why" placeholder="e.g. to prepare for an international hospitality internship" oninput="buildRQ()">
+      </div>
+      <div class="w-field">
+        <label>How — how will you research it?</label>
+        <div class="w-hint">What methods will you use? Literature, interviews, statistics?</div>
+        <input type="text" id="w6-how" placeholder="e.g. through literature review, expert interviews, and market data" oninput="buildRQ()">
+      </div>
+    </div>
+
+    <div class="ib-label">Your draft research question</div>
+    <div class="rq-output" id="rq-preview"><span class="rq-placeholder">Fill in the fields above and your research question will appear here…</span></div>
+
+    <div class="ib-label" style="margin-top:14px">Refine and finalise your research question</div>
+    <p style="font-size:12px;color:#888;margin-bottom:8px">Edit the draft above into one clean, focused research question. A good research question is specific, researchable, and relevant to your reader.</p>
+    <textarea id="rq-final" placeholder="Type your final research question here…" rows="3" oninput="saveRQ()"></textarea>
+    <div class="saved-rq" id="rq-saved"></div>
+    <div class="btn-row" style="margin-top:8px">
+      <button class="btn btn-green" onclick="saveRQBtn()">Save my research question</button>
+      <span class="save-note" id="rq-save-note"></span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-warn">!</span>What makes a research question good?</div>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term" style="color:#085041">Good research question</div>
+        <div class="concept-def">Specific, focused, answerable with your chosen methods, relevant to the assignment.</div>
+        <div class="concept-example">"What are the main cultural characteristics of [country] that a future intern at [hotel] should be aware of, and how are these reflected in the hotel's corporate culture?"</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term" style="color:#791F1F">Too broad</div>
+        <div class="concept-def">Cannot be answered within a 3,000 word report. Tries to cover everything.</div>
+        <div class="concept-example">"What is culture?"</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term" style="color:#791F1F">Yes/no question</div>
+        <div class="concept-def">Can be answered without analysis or insight. Produces no useful discussion.</div>
+        <div class="concept-example">"Does [hotel] have a corporate culture?"</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term" style="color:#633806">Too narrow</div>
+        <div class="concept-def">Only a tiny part of the full assignment. Leaves most topics unaddressed.</div>
+        <div class="concept-example">"What is the star rating of [hotel]?"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-do">✓</span>Class checklist</div>
+    <ul class="checklist">
+      ${ck('w1c1-1','I understand the 6 steps of the Big 6 research method')}
+      ${ck('w1c1-2','I have answered all 6W questions for my hotel and destination')}
+      ${ck('w1c1-3','I have written and saved a draft research question')}
+      ${ck('w1c1-4','I can explain what makes a research question too broad, too narrow, or a yes/no question')}
+    </ul>
+  </div>
+  `;
+
+  // restore saved values
+  const saved = state['w1c1-rq-fields'];
+  if(saved) {
+    ['who','what','where','when','why','how'].forEach(w => {
+      const el = document.getElementById('w6-'+w);
+      if(el && saved[w]) { el.value = saved[w]; }
+    });
+    buildRQ();
+  }
+  const savedFinal = state['w1c1-rq-final'];
+  if(savedFinal) {
+    const el = document.getElementById('rq-final');
+    if(el) el.value = savedFinal;
+    showSavedRQ(savedFinal);
+  }
+}
+
+function buildRQ() {
+  const who = document.getElementById('w6-who')?.value.trim();
+  const what = document.getElementById('w6-what')?.value.trim();
+  const where = document.getElementById('w6-where')?.value.trim();
+  const when = document.getElementById('w6-when')?.value.trim();
+  const why = document.getElementById('w6-why')?.value.trim();
+  const how = document.getElementById('w6-how')?.value.trim();
+
+  const fields = {who,what,where,when,why,how};
+  state['w1c1-rq-fields'] = fields;
+  saveCookie(state);
+
+  const hasAny = Object.values(fields).some(v => v);
+  const preview = document.getElementById('rq-preview');
+  if(!preview) return;
+  if(!hasAny) {
+    preview.innerHTML = '<span class="rq-placeholder">Fill in the fields above and your research question will appear here…</span>';
+    return;
+  }
+
+  const w = what || '[what]';
+  const wh = where || '[where]';
+  const wn = when ? ' ' + when : '';
+  const wy = why ? ', ' + why : '';
+  const hw = how ? ' — explored ' + how : '';
+  const forWho = who ? `For ${who}: ` : '';
+  preview.innerHTML = `${forWho}What are ${w} at ${wh}${wn}${wy}?${hw}`;
+}
+
+function saveRQ() {
+  const val = document.getElementById('rq-final')?.value;
+  state['w1c1-rq-final'] = val;
+  saveCookie(state);
+}
+
+function saveRQBtn() {
+  const val = document.getElementById('rq-final')?.value.trim();
+  if(!val) return;
+  state['w1c1-rq-final'] = val;
+  saveCookie(state);
+  showSavedRQ(val);
+  const note = document.getElementById('rq-save-note');
+  if(note) { note.textContent = 'Saved!'; setTimeout(()=>note.textContent='',2000); }
+  document.getElementById('dot-w1c1')?.classList.add('done');
+}
+
+function showSavedRQ(val) {
+  const el = document.getElementById('rq-saved');
+  if(!el) return;
+  el.style.display = 'block';
+  el.innerHTML = '<strong>Your saved research question:</strong><br>' + val;
+}
+
+// ─── W1C2 ────────────────────────────────────────────────────────
+function renderW1C2(el) {
+  el.innerHTML = `
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Primary vs secondary research</div>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">Primary research</div>
+        <div class="concept-def">Data you collect yourself, first-hand. It did not exist before you created it.</div>
+        <div class="concept-example">Your own interviews with former interns · A survey you design and send out · Direct observation at a hotel</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Secondary research</div>
+        <div class="concept-def">Existing data collected by someone else for another purpose. You interpret and apply it.</div>
+        <div class="concept-example">Books and journal articles · STR reports · Statista data · Government statistics · News articles</div>
+      </div>
+    </div>
+    <div class="alert alert-info" style="margin-top:12px">Your report requires both. Secondary research gives you theory and context. Your interviews are your primary research. They should complement each other — not replace each other.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>What makes a source valid?</div>
+    <table class="source-table">
+      <thead><tr><th>Criterion</th><th>Ask yourself</th><th>Good sign</th><th>Warning sign</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Authority</strong></td><td>Who wrote this?</td><td class="good">Academic, expert, official body</td><td class="bad">Anonymous, unknown, no credentials</td></tr>
+        <tr><td><strong>Accuracy</strong></td><td>Is it backed by evidence?</td><td class="good">References, data, peer-reviewed</td><td class="bad">No sources, claims without evidence</td></tr>
+        <tr><td><strong>Currency</strong></td><td>How recent is it?</td><td class="good">Published within 5–7 years for most topics</td><td class="bad">Outdated, pre-2015 for market data</td></tr>
+        <tr><td><strong>Purpose</strong></td><td>Why was this written?</td><td class="good">To inform, educate, report findings</td><td class="bad">To sell, persuade, promote a brand</td></tr>
+        <tr><td><strong>Coverage</strong></td><td>Is it relevant to your topic?</td><td class="good">Directly addresses your research question</td><td class="bad">Only tangentially related</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Understanding bias</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.6">Bias means a source is skewed towards a particular viewpoint — not necessarily dishonest, but not neutral either. Your job is to spot it.</p>
+    <div id="bias-quiz">
+      <p style="font-size:12px;font-weight:600;color:#888;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px">Spot the bias — click the best answer</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Where to find good sources</div>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">Academic sources</div>
+        <div class="concept-def">Google Scholar · JSTOR · ScienceDirect · EBSCOhost · your library catalogue</div>
+        <div class="concept-example">Search for cultural models by name: "Hofstede dimensions hospitality" or "Trompenaars cultural dimensions"</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Market & industry data</div>
+        <div class="concept-def">STR (hotel performance) · Statista · UNWTO · national tourism boards · Eurostat</div>
+        <div class="concept-example">Search "hotel occupancy [country] 2023 STR" or "[country] tourism statistics"</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Official / institutional</div>
+        <div class="concept-def">UN, WHO, World Bank, OECD, government ministries, national statistics offices</div>
+        <div class="concept-example">For SDG data: sdgs.un.org · For labour market: ILO statistics</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Sources to avoid</div>
+        <div class="concept-def">Wikipedia (as a citation) · random blogs · hotel's own marketing website · AI-generated text without verification</div>
+        <div class="concept-example">Wikipedia is fine to orient yourself — but always follow its footnotes to the original source and cite that instead</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-do">✓</span>Class checklist</div>
+    <ul class="checklist">
+      ${ck('w1c2-1','I can explain the difference between primary and secondary research')}
+      ${ck('w1c2-2','I can evaluate a source using the 5 criteria (authority, accuracy, currency, purpose, coverage)')}
+      ${ck('w1c2-3','I can recognise bias in a source')}
+      ${ck('w1c2-4','I know at least 3 databases or platforms where I can find valid sources for my report')}
+      ${ck('w1c2-5','I have found and saved at least 1 valid academic source for my topic')}
+    </ul>
+  </div>
+  `;
+
+  renderBiasQuiz();
+}
+
+const biasScenarios = [
+  {
+    text: 'A hotel chain publishes a report on its own website titled "Why [Country] is the Best Destination for International Interns — Our Hotel Leads the Way."',
+    options: ['No bias — it is a professional document','Confirmation bias — it only presents positive information to promote itself','Selection bias — the sample is too small','Anchoring bias — the title uses a number'],
+    correct: 1,
+    feedback: 'Correct. A company publishing positive information about itself is a classic example of promotional/confirmation bias. It is not a neutral source. You can reference it for factual details (opening hours, services), but not for objective assessments of the destination or the hotel.'
+  },
+  {
+    text: 'A peer-reviewed article from 2009 about Hofstede\'s cultural dimensions argues that individualism scores predict employee behaviour.',
+    options: ['No issues — it is peer-reviewed so it is reliable','Currency concern — the data may be outdated for current market analysis','Survivorship bias','Selection bias — only hotels were studied'],
+    correct: 1,
+    feedback: 'Correct. Peer-reviewed is generally reliable, but currency matters. For cultural theory (Hofstede\'s dimensions themselves), a 2009 article may still be valid. For current market data or recent developments, you would need more recent sources. Always check: could things have changed significantly since this was published?'
+  },
+  {
+    text: 'You find a blog post from a travel influencer who lived in your destination country for 3 months, sharing their experience of the local culture.',
+    options: ['Good primary source — personal experience is valid data','Useful background reading, but not citable as an academic source','Perfect for the culture chapter — lived experience is most authentic','Biased because influencers are paid to be positive'],
+    correct: 1,
+    feedback: 'Correct. Personal blogs and influencer content can give useful context and inspiration, but they do not meet academic source standards — no peer review, unclear methodology, no academic authority. Use them to orient yourself, then find academic sources that cover the same topic properly.'
+  }
+];
+
+let biasAnswered = [];
+
+function renderBiasQuiz() {
+  const container = document.getElementById('bias-quiz');
+  if(!container) return;
+  biasScenarios.forEach((s, i) => {
+    const div = document.createElement('div');
+    div.className = 'bias-scenario';
+    div.innerHTML = `<div class="bias-text"><strong>Scenario ${i+1}:</strong> ${s.text}</div>
+    <div class="bias-options">${s.options.map((o,j) => `<button class="bias-opt" onclick="answerBias(${i},${j})" id="bias-${i}-${j}">${o}</button>`).join('')}</div>
+    <div class="bias-feedback" id="bias-fb-${i}"></div>`;
+    container.appendChild(div);
+  });
+}
+
+function answerBias(scenario, choice) {
+  if(biasAnswered.includes(scenario)) return;
+  biasAnswered.push(scenario);
+  const s = biasScenarios[scenario];
+  const correct = choice === s.correct;
+  for(let j=0;j<s.options.length;j++){
+    const btn = document.getElementById(`bias-${scenario}-${j}`);
+    if(!btn) continue;
+    btn.disabled = true;
+    if(j === s.correct) btn.classList.add('correct');
+    else if(j === choice && !correct) btn.classList.add('wrong');
+  }
+  const fb = document.getElementById(`bias-fb-${scenario}`);
+  if(fb) {
+    fb.classList.add('show', correct ? 'bf-correct' : 'bf-wrong');
+    fb.textContent = (correct ? 'Correct. ' : 'Not quite. ') + s.feedback;
+  }
+}
+
+// ─── W2C1 ────────────────────────────────────────────────────────
+function renderW2C1(el) {
+  const fallacies = [
+    {name:'Ad hominem', short:'Attacking the person, not the argument', def:'Dismissing a source or argument by criticising the person who made it, rather than engaging with the content.', ex:'"We can\'t trust Hofstede\'s cultural dimensions because he is Dutch and therefore biased towards Western frameworks." Even if the concern about Western bias is valid, dismissing the entire framework without engaging with the evidence is a fallacy.'},
+    {name:'Straw man', short:'Misrepresenting an argument to make it easier to attack', def:'Distorting or exaggerating someone\'s position so you can argue against a weaker version of it.', ex:'"The hotel claims to be sustainable because it uses LED lights. So they think changing a lightbulb solves climate change." — This misrepresents what the hotel actually claimed.'},
+    {name:'Appeal to authority', short:'Something is true because an expert said so', def:'Using someone\'s authority or status as the main reason to accept a claim, without engaging with the actual evidence.', ex:'"Hofstede said individualism scores predict behaviour, so it must be true." Hofstede\'s work is valuable, but you still need to explain the evidence and acknowledge critiques.'},
+    {name:'Hasty generalisation', short:'Drawing broad conclusions from too few examples', def:'Making a sweeping claim based on a small or unrepresentative sample.', ex:'"I interviewed two people from Japan and they both said they avoid direct criticism of managers — so Japanese corporate culture is highly hierarchical." Two interviews cannot support a national generalisation.'},
+    {name:'False dichotomy', short:'Presenting only two options when more exist', def:'Framing a situation as if there are only two possible outcomes or positions, when in reality there are more.', ex:'"Either the hotel is fully sustainable or it is completely greenwashing." In reality, most hotels fall on a spectrum.'},
+    {name:'Correlation ≠ causation', short:'Assuming that because two things are linked, one causes the other', def:'Concluding that because two variables move together, one must be causing the other.', ex:'"Countries with high Hofstede uncertainty avoidance scores have lower RevPAR — so avoiding uncertainty causes lower hotel revenue." There could be many other explanations.'},
+    {name:'Anecdotal evidence', short:'Using a personal story as if it were data', def:'Treating one person\'s experience as representative evidence rather than a data point to be contextualised.', ex:'"My interview subject said staff turnover at the hotel is low. So the hotel has no HR problems." One interview is not sufficient evidence for a broad claim.'},
+  ];
+
+  el.innerHTML = `
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>What is a logical fallacy?</div>
+    <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:12px">A logical fallacy is an error in reasoning that makes an argument seem convincing but is actually flawed. In your report, fallacies make your analysis look weak. Click each one to learn what to watch for.</p>
+    <div id="fallacy-list">
+      ${fallacies.map((f,i) => `
+        <div class="fallacy-card" id="fc-${i}" onclick="toggleFallacy(${i})">
+          <div class="fallacy-name">${f.name} <span style="font-size:11px;color:#aaa;font-weight:400">click to expand</span></div>
+          <div class="fallacy-short">${f.short}</div>
+          <div class="fallacy-body">
+            <div class="fallacy-def">${f.def}</div>
+            <div class="fallacy-ex"><strong>Example in this assignment:</strong> ${f.ex}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Using AI responsibly in your research</div>
+    <div class="alert alert-warn">AI tools like ChatGPT, Claude, and Copilot can be useful — but they can also confidently produce false information (called "hallucination"). You are responsible for every claim in your report, regardless of whether AI helped you draft it.</div>
+    <div class="ai-do-dont">
+      <div class="ai-col ai-do">
+        <div class="ai-col-title">AI can help you with…</div>
+        <ul class="ai-list">
+          <li>Drafting and improving sentences</li>
+          <li>Summarising a source you have already read</li>
+          <li>Generating ideas for interview questions</li>
+          <li>Checking grammar and tone</li>
+          <li>Explaining concepts in plain language</li>
+          <li>Structuring your argument</li>
+        </ul>
+      </div>
+      <div class="ai-col ai-dont">
+        <div class="ai-col-title">Do not rely on AI for…</div>
+        <ul class="ai-list">
+          <li>Facts, statistics, or data (verify everything)</li>
+          <li>Source citations (AI invents references)</li>
+          <li>Your analysis or interpretation — that must be yours</li>
+          <li>Cultural claims about specific countries</li>
+          <li>Hotel-specific information</li>
+          <li>Replacing your actual reading and research</li>
+        </ul>
+      </div>
+    </div>
+    <div class="alert alert-red" style="margin-top:12px"><strong>Integrity rule:</strong> Responsible use of AI must be disclosed in your report. Submitting AI-generated text as your own work without disclosure is a breach of academic integrity and a conditional (C) criterion — it will cause your report to fail.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-tool">↻</span>Apply it: spot the fallacy</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.6">Read each student statement below. Which fallacy does it contain?</p>
+    ${renderFallacyQuiz()}
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-do">✓</span>Class checklist</div>
+    <ul class="checklist">
+      ${ck('w2c1-1','I can name at least 5 common logical fallacies')}
+      ${ck('w2c1-2','I can identify a fallacy in a piece of academic writing')}
+      ${ck('w2c1-3','I understand what AI hallucination means and why it is a risk')}
+      ${ck('w2c1-4','I know which tasks AI can legitimately support in this assignment')}
+      ${ck('w2c1-5','I understand the integrity requirements around AI use')}
+    </ul>
+  </div>
+  `;
+}
+
+function toggleFallacy(i) {
+  const card = document.getElementById('fc-'+i);
+  if(card) card.classList.toggle('open');
+}
+
+function renderFallacyQuiz() {
+  const qs = [
+    {q:'"I talked to one former intern and she said the hotel was great, so it must be a good place to work."', answer:'Anecdotal evidence — one person\'s experience cannot support a general claim about the whole hotel.'},
+    {q:'"The country has a high Hofstede power distance score. Therefore, the hotel must have a strict hierarchy."', answer:'Hasty generalisation — a country-level score cannot be directly applied to a specific organisation without evidence.'},
+    {q:'"Tourist numbers and hotel revenue both went up last year, so more tourists caused higher revenue."', answer:'Correlation ≠ causation — both things happened together but one did not necessarily cause the other; other factors (pricing, exchange rates, events) may be involved.'},
+  ];
+  return qs.map((q,i) => `
+    <div class="bias-scenario" style="margin-bottom:10px">
+      <div class="bias-text">${q.q}</div>
+      <button class="btn" onclick="showFallacyAnswer(${i})">Show answer</button>
+      <div class="bias-feedback" id="fqa-${i}">${q.answer}</div>
+    </div>
+  `).join('');
+}
+
+function showFallacyAnswer(i) {
+  const el = document.getElementById('fqa-'+i);
+  if(el) { el.classList.add('show','bf-correct'); }
+}
+
+// ─── W2C2 ────────────────────────────────────────────────────────
+function renderW2C2(el) {
+  el.innerHTML = `
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>What is a semi-structured interview?</div>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">Structured interview</div>
+        <div class="concept-def">Every question is fixed and asked in the same order. Used for surveys. No flexibility.</div>
+        <div class="concept-example">Useful for: large-scale data collection where consistency matters</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Semi-structured interview</div>
+        <div class="concept-def">You have a topic list and prepared questions, but you adapt based on what the interviewee says. You can probe deeper.</div>
+        <div class="concept-example">What you use for this assignment — it allows for rich, nuanced answers</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Unstructured interview</div>
+        <div class="concept-def">More like an open conversation. No fixed questions. Requires significant experience to conduct well.</div>
+        <div class="concept-example">Used in ethnographic research — not appropriate for this assignment</div>
+      </div>
+    </div>
+    <div class="alert alert-info" style="margin-top:12px">Why semi-structured? It gives you consistency across multiple interviews (so you can compare answers) while still allowing depth. You can follow up on surprising answers — which is where the most interesting insights often come from.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Open vs closed questions</div>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term" style="color:#791F1F">Closed — avoid these</div>
+        <div class="concept-def">Can be answered with yes, no, or a single word. Give you no useful analysis material.</div>
+        <div class="concept-example">"Did you enjoy working there?" · "Was the hierarchy strict?" · "Is it expensive to live there?"</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term" style="color:#085041">Open — use these</div>
+        <div class="concept-def">Require explanation and reflection. Begin with: How, What, Tell me about, Can you describe, In what ways…</div>
+        <div class="concept-example">"How would you describe the communication style between managers and staff?" · "What surprised you most about the working culture?"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Probing techniques</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.6">A probe is a follow-up that encourages the interviewee to say more. Good probing is what separates a mediocre interview from a rich one.</p>
+    <div class="concept-grid">
+      <div class="concept-card"><div class="concept-term">Elaboration probe</div><div class="concept-def">"Can you tell me more about that?" · "Could you elaborate on that point?"</div></div>
+      <div class="concept-card"><div class="concept-term">Example probe</div><div class="concept-def">"Can you give me a specific example?" · "What would that look like in practice?"</div></div>
+      <div class="concept-card"><div class="concept-term">Clarification probe</div><div class="concept-def">"What do you mean by [term]?" · "I want to make sure I understand — are you saying…?"</div></div>
+      <div class="concept-card"><div class="concept-term">Reflection probe</div><div class="concept-def">"So if I understand correctly, you are saying…?" — paraphrase what they said and check</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-tool">✎</span>Build your interview questions</div>
+    <p style="font-size:13px;color:#666;margin-bottom:6px;line-height:1.6">Draft your interview questions here. Each question must relate to a cultural model dimension (e.g. Hofstede's power distance, uncertainty avoidance) or corporate culture topic. Aim for 5–8 open-ended questions.</p>
+    <div class="alert alert-warn" style="margin-bottom:12px">Questions must be grounded in cultural theory — not just general curiosity. Your assessor will check this. Tip: write the Hofstede dimension next to each question as you draft it.</div>
+    <div class="interview-builder" id="iq-builder"></div>
+    <div class="btn-row" style="margin-top:10px">
+      <button class="btn" onclick="addIQ()">+ Add question</button>
+      <button class="btn btn-green" onclick="saveIQs()">Save questions</button>
+      <span class="save-note" id="iq-note"></span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-warn">!</span>Practical interview tips</div>
+    <ul class="checklist">
+      <li class="check-item" style="cursor:default"><div style="width:6px;height:6px;border-radius:50%;background:#1D9E75;margin-top:6px;flex-shrink:0"></div><span>Always ask for permission to record — explain why and how the recording will be used</span></li>
+      <li class="check-item" style="cursor:default"><div style="width:6px;height:6px;border-radius:50%;background:#1D9E75;margin-top:6px;flex-shrink:0"></div><span>Send your questions in advance so the interviewee can prepare — you will get richer answers</span></li>
+      <li class="check-item" style="cursor:default"><div style="width:6px;height:6px;border-radius:50%;background:#1D9E75;margin-top:6px;flex-shrink:0"></div><span>Start with easy, warm-up questions before moving to complex ones</span></li>
+      <li class="check-item" style="cursor:default"><div style="width:6px;height:6px;border-radius:50%;background:#1D9E75;margin-top:6px;flex-shrink:0"></div><span>Let silence work — do not rush to fill gaps, the interviewee often adds more</span></li>
+      <li class="check-item" style="cursor:default"><div style="width:6px;height:6px;border-radius:50%;background:#1D9E75;margin-top:6px;flex-shrink:0"></div><span>Transcribe within 24 hours while the conversation is fresh</span></li>
+      <li class="check-item" style="cursor:default"><div style="width:6px;height:6px;border-radius:50%;background:#1D9E75;margin-top:6px;flex-shrink:0"></div><span>Minimum 3 interviews total; 4 if you work in a pair — each student needs at least 2 transcripts</span></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-do">✓</span>Class checklist</div>
+    <ul class="checklist">
+      ${ck('w2c2-1','I understand the difference between structured, semi-structured, and unstructured interviews')}
+      ${ck('w2c2-2','I can write open-ended questions (not yes/no)')}
+      ${ck('w2c2-3','I know at least 3 probing techniques I can use during an interview')}
+      ${ck('w2c2-4','My interview questions are linked to a cultural theory or model')}
+      ${ck('w2c2-5','I have saved a draft set of interview questions in this tool')}
+      ${ck('w2c2-6','I have contacted at least one potential interviewee to schedule an interview')}
+    </ul>
+  </div>
+  `;
+
+  renderIQBuilder();
+}
+
+function renderIQBuilder() {
+  const container = document.getElementById('iq-builder');
+  if(!container) return;
+  const saved = state['w2c2-questions'] || [''];
+  container.innerHTML = '';
+  saved.forEach((q, i) => {
+    addIQRow(container, i, q);
+  });
+}
+
+function addIQRow(container, i, val) {
+  const row = document.createElement('div');
+  row.className = 'iq-row';
+  row.id = 'iq-row-'+i;
+  row.innerHTML = `<span class="iq-num">${i+1}</span><input type="text" class="iq-input" id="iq-${i}" value="${val||''}" placeholder="e.g. How would you describe the communication style between staff and management at the hotel?" oninput="saveIQs()"><button class="iq-del" onclick="delIQ(${i})">×</button>`;
+  container.appendChild(row);
+}
+
+function addIQ() {
+  const saved = state['w2c2-questions'] || [];
+  saved.push('');
+  state['w2c2-questions'] = saved;
+  saveCookie(state);
+  renderIQBuilder();
+}
+
+function delIQ(i) {
+  const saved = state['w2c2-questions'] || [];
+  saved.splice(i,1);
+  state['w2c2-questions'] = saved;
+  saveCookie(state);
+  renderIQBuilder();
+}
+
+function saveIQs() {
+  const container = document.getElementById('iq-builder');
+  if(!container) return;
+  const inputs = container.querySelectorAll('.iq-input');
+  const qs = Array.from(inputs).map(i => i.value);
+  state['w2c2-questions'] = qs;
+  saveCookie(state);
+  const note = document.getElementById('iq-note');
+  if(note) { note.textContent = 'Saved'; setTimeout(()=>note.textContent='',1500); }
+}
+
+// ─── W3C1 ────────────────────────────────────────────────────────
+function renderW3C1(el) {
+  el.innerHTML = `
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>What is quantitative data?</div>
+    <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:12px">Quantitative data is information expressed in numbers. Unlike qualitative data (which describes qualities, themes, and meanings), quantitative data can be counted, measured, and compared statistically. In your report, you need at least 3 quantitative sources and 2 graphs.</p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">Qualitative</div>
+        <div class="concept-def">Descriptive, non-numerical. Tells you about meaning, experience, and context.</div>
+        <div class="concept-example">Your interview transcripts · Descriptions of corporate culture · Guest reviews</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Quantitative</div>
+        <div class="concept-def">Numerical. Tells you about amounts, frequencies, patterns, and trends.</div>
+        <div class="concept-example">Hotel occupancy rate · RevPAR · Number of international tourists · GDP growth</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>The four levels of measurement</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.6">The level of measurement tells you what you can do with the data — which statistics make sense, which graphs are appropriate, and what comparisons are valid. Click each level to explore.</p>
+    <div class="data-type-tabs">
+      <button class="dt-tab active" onclick="setDataTab('nominal',this)">Nominal</button>
+      <button class="dt-tab" onclick="setDataTab('ordinal',this)">Ordinal</button>
+      <button class="dt-tab" onclick="setDataTab('interval',this)">Interval</button>
+      <button class="dt-tab" onclick="setDataTab('ratio',this)">Ratio</button>
+    </div>
+    <div id="dt-nominal" class="dt-panel active">
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Nominal data — categories with no order</div>
+        <div class="concept-def">Data that can be grouped into named categories, but the categories have no natural order or ranking. You can count how many are in each category, but you cannot say one is "more" than another.</div>
+        <div class="concept-example"><strong>Examples:</strong> Hotel star category (3-star vs 4-star vs 5-star) · Country of origin of guests · Type of hotel (resort, boutique, business) · Nationality of staff · Payment method</div>
+      </div>
+      <div class="alert alert-info">What you can do: count, find the mode (most frequent), make pie charts or bar charts. What you cannot do: calculate an average (it makes no sense to say the "average nationality").</div>
+    </div>
+    <div id="dt-ordinal" class="dt-panel">
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Ordinal data — categories with a meaningful order</div>
+        <div class="concept-def">Data that can be ranked or ordered, but the gaps between the ranks are not necessarily equal. You know the order, but not how much more one is than another.</div>
+        <div class="concept-example"><strong>Examples:</strong> Guest satisfaction rating (Very Dissatisfied → Neutral → Very Satisfied) · TripAdvisor ranking · Hofstede score categories (Low / Medium / High) · Hotel classification tiers</div>
+      </div>
+      <div class="alert alert-info">What you can do: rank, find median, use bar charts showing ordered categories. What you cannot do: say that a rating of 4 is exactly twice as good as a rating of 2 — the gaps are not guaranteed to be equal.</div>
+    </div>
+    <div id="dt-interval" class="dt-panel">
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Interval data — ordered with equal gaps, but no true zero</div>
+        <div class="concept-def">Data where the difference between values is meaningful and equal, but there is no absolute zero point — zero does not mean "none of the thing."</div>
+        <div class="concept-example"><strong>Examples:</strong> Temperature in Celsius (0°C does not mean no temperature) · Hofstede dimension scores (0 does not mean no individualism) · Calendar years (year 0 does not mean no time)</div>
+      </div>
+      <div class="alert alert-info">What you can do: calculate averages, use line graphs, compare differences. What you cannot do: say "Country A has twice the individualism of Country B" — because the zero is not absolute.</div>
+    </div>
+    <div id="dt-ratio" class="dt-panel">
+      <div class="concept-card" style="margin-bottom:10px">
+        <div class="concept-term">Ratio data — ordered with equal gaps and a true zero</div>
+        <div class="concept-def">The "richest" level of measurement. All mathematical operations apply. Zero means none of the thing actually exists.</div>
+        <div class="concept-example"><strong>Examples:</strong> Hotel occupancy rate (0% = no rooms occupied) · RevPAR · Number of tourist arrivals · Hotel room rate in euros · Length of stay in nights</div>
+      </div>
+      <div class="alert alert-info">What you can do: everything — add, subtract, multiply, divide. "RevPAR of €120 is twice as high as €60" is a valid statement. Use bar charts, line graphs, scatter plots.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-tool">?</span>Why does the level of measurement matter for your report?</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.6">The level of measurement tells you which claims you can make and which graphs are appropriate. Getting this wrong produces invalid analysis.</p>
+    <table class="source-table">
+      <thead><tr><th>Data type</th><th>Valid operations</th><th>Good graph types</th><th>Common mistake</th></tr></thead>
+      <tbody>
+        <tr><td>Nominal</td><td>Count, mode</td><td>Pie chart, bar chart</td><td class="bad">Calculating an average of categories</td></tr>
+        <tr><td>Ordinal</td><td>Rank, median</td><td>Ordered bar chart</td><td class="bad">Saying the gap between ranks is equal</td></tr>
+        <tr><td>Interval</td><td>Mean, difference</td><td>Line graph, bar chart</td><td class="bad">Saying one value is "twice" another</td></tr>
+        <tr><td>Ratio</td><td>All operations</td><td>Any chart type</td><td class="mid">None specific — but always interpret in context</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-do">✓</span>Class checklist</div>
+    <ul class="checklist">
+      ${ck('w3c1-1','I can explain the difference between qualitative and quantitative data')}
+      ${ck('w3c1-2','I can classify nominal, ordinal, interval, and ratio data with my own examples')}
+      ${ck('w3c1-3','I understand which calculations are valid for each data type')}
+      ${ck('w3c1-4','I can identify an example of each data type in the context of hotel market analysis')}
+    </ul>
+  </div>
+  `;
+}
+
+function setDataTab(id, btn) {
+  document.querySelectorAll('.dt-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.dt-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('dt-'+id)?.classList.add('active');
+}
+
+// ─── W3C2 ────────────────────────────────────────────────────────
+function renderW3C2(el) {
+  el.innerHTML = `
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Where to find quantitative data for your report</div>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term">STR (Smith Travel Research)</div>
+        <div class="concept-def">The industry standard for hotel performance data. Provides occupancy rate, RevPAR, ADR, and market segmentation data.</div>
+        <div class="concept-example">Ask your tutor for access · Search "[destination] STR hotel market 2023"</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Statista</div>
+        <div class="concept-def">Aggregated statistics on nearly every topic. Strong on tourism, hospitality, and consumer trends.</div>
+        <div class="concept-example">statista.com — search "[country] hotel industry" or "[city] tourism statistics"</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">National tourism boards</div>
+        <div class="concept-def">Official statistics from the country's tourism authority. Often has arrivals, spending, seasonality data.</div>
+        <div class="concept-example">Search "[country] tourism statistics official" or "[country] ministry of tourism annual report"</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">UNWTO</div>
+        <div class="concept-def">United Nations World Tourism Organization. Global and regional tourism data, trends, and reports.</div>
+        <div class="concept-example">unwto.org → Statistics → Country profiles</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">Eurostat</div>
+        <div class="concept-def">EU-wide statistics including tourism accommodation, arrivals, and overnight stays.</div>
+        <div class="concept-example">Useful if your destination is in Europe: ec.europa.eu/eurostat</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term">World Bank Open Data</div>
+        <div class="concept-def">GDP, population, economic indicators, international visitor data.</div>
+        <div class="concept-example">data.worldbank.org — search by country and indicator</div>
+      </div>
+    </div>
+    <div class="alert alert-warn" style="margin-top:12px">You need at least 3 different quantitative sources. Do not use the same platform for all three — this shows limited information literacy.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>What makes a graph good?</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.6">A graph is not decoration. It exists to make data easier to understand than text alone. A bad graph is worse than no graph — it misleads or confuses the reader.</p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term" style="color:#085041">Good graph</div>
+        <div class="concept-def">Has a clear title · Labelled axes with units · Legend if needed · APA caption below · Data source cited · Readable colour contrast · Appropriate chart type for the data</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term" style="color:#791F1F">Bad graph</div>
+        <div class="concept-def">No title · Unlabelled axes · No data source · Misleading scale (y-axis not starting at zero when it should) · 3D effects that distort values · Too much information crammed in</div>
+      </div>
+    </div>
+    <div class="alert alert-info" style="margin-top:12px"><strong>APA caption format:</strong> <em>Figure 1. Hotel occupancy rate in [country], 2019–2023.</em> Adapted from [Source] (Year). URL</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-learn">?</span>Choosing the right chart type</div>
+    <div class="graph-grid">
+      <div class="graph-card">
+        <div class="graph-name">Bar chart</div>
+        <div class="graph-use">Comparing values across categories or time periods.</div>
+        <div class="graph-ok">Use for: occupancy by month, RevPAR by competitor, tourist arrivals by country</div>
+        <div class="graph-not">Avoid for: continuous trends over many time points (use line instead)</div>
+      </div>
+      <div class="graph-card">
+        <div class="graph-name">Line graph</div>
+        <div class="graph-use">Showing trends over time. Best when you have many time points.</div>
+        <div class="graph-ok">Use for: RevPAR trend 2018–2024, tourist arrivals over years, seasonal occupancy pattern</div>
+        <div class="graph-not">Avoid for: comparing separate categories with no time element</div>
+      </div>
+      <div class="graph-card">
+        <div class="graph-name">Pie chart</div>
+        <div class="graph-use">Showing parts of a whole. Only works when parts add up to 100%.</div>
+        <div class="graph-ok">Use for: market share, guest nationality breakdown, room type revenue split</div>
+        <div class="graph-not">Avoid for: more than 5–6 slices, or when differences are small and hard to see</div>
+      </div>
+      <div class="graph-card">
+        <div class="graph-name">Stacked bar chart</div>
+        <div class="graph-use">Comparing composition across categories or time.</div>
+        <div class="graph-ok">Use for: revenue by segment across months, guest type by hotel category</div>
+        <div class="graph-not">Avoid if: you need to compare the middle segments precisely</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-warn">!</span>Interpretation vs description — a critical difference</div>
+    <p style="font-size:13px;color:#444;margin-bottom:12px;line-height:1.6">Most students lose marks here. Describing a graph is not the same as interpreting it. Your reader can see the graph — they need you to tell them what it means.</p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-term" style="color:#791F1F">Description only (not enough)</div>
+        <div class="concept-def">"Figure 1 shows that hotel occupancy in [country] was 72% in 2019, dropped to 34% in 2020, and recovered to 68% in 2023."</div>
+        <div class="concept-example">This just reads out the numbers. It adds nothing the reader cannot see themselves.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-term" style="color:#085041">Interpretation (what you need)</div>
+        <div class="concept-def">"Figure 1 illustrates the severe impact of COVID-19 on hotel occupancy in [country], with a 38-point decline in 2020. The partial recovery to 68% by 2023 suggests that while demand has largely returned, the market has not yet reached pre-pandemic levels. For a future intern, this indicates a market that is still in recovery — which may affect the hotel's staffing levels and investment capacity."</div>
+        <div class="concept-example">This explains causes, significance, and implications for the reader's specific situation.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-icon icon-do">✓</span>Class checklist</div>
+    <ul class="checklist">
+      ${ck('w3c2-1','I can name at least 4 sources where I can find quantitative hotel market data')}
+      ${ck('w3c2-2','I have found at least one quantitative data source relevant to my destination')}
+      ${ck('w3c2-3','I can identify the 5 elements every good graph must have')}
+      ${ck('w3c2-4','I can choose an appropriate chart type for a given data set')}
+      ${ck('w3c2-5','I understand the difference between describing and interpreting a graph')}
+      ${ck('w3c2-6','I have a plan for which 2 graphs I will include in my report and what data they will show')}
+    </ul>
+  </div>
+  `;
+}
+
+// ─── INIT ────────────────────────────────────────────────────────
+function init() {
+  state = loadCookie();
+  go('w1c1');
+}
+
+init();
+</script>
+</body>
+</html>
