@@ -631,7 +631,7 @@ w1c1: {
 w1c2: {
   week: 'Week 1 · Class 2',
   title: 'Information literacy & APA introduction',
-  desc: 'Not all sources are equal. This class teaches you how to evaluate sources critically using the CROP method, understand bias, and know when to use primary vs secondary research. It also introduces APA referencing — you will start tracking sources today.',
+  desc: 'Not all sources are equal. This class teaches you how to evaluate sources critically using the CRAAP method, understand bias, and know when to use primary vs secondary research. It also introduces APA referencing — you will start tracking sources today.',
   render: renderW1C2
 },
 w2c1: {
@@ -793,37 +793,118 @@ function renderW1C1(el) {
   el.innerHTML = `
   <div class="section">
     <div class="section-title"><span class="section-icon icon-learn">?</span>What is the Big 6 research method?</div>
-    <div class="concept-grid">
-      <div class="concept-card">
-        <div class="concept-term">1. Task definition</div>
-        <div class="concept-def">Define the information problem and identify exactly what you need to know.</div>
-        <div class="concept-example">What do I actually need to find out about my hotel's destination?</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-term">2. Information seeking strategies</div>
-        <div class="concept-def">Decide which sources will best answer your question and in what order.</div>
-        <div class="concept-example">Will I start with books, databases, interviews, or statistics?</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-term">3. Location & access</div>
-        <div class="concept-def">Find and retrieve the information from those sources.</div>
-        <div class="concept-example">Which library database, which website, which contact person?</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-term">4. Use of information</div>
-        <div class="concept-def">Engage with the source — read, extract, note what is relevant.</div>
-        <div class="concept-example">What does this source actually tell me that I can use?</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-term">5. Synthesis</div>
-        <div class="concept-def">Organise and present the information — connect different sources into a coherent story.</div>
-        <div class="concept-example">How do my sources support or contradict each other?</div>
-      </div>
-      <div class="concept-card">
-        <div class="concept-term">6. Evaluation</div>
-        <div class="concept-def">Assess the process and the product — was this the best way? Is the outcome sufficient?</div>
-        <div class="concept-example">Did I answer my research question? What would I do differently?</div>
-      </div>
+    <p style="font-size:14px;color:var(--text-soft);line-height:1.7;margin-bottom:18px">The Big 6 is a six-step framework for tackling any research problem systematically. Follow the cycle and you won't miss a step — and you'll have a clear answer for the defence when they ask how you researched your report.</p>
+
+    <!-- SVG Big 6 Diagram -->
+    <div style="display:flex;justify-content:center;margin-bottom:20px;overflow-x:auto">
+      <svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;font-family:'Lexend',sans-serif">
+        <defs>
+          <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="rgba(0,0,0,0.18)"/>
+          </filter>
+          <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+            <path d="M1,1 L7,4 L1,7 Z" fill="#555" opacity="0.5"/>
+          </marker>
+        </defs>
+
+        <!-- Centre label -->
+        <text x="280" y="196" text-anchor="middle" font-size="13" font-weight="400" fill="#3A3D6B">The</text>
+        <text x="280" y="216" text-anchor="middle" font-size="22" font-weight="700" fill="#0D0F2B">Big 6</text>
+
+        <!-- Arrow arcs between circles (dashed) -->
+        <!-- 1→2 -->
+        <path d="M 366 118 A 110 110 0 0 1 423 195" fill="none" stroke="#555" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.4" marker-end="url(#arrow)"/>
+        <!-- 2→3 -->
+        <path d="M 418 248 A 110 110 0 0 1 370 320" fill="none" stroke="#555" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.4" marker-end="url(#arrow)"/>
+        <!-- 3→4 -->
+        <path d="M 314 360 A 110 110 0 0 1 248 358" fill="none" stroke="#555" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.4" marker-end="url(#arrow)"/>
+        <!-- 4→5 -->
+        <path d="M 192 318 A 110 110 0 0 1 142 247" fill="none" stroke="#555" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.4" marker-end="url(#arrow)"/>
+        <!-- 5→6 -->
+        <path d="M 138 192 A 110 110 0 0 1 192 116" fill="none" stroke="#555" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.4" marker-end="url(#arrow)"/>
+        <!-- 6→1 -->
+        <path d="M 248 80 A 110 110 0 0 1 312 80" fill="none" stroke="#555" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.4" marker-end="url(#arrow)"/>
+
+        <!-- Step 1 — top right — Task Definition -->
+        <circle cx="348" cy="98" r="44" fill="#E83E8C" filter="url(#shadow)"/>
+        <text x="348" y="93" text-anchor="middle" font-size="26" font-weight="700" fill="white">1</text>
+        <text x="348" y="112" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,0.85)" font-weight="400">Step 1</text>
+        <!-- Label -->
+        <text x="430" y="78" text-anchor="start" font-size="11" font-weight="700" fill="#0D0F2B">Step 1:</text>
+        <text x="430" y="93" text-anchor="start" font-size="11" fill="#3A3D6B">Task</text>
+        <text x="430" y="107" text-anchor="start" font-size="11" fill="#3A3D6B">Definition</text>
+
+        <!-- Step 2 — right — Information Seeking -->
+        <circle cx="420" cy="220" r="44" fill="#E83E8C" filter="url(#shadow)"/>
+        <text x="420" y="215" text-anchor="middle" font-size="26" font-weight="700" fill="white">2</text>
+        <text x="420" y="234" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,0.85)" font-weight="400">Step 2</text>
+        <!-- Label -->
+        <text x="472" y="200" text-anchor="start" font-size="11" font-weight="700" fill="#0D0F2B">Step 2:</text>
+        <text x="472" y="215" text-anchor="start" font-size="11" fill="#3A3D6B">Information</text>
+        <text x="472" y="229" text-anchor="start" font-size="11" fill="#3A3D6B">Seeking</text>
+        <text x="472" y="243" text-anchor="start" font-size="11" fill="#3A3D6B">Strategies</text>
+
+        <!-- Step 3 — bottom right — Location + Access -->
+        <circle cx="348" cy="342" r="44" fill="#E83E8C" filter="url(#shadow)"/>
+        <text x="348" y="337" text-anchor="middle" font-size="26" font-weight="700" fill="white">3</text>
+        <text x="348" y="356" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,0.85)" font-weight="400">Step 3</text>
+        <!-- Label -->
+        <text x="400" y="345" text-anchor="start" font-size="11" font-weight="700" fill="#0D0F2B">Step 3:</text>
+        <text x="400" y="360" text-anchor="start" font-size="11" fill="#3A3D6B">Location +</text>
+        <text x="400" y="374" text-anchor="start" font-size="11" fill="#3A3D6B">Access</text>
+
+        <!-- Step 4 — bottom left — Use of Information -->
+        <circle cx="212" cy="342" r="44" fill="#E83E8C" filter="url(#shadow)"/>
+        <text x="212" y="337" text-anchor="middle" font-size="26" font-weight="700" fill="white">4</text>
+        <text x="212" y="356" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,0.85)" font-weight="400">Step 4</text>
+        <!-- Label -->
+        <text x="84" y="345" text-anchor="start" font-size="11" font-weight="700" fill="#0D0F2B">Step 4:</text>
+        <text x="84" y="360" text-anchor="start" font-size="11" fill="#3A3D6B">Use of</text>
+        <text x="84" y="374" text-anchor="start" font-size="11" fill="#3A3D6B">Information</text>
+
+        <!-- Step 5 — left — Synthesis -->
+        <circle cx="140" cy="220" r="44" fill="#E83E8C" filter="url(#shadow)"/>
+        <text x="140" y="215" text-anchor="middle" font-size="26" font-weight="700" fill="white">5</text>
+        <text x="140" y="234" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,0.85)" font-weight="400">Step 5</text>
+        <!-- Label -->
+        <text x="8" y="208" text-anchor="start" font-size="11" font-weight="700" fill="#0D0F2B">Step 5:</text>
+        <text x="8" y="223" text-anchor="start" font-size="11" fill="#3A3D6B">Synthesis</text>
+
+        <!-- Step 6 — top left — Evaluation -->
+        <circle cx="212" cy="98" r="44" fill="#E83E8C" filter="url(#shadow)"/>
+        <text x="212" y="93" text-anchor="middle" font-size="26" font-weight="700" fill="white">6</text>
+        <text x="212" y="112" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,0.85)" font-weight="400">Step 6</text>
+        <!-- Label -->
+        <text x="8" y="78" text-anchor="start" font-size="11" font-weight="700" fill="#0D0F2B">Step 6:</text>
+        <text x="8" y="93" text-anchor="start" font-size="11" fill="#3A3D6B">Evaluation</text>
+      </svg>
+    </div>
+
+    <!-- Expandable step cards -->
+    <div style="display:flex;flex-direction:column;gap:8px">
+      ${[
+        {n:'1',title:'Task Definition',def:'Define the information problem and identify exactly what you need to know.',ex:'What do I actually need to find out about my hotel\'s destination?'},
+        {n:'2',title:'Information Seeking Strategies',def:'Decide which sources will best answer your question and in what order.',ex:'Will I start with books, databases, interviews, or statistics?'},
+        {n:'3',title:'Location & Access',def:'Find and retrieve the information from those sources.',ex:'Which library database, which website, which contact person?'},
+        {n:'4',title:'Use of Information',def:'Engage with the source — read, extract, note what is relevant.',ex:'What does this source actually tell me that I can use?'},
+        {n:'5',title:'Synthesis',def:'Organise and present the information — connect different sources into a coherent story.',ex:'How do my sources support or contradict each other?'},
+        {n:'6',title:'Evaluation',def:'Assess the process and the product — was this the best way? Is the outcome sufficient?',ex:'Did I answer my research question? What would I do differently?'},
+      ].map(s => `
+        <div onclick="this.querySelector('.big6-body').style.display=this.querySelector('.big6-body').style.display==='block'?'none':'block'"
+             style="background:var(--warm-white);border:2px solid var(--border-soft);border-radius:12px;padding:12px 16px;cursor:pointer;transition:border-color 0.18s"
+             onmouseover="this.style.borderColor='#E83E8C'" onmouseout="this.style.borderColor='var(--border-soft)'">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:32px;height:32px;border-radius:50%;background:#E83E8C;color:#fff;font-family:'Lexend',sans-serif;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${s.n}</div>
+            <div style="flex:1">
+              <span style="font-family:'Lexend',sans-serif;font-size:14px;font-weight:700;color:var(--text)">Step ${s.n}: ${s.title}</span>
+            </div>
+            <span style="font-size:11px;color:var(--text-muted);background:var(--blue-light);padding:2px 8px;border-radius:10px;font-family:'Lexend',sans-serif;font-weight:600;flex-shrink:0">tap</span>
+          </div>
+          <div class="big6-body" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border-soft)">
+            <div style="font-size:14px;color:var(--text-soft);line-height:1.7;margin-bottom:8px">${s.def}</div>
+            <div style="font-size:13px;color:var(--text-muted);background:var(--cream);border-left:3px solid #E83E8C;padding:8px 12px;border-radius:0 8px 8px 0;font-style:italic">${s.ex}</div>
+          </div>
+        </div>`).join('')}
     </div>
   </div>
 
@@ -989,7 +1070,7 @@ function renderW1C2(el) {
   <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap">
     <button class="w1c2-tab-btn active" id="tab-btn-il" onclick="switchW1C2Tab('il')" style="display:flex;align-items:center;gap:10px;padding:14px 22px;border-radius:14px;border:2px solid var(--w1);background:var(--w1-light);color:var(--w1);font-family:'Lexend',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.18s;flex:1;min-width:180px">
       <span style="font-size:22px">🔍</span>
-      <span style="text-align:left"><span style="display:block">Information literacy</span><span style="font-size:11px;font-weight:400;opacity:0.8">CROP · bias · sources</span></span>
+      <span style="text-align:left"><span style="display:block">Information literacy</span><span style="font-size:11px;font-weight:400;opacity:0.8">CRAAP · bias · sources</span></span>
     </button>
     <button class="w1c2-tab-btn" id="tab-btn-apa" onclick="switchW1C2Tab('apa')" style="display:flex;align-items:center;gap:10px;padding:14px 22px;border-radius:14px;border:2px solid var(--border);background:var(--warm-white);color:var(--text-soft);font-family:'Lexend',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.18s;flex:1;min-width:180px">
       <span style="font-size:22px">📚</span>
@@ -1003,7 +1084,7 @@ function renderW1C2(el) {
     <div class="section">
       <div class="section-title"><span class="section-icon icon-learn">?</span>What is a credible source?</div>
       <p style="font-size:15px;color:var(--text-soft);line-height:1.75;margin-bottom:14px">A credible source is <strong>free from bias and backed by evidence</strong>. The author is an expert in their field, and the information is published by a trustworthy organisation. Not every website or document you find qualifies.</p>
-      <div class="alert alert-info">Two real defence questions: <strong>"How did you decide what information to use?"</strong> and <strong>"How did you assess the reliability of your sources?"</strong> — prepare your answer now by using CROP on every source.</div>
+      <div class="alert alert-info">Two real defence questions: <strong>"How did you decide what information to use?"</strong> and <strong>"How did you assess the reliability of your sources?"</strong> — prepare your answer now by using CRAAP on every source.</div>
       <div class="concept-grid" style="margin-top:14px">
         <div class="concept-card">
           <div class="concept-term">Primary research</div>
@@ -1020,7 +1101,7 @@ function renderW1C2(el) {
     </div>
 
     <div class="section">
-      <div class="section-title"><span class="section-icon icon-learn">C R O P</span>The CROP method — evaluate every source</div>
+      <div class="section-title"><span class="section-icon icon-learn">C R A A P</span>The CRAAP method — evaluate every source</div>
       <p style="font-size:15px;color:var(--text-soft);line-height:1.75;margin-bottom:14px">Ask these four questions before you use any source. Your tutors will ask you exactly these things in the defence.</p>
       <div class="concept-grid">
         <div class="concept-card" style="border-left:5px solid var(--w1)">
@@ -1034,11 +1115,16 @@ function renderW1C2(el) {
           <div class="concept-example"><span style="color:var(--teal);font-weight:700">✓ Good:</span> Directly addresses your research topic<br><span style="color:var(--red);font-weight:700">✗ Warning:</span> Only tangentially related; you are stretching it to fit</div>
         </div>
         <div class="concept-card" style="border-left:5px solid var(--w3)">
-          <div class="concept-term" style="font-size:18px;color:var(--w3)">O — Authority</div>
+          <div class="concept-term" style="font-size:18px;color:var(--w3)">A — Authority</div>
           <div class="concept-def">Who wrote it and for whom?</div>
           <div class="concept-example"><span style="color:var(--teal);font-weight:700">✓ Good:</span> Academic, expert, official body, known institution<br><span style="color:var(--red);font-weight:700">✗ Warning:</span> Anonymous, no credentials, personal blog</div>
         </div>
-        <div class="concept-card" style="border-left:5px solid var(--w4)">
+        <div class="concept-card" style="border-left:5px solid var(--coral)">
+          <div class="concept-term" style="font-size:18px;color:var(--coral)">A — Accuracy</div>
+          <div class="concept-def">Is the information supported by evidence?</div>
+          <div class="concept-example"><span style="color:var(--teal);font-weight:700">✓ Good:</span> Claims backed by data, citations, or peer review<br><span style="color:var(--red);font-weight:700">✗ Warning:</span> No sources cited; contradicts other reliable sources</div>
+        </div>
+        <div class="concept-card" style="border-left:5px solid var(--w4);grid-column:1/-1">
           <div class="concept-term" style="font-size:18px;color:var(--w4)">P — Purpose</div>
           <div class="concept-def">Why was this written?</div>
           <div class="concept-example"><span style="color:var(--teal);font-weight:700">✓ Good:</span> To inform, educate, or report findings<br><span style="color:var(--red);font-weight:700">✗ Warning:</span> To sell, persuade, or promote a brand</div>
@@ -1106,7 +1192,7 @@ function renderW1C2(el) {
       <div class="alert alert-warn" style="margin-bottom:14px"><strong>Class task:</strong> Find at least 3 credible sources for your report topics. Go to the APA tab above and add them to your bibliography as you find them.</div>
       <ul class="checklist">
         ${ck('w1c2-1','I can explain the difference between primary and secondary research')}
-        ${ck('w1c2-2','I can evaluate any source using CROP (Currency, Relevance, Authority, Purpose)')}
+        ${ck('w1c2-2','I can evaluate any source using CRAAP (Currency, Relevance, Authority, Purpose)')}
         ${ck('w1c2-3','I can identify when a source is biased and explain why')}
         ${ck('w1c2-4','I know at least 3 platforms where I can find valid academic sources')}
         ${ck('w1c2-5','I have found 3 sources and added them to my APA bibliography (APA tab)')}
